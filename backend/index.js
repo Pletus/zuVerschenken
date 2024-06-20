@@ -4,9 +4,11 @@ import connectDB from "./connectDB.js";
 import dotenv from "dotenv";
 dotenv.config();
 
+const app = express();
+
 app.use(cors());
 app.use(express.json());
-
+connectDB();
 
 
 app.listen(8080, () => {
