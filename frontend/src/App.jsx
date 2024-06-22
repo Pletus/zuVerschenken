@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./App.css";
+import AddItem from "./components/AddItem";
 
 function App() {
   return (
-    <>
-      <h1>Hello world</h1>
-    </>
+    <div className="container mx-auto p-4">
+    <AddItem />
+  </div>
   );
 }
 

@@ -1,21 +1,56 @@
 import Item from '../schemas/items.js';
+import { v2 as cloudinary } from 'cloudinary';
+import multer from 'multer';
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); 
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only images are allowed.'), false);
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter: fileFilter, limits: { fileSize: 1024 * 1024 * 5 } });
+
+export { upload };
 
 
 export const createItem = async (req, res) => {
   const { title, description, location } = req.body;
+  const images = [];
 
   try {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).send({ message: 'No files uploaded' });
+    }
+
+    for (const file of req.files) {
+      const result = await cloudinary.uploader.upload(file.path); 
+      images.push({ url: result.secure_url, filename: result.original_filename, size: result.bytes });
+    }
+
     const newItem = new Item({
       title,
       description,
       location,
+      images
     });
 
-    const item = await newItem.save();
-    res.status(201).json(item);
+    const savedItem = await newItem.save();
+    res.status(201).json(savedItem);
   } catch (err) {
     console.error('Error creating item', err);
-    res.status(500).send({message:'Server Error', error: err.message});
+    res.status(500).send({ message: 'Server Error', error: err.message });
   }
 };
 

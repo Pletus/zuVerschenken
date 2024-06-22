@@ -1,5 +1,15 @@
 import mongoose from 'mongoose';
 
+
+const ImageSchema = new mongoose.Schema({
+  url: {
+    type: String,
+    required: true
+  },
+  filename: String,
+  size: Number
+});
+
 const ItemSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -13,6 +23,7 @@ const ItemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  images: [ImageSchema],
   createdAt: {
     type: Date,
     default: Date.now

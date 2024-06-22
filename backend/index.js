@@ -3,16 +3,20 @@ import cors from "cors";
 import connectDB from "./connectDB.js";
 import items from "./routes/items.js";
 import dotenv from "dotenv";
+import configureCloudinary from "./cloudinaryConfig.js";
 dotenv.config();
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
 connectDB();
+configureCloudinary();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
 app.use('/api/items', items);
 
-app.listen(8080, () => {
-    console.log(`server is listening on port 8080`);
-  });
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
