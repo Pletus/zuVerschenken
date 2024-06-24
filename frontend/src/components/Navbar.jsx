@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between w-full p-4 shadow-md bg-customGray fixed top-0 left-0">
+    <nav className="flex items-center justify-between w-full p-4 shadow-md bg-customGray top-0 left-0">
       {/* Logo Placeholder */}
       <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
 
