@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 // import { AuthContext } from '../context/AuthContext';
-
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 function Signup() {
@@ -12,6 +12,7 @@ function Signup() {
 
   const [user, setUser] = useState(false);
   const BASE_URL = "http://localhost:8080";
+  const navigate = useNavigate();
 
   //   const { BASE_URL, setUser } = useContext(AuthContext);
 
@@ -36,7 +37,9 @@ function Signup() {
 
       const data = await response.json();
       localStorage.setItem("token", data.token);
-      setUser(true);
+      setUser(true)
+      navigate("/");
+      window.location.reload();
       console.log(data);
     } catch (error) {
       console.log(error);
