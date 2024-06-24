@@ -17,7 +17,6 @@ function Signup() {
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleInput = (e) => {
     setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -38,7 +37,6 @@ function Signup() {
       const data = await response.json();
       localStorage.setItem("token", data.token);
       setUser(true);
-      navigate("/posts");
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -49,70 +47,56 @@ function Signup() {
   };
 
   return (
-    <img src="..\assets\images\vecteezy_volunteers-packing-donation-boxes_6901865.jpg">
+    <section className="loginSignup flex justify-center min-h-screen">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col flex-wrap justify-center text-center align-middle bg-blue w-32 gap-2 opacity-100"
+        className="mx-3 bg-blue-500 bg-opacity-30 loginSignupDiv2 flex flex-col flex-wrap justify-center text-center items-center align-middle gap-2"
       >
-        <h2 className="text-4xl pb-6 font-bold drop-shadow-xl text-amber-500">
+        <h2 className="text-4xl pb-4 text-blue-500 font-bold drop-shadow-xl">
           Sign up
         </h2>
-        <label
-          className="font-bold drop-shadow-xl text-amber-400"
-          htmlFor="username"
-        >
-          Username
-        </label>
-        <input
-          className="rounded-lg opacity-70 rounded-full border-2 border-violet-900"
-          type="text"
-          name="username"
-          id="username"
-          value={formValues.username}
-          onChange={handleInput}
-        />
-        <br />
-        <label
-          className="font-bold drop-shadow-xl text-amber-400"
-          htmlFor="password"
-        >
-          Password
-        </label>
-        <input
-          className="rounded-lg opacity-70 rounded-full border-2 border-violet-900"
-          type="password"
-          name="password"
-          id="password"
-          value={formValues.password}
-          onChange={handleInput}
-        />{" "}
-        <br />
-        <label
-          className="text-amber-600 font-bold drop-shadow-xl text-amber-400"
-          htmlFor="email"
-        >
-          E-mail
-        </label>
-        <input
-          className="rounded-lg opacity-70 rounded-full border-2 border-violet-900"
-          type="email"
-          name="email"
-          id="email"
-          value={formValues.email}
-          onChange={handleInput}
-        />{" "}
-        <br />
-        <div className="flex justify-center">
+        <div className="flex flex-col pt-6 gap-2">
+          <input
+            className="pl-2 inputWidth rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-black placeholder-gray-500 focus:outline-none focus:border-blue-600"
+            type="text"
+            placeholder="Username"
+            name="username"
+            id="username"
+            value={formValues.username}
+            onChange={handleInput}
+          />
+          <br />
+          <input
+            className="pl-2 inputWidth rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-black placeholder-gray-500 focus:outline-none focus:border-blue-600"
+            type="password"
+            placeholder="Password"
+            name="password"
+            id="password"
+            value={formValues.password}
+            onChange={handleInput}
+          />
+          <br />
+          <input
+            className="pl-2 inputWidth rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-black placeholder-gray-500 focus:outline-none focus:border-blue-600"
+            type="email"
+            placeholder="Email"
+            name="email"
+            id="email"
+            value={formValues.email}
+            onChange={handleInput}
+          />
+        </div>
+        <div className="pt-10">
           <button
-            className="flex rounded-lg bg-cyan-500 p-1 px-4 font-bold drop-shadow-xl text-rose-700"
+            className="loginButton flex justify-center items-center bg-blue-700 rounded-full text-white "
             type="submit"
             disabled={loading}
           >
-            Sign up
+            SIGN UP
           </button>
         </div>
       </form>
-    </img>
+    </section>
   );
 }
 
