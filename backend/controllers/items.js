@@ -15,6 +15,8 @@ export const createItem = async (req, res) => {
     for (const file of req.files) {
       const result = await cloudinary.uploader.upload(file.path); 
       images.push({ url: result.secure_url, filename: result.original_filename, size: result.bytes });
+
+      fs.unlinkSync(file.path);
     }
 
     const newItem = new Item({
