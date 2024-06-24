@@ -48,3 +48,50 @@ h3 {
   font-size: 12px;
   font-weight: bold;
 }
+
+
+
+
+/* src/components/OneCard.css */
+/* .one-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.large-image-container {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.large-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.carousel-container {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.one-card a {
+  color: blue;
+  text-decoration: none;
+}
+
+.one-card a:hover {
+  text-decoration: underline;
+} */

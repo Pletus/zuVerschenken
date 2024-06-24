@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const ProductCard = () => {
+const Card = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -20,12 +21,12 @@ const ProductCard = () => {
   return (
     <div className="product-grid">
       {items.map(item => (
-        <div className="product-card" key={item._id}>
-          <img
-            src={item.images[0]?.url}
-            alt={item.title}
-            className="product-image"
-          />
+        <Link to={`/items/${item._id}`} key={item._id} className="product-card">
+        <img
+          src={item.images[0]?.url}
+          alt={item.title}
+          className="product-image"
+        />
           <h3 className='font-bold'>{item.title}</h3>
           <a
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location)}`}
@@ -35,10 +36,10 @@ const ProductCard = () => {
           >
             {item.location}
           </a>
-        </div>
+          </Link>
       ))}
     </div>
   );
 };
 
-export default ProductCard;
+export default Card;

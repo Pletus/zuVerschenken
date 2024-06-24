@@ -14,24 +14,22 @@ function App() {
 export default App; */
 
 import React from "react";
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Cards from "./components/Cards";
 import AddItem from "./components/AddItem";
 import "./App.css";
+import OneItem from "./components/OneItem";
 
 const App = () => {
   return (
-    <div>
-      <Routes>
-        <Route path="/Cards" element={<Cards />} />
-      <Route path="/AddItem" element={<AddItem />}
-      />
-      </Routes>
-      
-      {/* <Cards />
-      <AddItem /> */}
-    </div>
-  );
+      <Router>
+        <Routes>
+          <Route path="/Cards" element={<Cards />} />
+          <Route path="/AddItem" element={<AddItem />} />
+          <Route path="/items/:id" element={<OneItem />} />
+        </Routes>
+      </Router>
+      );
 };
 
 export default App;
