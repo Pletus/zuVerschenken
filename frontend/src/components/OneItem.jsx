@@ -2,14 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const OneItem = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
-  const[activeiImg, setActiveImg] = useState([])
+  const [activeImg, setActiveImg] = useState(0);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -36,31 +34,42 @@ const OneItem = () => {
     return <div>Item not found</div>;
   }
 
+  const handleThumbnailClick = (index) => {
+    setActiveImg(index);
+  };
+
   return (
-    <div className="">
-      <div className="flex flex-col justify-between">
+    <div className="flex flex-col justify-between lg:flex-row gap-32 lg:items-center p-8">
+      <div className="flex flex-col gap-6 lg:w-2/4">
         <img
-          src={item.images[0]?.url}
+          src={item.images[activeImg]?.url}
           alt={item.title}
-          className="w-full h-full aspect-square oject-cover"
+          className="w-full h-full aspect-square oject-cover rounded-xl"
         />
-        <div className="flex flow-row justify-between h-40">
-          {item.images.map((image, index) => (
+        <div className="flex flow-row justify-between h-60">
+          {item.images.slice(0, 3).map((image, index) => (
             <div key={index}>
               <img
+                key={index}
                 src={image.url}
                 alt={`${item.title} ${index + 1}`}
-                className="w-40 h-40 rounded-md"
+                className={`w-60 h-60 rounded-md cursor-pointer ${
+                  index === activeImg
+                    ? "border-2 border-black"
+                    : "border-2 border-transparent"
+                }}`}
+                onClick={() => handleThumbnailClick(index)}
               />
             </div>
           ))}
         </div>
       </div>
-      <div>
-        <h3 className="font-bold">{item.title}</h3>
-        <p>{item.description}</p>
-        <p>
+      <div className="flex flex-col gap-4 lg:w-2/4">
+        <h3 className="font-bold text-3xl">{item.title}</h3>
+        <span className="text-grey-700 lg:w-3/4">{item.description}</span>
+        <div>
           <a
+            className="text-lg font-semibold"
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
               item.location
             )}`}
@@ -69,7 +78,14 @@ const OneItem = () => {
           >
             {item.location}
           </a>
-        </p>
+          <p className="mt-2">
+            <strong>Posted By:</strong> {item.postedBy.username}
+          </p>
+          <p className="mt-2">
+            <strong>Created At:</strong>{" "}
+            {moment(item.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
+          </p>
+        </div>
       </div>
     </div>
   );

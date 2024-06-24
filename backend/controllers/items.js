@@ -1,9 +1,10 @@
 import Item from '../schemas/items.js';
+import user from '../schemas/users.js'
 import { v2 as cloudinary } from 'cloudinary';
 
 
 export const createItem = async (req, res) => {
-  const { title, description, location } = req.body;
+  const { title, description, location, postedBy, createdAt } = req.body;
   const images = [];
 
   try {
@@ -20,7 +21,8 @@ export const createItem = async (req, res) => {
       title,
       description,
       location,
-      images
+      images,
+      postedBy
     });
 
     const savedItem = await newItem.save();
@@ -63,7 +65,10 @@ export const getItemById = async (req, res) => {
       return res.status(404).json({ msg: 'Item not found' });
     }
 
-    res.json(item);
+    res.json({
+      ...item.toObject(),
+      createdAt: item.createdAt, // Ensure createdAt is included in the response
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
