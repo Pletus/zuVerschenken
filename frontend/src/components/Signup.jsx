@@ -1,6 +1,7 @@
-import { useState, useContext } from "react";
-// import { AuthContext } from '../context/AuthContext';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 
 function Signup() {
@@ -10,13 +11,8 @@ function Signup() {
     email: "",
   });
 
-  const [user, setUser] = useState(false);
   const BASE_URL = "http://localhost:8080";
   const navigate = useNavigate();
-
-  //   const { BASE_URL, setUser } = useContext(AuthContext);
-
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleInput = (e) => {
@@ -26,7 +22,17 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setError(null);
+    // Simple validation on the client side
+    if (!formValues.username || !formValues.email) {
+      toast.error("Please fill out all required fields.");
+      return;
+    }
+
+    if (formValues.password.length < 8 || formValues.password.length > 12) {
+      toast.error("Password must be between 8 and 12 characters.");
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await fetch(`${BASE_URL}/users/signup`, {
@@ -35,17 +41,21 @@ function Signup() {
         body: JSON.stringify(formValues),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error);
+      }
+
       const data = await response.json();
       localStorage.setItem("token", data.token);
-      setUser(true)
       navigate("/");
-      window.location.reload();
-      console.log(data);
+      toast.success("Signup successful!");
     } catch (error) {
-      console.log(error);
-      setError(error);
+      console.error("Signup error:", error);
+      toast.error("Signup failed: " + error.message);
     } finally {
       setLoading(false);
+      window.location.reload();
     }
   };
 
@@ -72,7 +82,7 @@ function Signup() {
           <input
             className="pl-2 inputWidth rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-black placeholder-gray-500 focus:outline-none focus:border-blue-600"
             type="password"
-            placeholder="Password"
+            placeholder="Password (8-12 characters)"
             name="password"
             id="password"
             value={formValues.password}
@@ -95,10 +105,11 @@ function Signup() {
             type="submit"
             disabled={loading}
           >
-            SIGN UP
+            {loading ? "Signing up..." : "SIGN UP"}
           </button>
         </div>
       </form>
+      <ToastContainer />
     </section>
   );
 }

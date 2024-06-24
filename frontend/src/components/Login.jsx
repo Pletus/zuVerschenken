@@ -1,24 +1,16 @@
-import { useState, useContext } from "react";
-// import { AuthContext } from '../context/AuthContext';
-import "../App.css";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function Login() {
+const Login = () => {
   const [formValues, setFormValues] = useState({
     username: "",
     password: "",
-    email: "",
   });
 
-  const [user, setUser] = useState(false);
-  const BASE_URL = "http://localhost:8080";
-  const navigate = useNavigate();
-
-
-  //   const { BASE_URL, setUser } = useContext(AuthContext);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -27,22 +19,25 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setError(null);
     setLoading(true);
     try {
-      const response = await fetch(`${BASE_URL}/users/login`, {
+      const response = await fetch("http://localhost:8080/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formValues),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error);
+      }
+
       const data = await response.json();
       localStorage.setItem("token", data.token);
-      setUser(true);
       navigate("/");
       window.location.reload();
     } catch (error) {
-      setError(error.message);
+      toast.error("Login failed: " + error.message);
     } finally {
       setLoading(false);
     }
@@ -80,17 +75,23 @@ function Login() {
         </div>
         <div className="pt-5">
           <button
-            className="loginButton flex justify-center items-center bg-blue-700 rounded-full text-white "
+            className="loginButton flex justify-center items-center bg-blue-700 rounded-full text-white"
             type="submit"
             disabled={loading}
           >
-            LOG IN
+            {loading ? "Logging in..." : "LOG IN"}
           </button>
         </div>
-        <NavLink to='/signup'  className="text-md text-blue-500 drop-shadow-xl pt-1">don´t you have an account?</NavLink>
+        <NavLink
+          to="/signup"
+          className="text-md text-blue-500 drop-shadow-xl pt-1"
+        >
+          Don't you have an account?
+        </NavLink>
       </form>
+      <ToastContainer />
     </section>
   );
-}
+};
 
 export default Login;
