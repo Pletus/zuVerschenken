@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 // import { AuthContext } from '../context/AuthContext';
 import "../App.css";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [formValues, setFormValues] = useState({
@@ -12,6 +13,8 @@ function Login() {
 
   const [user, setUser] = useState(false);
   const BASE_URL = "http://localhost:8080";
+  const navigate = useNavigate();
+
 
   //   const { BASE_URL, setUser } = useContext(AuthContext);
   const [error, setError] = useState(null);
@@ -36,7 +39,8 @@ function Login() {
       const data = await response.json();
       localStorage.setItem("token", data.token);
       setUser(true);
-      
+      navigate("/");
+      window.location.reload();
     } catch (error) {
       setError(error.message);
     } finally {
