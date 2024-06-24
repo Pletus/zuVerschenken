@@ -49,13 +49,12 @@ function Signup() {
       const data = await response.json();
       localStorage.setItem("token", data.token);
       navigate("/");
-      toast.success("Signup successful!");
+      window.location.reload();
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Signup failed: " + error.message);
     } finally {
       setLoading(false);
-      window.location.reload();
     }
   };
 

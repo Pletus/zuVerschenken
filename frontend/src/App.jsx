@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Hero from "./components/Hero";
 import Login from "./components/Login";
 import AddItem from "./components/AddItem";
+import 'react-toastify/dist/ReactToastify.css';
 import Signup from "./components/Signup";
 import Layout from "./components/Layout";
 import Navbar from "./components/Navbar";
