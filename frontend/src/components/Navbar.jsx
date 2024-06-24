@@ -1,5 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink,
+} from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -19,27 +24,34 @@ const Navbar = () => {
           placeholder="Post Code"
           className="px-4 py-2 border border-gray-300 rounded-md"
         />
-        <button className="px-4 py-2 text-white bg-blue-500 rounded-md">Search</button>
+        <button className="px-4 py-2 text-white bg-blue-500 rounded-md">
+          Search
+        </button>
       </div>
 
       {/* Navigation Links */}
       <div className="flex items-center space-x-8 ml-4">
-        <Link to="/" className="text-gray-700">Home</Link>
-        <Link to="/add-item" className="text-gray-700">Add Item</Link>
-        <Link to="/wishlist" className="text-gray-700">Wishlist</Link>
+        <NavLink to="/" className="text-gray-700">
+          Home
+        </NavLink>
+        <NavLink to="/additem" className="text-gray-700">
+          Add Item
+        </NavLink>
+        <NavLink to="/wishlist" className="text-gray-700">
+          Wishlist
+        </NavLink>
 
         {/* User Icon */}
-        <Link to="/profile" className="w-10 h-10 rounded-full overflow-hidden">
+        <NavLink to="/login" className="w-10 h-10 rounded-full overflow-hidden">
           <img
             src="https://via.placeholder.com/40"
             alt="User"
             className="object-cover w-full h-full"
           />
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );
 };
-
 
 export default Navbar;
