@@ -36,6 +36,7 @@ function Login() {
       const data = await response.json();
       localStorage.setItem("token", data.token);
       setUser(true);
+      
     } catch (error) {
       setError(error.message);
     } finally {
