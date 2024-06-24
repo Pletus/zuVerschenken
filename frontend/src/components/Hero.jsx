@@ -7,15 +7,15 @@ const Hero = () => {
     <>
       <div className="w-full h-lvh bg-white py-16 pt-32">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-          <div className="text-left md:w-1/2">
-            <h1 className="text-4xl font-bold text-blue-600 mb-2">
+          <div className="text-left md:w-2/4">
+            <h1 className="text-6xl font-bold text-blue-600 mb-2">
               Reduce, Reuse, Rehome:
             </h1>
-            <p className="text-xl text-blue-500">
+            <p className="text-4xl text-blue-500">
               Give Your Goods a Second Life
             </p>
           </div>
-          <div className="md:w-1/2">
+          <div className="md:w-2/4">
             <img
               src={HeroImage}
               alt="People rehoming items"
