@@ -1,28 +1,5 @@
 import Item from '../schemas/items.js';
 import { v2 as cloudinary } from 'cloudinary';
-import multer from 'multer';
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); 
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix);
-  }
-});
-
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image/')) {
-    cb(null, true);
-  } else {
-    cb(new Error('Only images are allowed.'), false);
-  }
-};
-
-const upload = multer({ storage: storage, fileFilter: fileFilter, limits: { fileSize: 1024 * 1024 * 5 } });
-
-export { upload };
 
 
 export const createItem = async (req, res) => {
@@ -54,10 +31,24 @@ export const createItem = async (req, res) => {
   }
 };
 
-export const getItems = async (req, res) => {
+/* export const getItems = async (req, res) => {
   try {
     const items = await Item.find().populate('postedBy', 'username');
     res.json(items);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+}; */
+
+export const getItems = async (req, res) => {
+  try {
+    const items = await Item.find().select('title description location images').lean();
+    const image = items.map(item => ({
+      ...item,
+      images: item.images.length > 0 ? [item.images[0]] : []
+    }));
+    res.json(image);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
