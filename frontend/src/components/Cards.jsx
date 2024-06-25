@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const ProductCard = () => {
+const Card = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -41,4 +41,4 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard;
+export default Card;
