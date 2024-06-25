@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
 
 const Cards = () => {
@@ -32,7 +32,7 @@ const Cards = () => {
 
   return (
     <div className="product-grid">
-      {items.map(item => (
+      {filteredItems.map(item => (
         <Link to={`/items/${item._id}`} key={item._id} className="product-card">
         <img
           src={item.images[0]?.url}
