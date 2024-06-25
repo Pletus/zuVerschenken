@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import Hero from "./components/Hero";
+import Cards from "./components/Cards";
 import Login from "./components/Login";
 import AddItem from "./components/AddItem";
 import 'react-toastify/dist/ReactToastify.css';
