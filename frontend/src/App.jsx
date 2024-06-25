@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import Hero from "./components/Hero";
+import Cards from "./components/Cards";
 import Login from "./components/Login";
 import AddItem from "./components/AddItem";
 import Signup from "./components/Signup";
 import Layout from "./components/Layout";
 import Navbar from "./components/Navbar";
+import OneItem from "./components/OneItem";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import "./index.css";
@@ -24,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Hero />} />
+          <Route path="/items/:id" element={<OneItem />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route
