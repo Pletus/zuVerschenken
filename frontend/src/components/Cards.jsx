@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useOutletContext } from 'react-router-dom';
 
 const Cards = () => {
   const [items, setItems] = useState([]);
+  const [searchQuery] = useOutletContext();
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -17,9 +19,19 @@ const Cards = () => {
     fetchItems();
   }, []);
 
+  const filteredItems = items.filter(item => {
+    const matchesItem = searchQuery.item
+      ? item.title.toLowerCase().includes(searchQuery.item.toLowerCase())
+      : true;
+    const matchesPostCode = searchQuery.postCode
+      ? item.location.toLowerCase().includes(searchQuery.postCode.toLowerCase())
+      : true;
+    return matchesItem && matchesPostCode;
+  });
+
   return (
     <div className="product-grid">
-      {items.map(item => (
+      {filteredItems.map(item => (
         <div className="product-card" key={item._id}>
           <img
             src={item.images[0]?.url}
