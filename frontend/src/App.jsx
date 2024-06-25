@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+const App = () => {
+import { useState, useEffect } from "react"; 
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Hero from "./components/Hero";
+import Cards from "./components/Cards";
 import Login from "./components/Login";
 import AddItem from "./components/AddItem";
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Hero />} />
+           <Route path="/items" element={<Cards />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route
