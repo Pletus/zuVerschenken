@@ -1,19 +1,42 @@
-import React from "react";
-import { Route, Routes} from "react-router-dom";
-import Cards from "./components/Cards";
-import AddItem from "./components/AddItem";
-import "./App.css";
-
 const App = () => {
+import { useState, useEffect } from "react"; 
+import { Route, Routes, Navigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import Hero from "./components/Hero";
+import Cards from "./components/Cards";
+import Login from "./components/Login";
+import AddItem from "./components/AddItem";
+import 'react-toastify/dist/ReactToastify.css';
+import Signup from "./components/Signup";
+import Layout from "./components/Layout";
+import Navbar from "./components/Navbar";
+import "./App.css";
+import "./index.css";
+
+function App() {
+  const [user, setUser] = useState(false);
+
+  useEffect(() => {
+    const isToken = localStorage.getItem("token");
+    if (isToken) setUser(true);
+  }, []);
+
   return (
-    <div>
+    <>
       <Routes>
-        <Route path="/items" element={<Cards />} />
-      <Route path="/AddItem" element={<AddItem />}
-      />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Hero />} />
+           <Route path="/items" element={<Cards />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/additem"
+            element={user ? <AddItem /> : <Navigate to="/login" />}
+          />
+        </Route>
       </Routes>
-    </div>
+    </>
   );
-};
+}
 
 export default App;
