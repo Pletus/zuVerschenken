@@ -40,8 +40,8 @@ const OneItem = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto bg-slate-100 ">
-      <div className="flex flex-col justify-between lg:flex-row gap-16 lg:items-center p-8">
+    <div className="max-w-screen-2xl mx-auto bg-slate-100 mt-10 ">
+      <div className="flex flex-col justify-center items-center lg:flex-row gap-16 lg:items-center p-8">
         <div className="flex flex-col lg:w-1/2 ">
           <img
             src={item.images[activeImg]?.url}
