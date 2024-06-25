@@ -1,4 +1,3 @@
-const App = () => {
 import { useState, useEffect } from "react"; 
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
