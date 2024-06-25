@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Card = () => {
+const Cards = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default Cards;
