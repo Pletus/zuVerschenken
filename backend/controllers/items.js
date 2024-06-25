@@ -1,9 +1,10 @@
 import Item from '../schemas/items.js';
+import user from '../schemas/users.js'
 import { v2 as cloudinary } from 'cloudinary';
 
 
 export const createItem = async (req, res) => {
-  const { title, description, location } = req.body;
+  const { title, description, location, postedBy, createdAt } = req.body;
   const images = [];
 
   try {
@@ -14,13 +15,16 @@ export const createItem = async (req, res) => {
     for (const file of req.files) {
       const result = await cloudinary.uploader.upload(file.path); 
       images.push({ url: result.secure_url, filename: result.original_filename, size: result.bytes });
+
+      fs.unlinkSync(file.path);
     }
 
     const newItem = new Item({
       title,
       description,
       location,
-      images
+      images,
+      postedBy
     });
 
     const savedItem = await newItem.save();
@@ -63,7 +67,10 @@ export const getItemById = async (req, res) => {
       return res.status(404).json({ msg: 'Item not found' });
     }
 
-    res.json(item);
+    res.json({
+      ...item.toObject(),
+      createdAt: item.createdAt, 
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

@@ -7,9 +7,9 @@ import AddItem from "./components/AddItem";
 import 'react-toastify/dist/ReactToastify.css';
 import Signup from "./components/Signup";
 import Layout from "./components/Layout";
-import Navbar from "./components/Navbar";
 import "./App.css";
 import "./index.css";
+import OneItem from "./components/OneItem";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -24,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Hero />} />
+          <Route path="/items/:id" element={<OneItem />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route
