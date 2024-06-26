@@ -1,6 +1,6 @@
 import Item from '../schemas/items.js';
-import user from '../schemas/users.js'
 import { v2 as cloudinary } from 'cloudinary';
+import fs from 'fs';
 
 
 export const createItem = async (req, res) => {

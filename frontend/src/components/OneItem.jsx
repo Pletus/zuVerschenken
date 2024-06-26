@@ -1,4 +1,3 @@
-// src/components/OneCard.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";;
@@ -40,22 +39,22 @@ const OneItem = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto bg-slate-100 mt-10 ">
-      <div className="flex flex-col justify-center items-center lg:flex-row gap-16 lg:items-center p-8">
+    <div className="max-w-9xl mx-auto bg-slate-100 ">
+      <div className="flex flex-col justify-between lg:flex-row gap-16 lg:items-center p-8">
         <div className="flex flex-col lg:w-1/2 ">
           <img
             src={item.images[activeImg]?.url}
             alt={item.title}
-            className="w-full h-full  aspect-square object-cover rounded-xl mb-4"
+            className="w-full h-full  aspect-square object-cover rounded-xl"
           />
-          <div className="flex flow-row justify-center gap-10 h-24">
+          <div className="flex flow-row justify-between h-">
             {item.images.slice(0, 3).map((image, index) => (
               <div key={index}>
                 <img
                   key={index}
                   src={image.url}
                   alt={`${item.title} ${index + 1}`}
-                  className={`w-24 h-24 rounded-md gap-2 cursor-pointer ${
+                  className={`md:w-60 md:h-60 rounded-md gap-2 cursor-pointer ${
                     index === activeImg
                       ? "border-2 border-black"
                       : "border-2 border-transparent"
