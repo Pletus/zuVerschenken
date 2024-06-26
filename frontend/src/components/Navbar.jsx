@@ -21,6 +21,14 @@ const Navbar = ({ onSearch }) => {
   const handleSearch = () => {
     onSearch(searchItem, searchPostCode);
     navigate("/"); // Redirect to the homepage
+    setSearchItem(""); // Clear search item field
+    setSearchPostCode(""); // Clear post code field
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
@@ -33,6 +41,7 @@ const Navbar = ({ onSearch }) => {
           placeholder="Search for items..."
           value={searchItem}
           onChange={(e) => setSearchItem(e.target.value)}
+          onKeyDown={handleKeyDown}
           className="px-4 py-2 border border-gray-300 rounded-md"
         />
         <input
@@ -40,6 +49,7 @@ const Navbar = ({ onSearch }) => {
           placeholder="Post Code"
           value={searchPostCode}
           onChange={(e) => setSearchPostCode(e.target.value)}
+          onKeyDown={handleKeyDown}
           className="px-4 py-2 border border-gray-300 rounded-md"
         />
         <button
