@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 
 function Profile() {
@@ -10,10 +13,17 @@ function Profile() {
   const [newPassword, setNewPassword] = useState("");
   const [userId, setUserId] = useState("");
   const [isChangePasswordVisible, setIsChangePasswordVisible] = useState(false);
-  const [fileName, setFileName] = useState('change your profile picture');
+  const [isChangePictureVisible, setIsChangePictureVisible] = useState(false);
+  const [fileName, setFileName] = useState("change your profile picture");
+
+  const navigate = useNavigate();
 
   const handleChangePasswordClick = () => {
     setIsChangePasswordVisible(!isChangePasswordVisible);
+  };
+
+  const handleChangePictureClick = () => {
+    setIsChangePictureVisible(!isChangePictureVisible);
   };
 
   const handleChangePassword = async (e) => {
@@ -40,10 +50,17 @@ function Profile() {
         }
       );
 
+      toast.success("Password changed", {
+        onClose: () => {
+          window.location.reload();
+        },
+      });
       setMessage(response.data.msg);
+      setIsChangePasswordVisible(false);
     } catch (error) {
       console.error("Error changing password:", error);
       setMessage("Error changing password");
+      toast("Wrong username or password");
     }
   };
 
@@ -85,12 +102,18 @@ function Profile() {
         },
       });
 
+      setIsChangePictureVisible(false);
       setMessage("Image uploaded");
-      fetchImageUrl(userId, token); // Fetch the updated image URL after uploading
-      window.location.reload();
+      fetchImageUrl(userId, token);
+      toast.success("Image uploaded", {
+        onClose: () => {
+          window.location.reload();
+        },
+      });
     } catch (error) {
       console.error("Error uploading the image:", error);
       setMessage("Error uploading the image");
+      toast("Error uploading the image");
     }
   };
 
@@ -131,8 +154,8 @@ function Profile() {
 
   return (
     <section className="flex justify-center min-w-min min-h-screen p-6 md:p-20">
-      <div className="responsiveDiv shadow-2xl bg-blue-400 bg-opacity-20 grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg text-center">
-        <div className="flex flex-col items-center justify-center">
+      <div className="responsiveDiv p-20 shadow-2xl bg-blue-400 bg-opacity-20 grid grid-cols-1 md:grid-cols-2 rounded-lg text-center">
+        <div className="flex flex-col gap-4 items-center justify-center">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -149,6 +172,7 @@ function Profile() {
           <form onSubmit={handleSubmit} className="flex flex-col">
             <input
               type="file"
+              onClick={handleChangePictureClick}
               name="profileImage"
               id="fileInput"
               onChange={handleImageChange}
@@ -161,46 +185,51 @@ function Profile() {
             >
               {fileName}
             </label>
-            <button
-              type="submit"
-              className="flex justify-center items-center bg-blue-700 rounded-full text-white p-2 mt-2"
-            >
-              Submit
-            </button>
+            {isChangePictureVisible ? (
+              <button
+                type="submit"
+                className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+              >
+                Submit
+              </button>
+            ) : null}
           </form>
           <div>
             {isChangePasswordVisible ? (
-              <form onSubmit={handleChangePassword}>
-                <label>
-                  Current Password:
-                  <input
-                    type="password"
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                    required
-                  />
-                </label>
-                <label>
-                  New Password:
-                  <input
-                    type="password"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    required
-                  />
-                </label>
-                <button
-                  className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
-                  type="submit"
-                >
-                  Change Password
-                </button>
-                <button
-                  onClick={handleChangePasswordClick}
-                  className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
-                >
-                  X
-                </button>
+              <form
+                onSubmit={handleChangePassword}
+                className="flex flex-col gap-2 justify-center items-center"
+              >
+                <div className="flex flex-row gap-2">
+                  <button
+                    className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+                    type="submit"
+                  >
+                    Change Password
+                  </button>
+                  <button
+                    onClick={handleChangePasswordClick}
+                    className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+                  >
+                    X
+                  </button>
+                </div>
+                <input
+                  type="password"
+                  value={currentPassword}
+                  placeholder="password"
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  required
+                  className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 placeholder-gray-500 focus:outline-none focus:border-blue-600"
+                />
+                <input
+                  type="password"
+                  value={newPassword}
+                  placeholder="new password"
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                  className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600"
+                />
               </form>
             ) : (
               <button
@@ -210,13 +239,13 @@ function Profile() {
                 change password
               </button>
             )}
-            {message && <p>{message}</p>}
           </div>
         </div>
         <div className="flex items-center justify-center">Items Posted</div>
         <div className="flex items-center justify-center">Wishlist</div>
         <div className="flex items-center justify-center">Ranking</div>
       </div>
+      <ToastContainer />
     </section>
   );
 }
