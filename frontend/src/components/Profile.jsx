@@ -5,6 +5,7 @@ import "../App.css";
 function Profile() {
   const [images, setImages] = useState([]);
   const [message, setMessage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleImageChange = (e) => {
     setImages([...e.target.files]);
@@ -15,7 +16,7 @@ function Profile() {
 
     const token = localStorage.getItem("token");
     if (!token) {
-      setMessage("Token no encontrado");
+      setMessage("Token not found");
       return;
     }
 
@@ -29,7 +30,7 @@ function Profile() {
     const userId = decoded.id;
 
     if (!userId) {
-      setMessage("User ID no encontrado en el token");
+      setMessage("User ID not found in token");
       return;
     }
 
@@ -37,7 +38,7 @@ function Profile() {
     formData.append("image", images[0]);
 
     try {
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:8080/users/${userId}/image`,
         formData,
         {
@@ -49,19 +50,54 @@ function Profile() {
       );
 
       setMessage("Image uploaded");
+      fetchImageUrl(userId, token); // Fetch the updated image URL after uploading
     } catch (error) {
       console.error("Error uploading the image:", error);
       setMessage("Error uploading the image");
     }
   };
 
+  const fetchImageUrl = async (userId, token) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/users/${userId}/image`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setImageUrl(response.data.image.url);
+    } catch (error) {
+      console.error("Error fetching user image:", error);
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      function decodeToken(token) {
+        const base64Url = token.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        return JSON.parse(atob(base64));
+      }
+
+      const decoded = decodeToken(token);
+      const userId = decoded.id;
+      if (userId) {
+        fetchImageUrl(userId, token);
+      }
+    }
+  }, []);
+
   return (
     <section className="flex justify-center min-w-min min-h-screen p-6 md:p-20">
       <div className="responsiveDiv shadow-2xl bg-blue-500 bg-opacity-30 grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg text-center">
         <div className="flex flex-col items-center justify-center">
-          {/* {error ? (
+          {imageUrl ? (
             <img
-              src={error}
+              src={imageUrl}
               alt="User"
               className="object-cover w-48 h-48 rounded-full border-2 border-blue-500 shadow-md"
             />
@@ -71,7 +107,7 @@ function Profile() {
               alt="User"
               className="object-cover w-48 h-48 rounded-full border-2 border-blue-500 shadow-md"
             />
-          )} */}
+          )}
           <form onSubmit={handleSubmit}>
             <input
               type="file"

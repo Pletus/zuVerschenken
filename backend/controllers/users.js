@@ -1,3 +1,4 @@
+import cloudinary from 'cloudinary'
 import User from "../schemas/users.js";
 import jwt from "jsonwebtoken";
 
@@ -30,31 +31,49 @@ const loginUser = async (req, res) => {
 };
 
 const updateUserImage = async (req, res) => {
-  const userId = req.params.id;
-  const { url, filename, size } = req.body;
-
   try {
-    let user = await User.findById(userId);
+    const userId = req.params.id;
+
+    const result = await cloudinary.v2.uploader.upload(req.file.path);
+
+    const newImage = {
+      url: result.secure_url,
+      filename: result.public_id,
+      size: req.file.size,
+    };
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $push: { image: newImage } },
+      { new: true, useFindAndModify: false }
+    );
 
     if (!user) {
       return res.status(404).json({ msg: 'User not found' });
     }
 
-    const newImage = {
-      url,
-      filename,
-      size
-    };
-
-    user.image.push(newImage);
-
-    user = await user.save();
-
-    res.json(user);
+    res.json({ user, image: newImage });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Error on the server');
+    console.error(err);
+    res.status(500).send('Server Error');
   }
 };
 
-export { loginUser, signupUser, updateUserImage };
+const getUserImage = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+
+    const imageUrl = user.image[0].url; 
+
+    res.json({ image: { url: imageUrl } });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+export { loginUser, signupUser, updateUserImage, getUserImage };
