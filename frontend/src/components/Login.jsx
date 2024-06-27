@@ -86,7 +86,7 @@ const Login = () => {
           to="/signup"
           className="text-md text-blue-500 drop-shadow-xl pt-1"
         >
-          Don't you have an account?
+          you don´t have an account yet?
         </NavLink>
       </form>
       <ToastContainer />

@@ -1,4 +1,3 @@
-
 .loginSignup {
   background-image: url(./assets/vecteezy_volunteers-packing-donation-boxes_6901865.jpg);
   background-size: cover;
@@ -34,41 +33,38 @@
   height: 41.8px;
 }
 
-
 .background-image {
-  background-image: url('./assets/vecteezy_clothing-donation-illustration_6916012.jpg');
+  background-image: url("./assets/vecteezy_clothing-donation-illustration_6916012.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0.9;
 }
 
-
-
 /* ProductCard.css */
 
 .product-grid {
-display: flex;
-flex-wrap: wrap;
-gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .product-card {
-background-color: #bae6fd;
-border: 1px solid #ddd;
-padding: 16px;
-border-radius: 8px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-width: calc(25% - 32px); /* Three columns with space between */
-box-sizing: border-box;
+  background-color: #bae6fd;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(25% - 32px); /* Three columns with space between */
+  box-sizing: border-box;
 }
 
 .product-image {
-width: 100%;
-height: 300px; /* Adjust as needed */
-object-fit: cover; /* Ensures the image covers the entire area */
-border-radius: 8px;
-padding-bottom: 25px;
+  width: 100%;
+  height: 300px; /* Adjust as needed */
+  object-fit: cover; /* Ensures the image covers the entire area */
+  border-radius: 8px;
+  padding-bottom: 25px;
 }
 
 /* .product-card h3 {
@@ -77,16 +73,13 @@ font-size: 1.2rem;
 } */
 
 .product-card p {
-margin: 8px 0;
+  margin: 8px 0;
 }
 
 h3 {
   font-size: 12px;
   font-weight: bold;
 }
-
-
-
 
 /* src/components/OneCard.css */
 /* .one-card {
@@ -130,4 +123,30 @@ h3 {
 
 .one-card a:hover {
   text-decoration: underline;
+} */
+
+.responsiveDiv {
+  width: 1300px;
+  height: 800px;
+}
+
+@media (max-width: 600px) {
+  .responsiveDiv {
+    width: 400px;
+    height: 600px;
+  }
+}
+
+/* @media (min-width: 601px) and (max-width: 1024px) {
+  .responsiveDiv {
+    width: 80%;
+    height: 150px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .responsiveDiv {
+    width: 60%;
+    height: 100px;
+  }
 } */
