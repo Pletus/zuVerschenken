@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Hero from "./components/Hero";
+import Profile from "./components/Profile";
 import Cards from "./components/Cards";
 import Login from "./components/Login";
 import AddItem from "./components/AddItem";
@@ -31,8 +32,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route
             path="/additem"
-            element={user ? <AddItem /> : <Navigate to='/login'/>}
+            element={user ? <AddItem /> : <Navigate to="/login" />}
           />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
       <ToastContainer />

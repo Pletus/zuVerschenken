@@ -1,10 +1,20 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
+const ImageSchema = new mongoose.Schema({
+  url: {
+    type: String,
+    required: true
+  },
+  filename: String,
+  size: Number
+});
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+  image: [ImageSchema],
 });
 
 userSchema.statics.signup = async function (username, password, email) {
