@@ -37,8 +37,7 @@ const AddItem = () => {
       setDescription("");
       setLocation("");
       setImages([]);
-      document.getElementById('fileInput').value = '';
-      
+      document.getElementById("fileInput").value = "";
     } catch (error) {
       if (error.response) {
         console.error("Server responded with status:", error.response.status);
@@ -53,7 +52,9 @@ const AddItem = () => {
   return (
     <div className="background-image h-screen w-screen content-center">
       <div className="max-w-md mx-auto shadow-md opacity-80    bg-blue-100 rounded-lg p-6">
-        <h2 className="text-2xl font-bold text-center mb-4 text-blue-700">Add New Item</h2>
+        <h2 className="text-2xl font-bold text-center mb-4 text-blue-700">
+          Add New Item
+        </h2>
         {message && <p className="mb-4">{message}</p>}
         <form
           onSubmit={handleSubmit}

@@ -25,10 +25,9 @@ const fetchComments = async (itemId) => {
   try {
     const response = await axios.get(`http://localhost:8080/api/items/${itemId}/comments`, { headers });
     
-    // Assuming your backend returns comments with 'username' field along with other comment fields
     const commentsWithUsernames = response.data.map(comment => ({
       ...comment,
-      username: comment.users?.username // Adjust this based on your backend response structure
+      username: comment.users?.username 
     }));
     
     return commentsWithUsernames;

@@ -1,4 +1,4 @@
-/* import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 
 const ImageSchema = new mongoose.Schema({
@@ -26,7 +26,7 @@ const ItemSchema = new mongoose.Schema({
   images: [ImageSchema],
   postedBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Assuming 'User' is the name of your user model
+    ref: 'User', 
   },
   createdAt: {
     type: Date,
@@ -35,24 +35,3 @@ const ItemSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('Item', ItemSchema);
- */
-
-// schemas/item.js
-
-import mongoose from 'mongoose';
-
-const itemSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  location: String,
-  images: [{ url: String }],
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
-  postedBy: {
-    type: String,
-    ref: 'Users',
-    required: true},
-  createdAt: { type: Date, default: Date.now },
-});
-
-const Item = mongoose.model('Item', itemSchema);
-export default Item;
