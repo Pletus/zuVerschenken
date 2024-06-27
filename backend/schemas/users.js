@@ -1,38 +1,55 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-const userSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true },
 });
 
 userSchema.statics.signup = async function (username, password, email) {
-  const usernameExists = await this.findOne({ username });
+  try {
+    
+    const existingUser = await this.findOne().or([{ username }, { email }]);
+    if (existingUser) {
+      throw new Error("Username or email already exists");
+    }
 
-  if (usernameExists) throw Error("Username already in use");
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-  const salt = await bcrypt.genSalt(10);
-  const hashedPW = await bcrypt.hash(password, salt);
+    const newUser = await this.create({
+      username,
+      password: hashedPassword,
+      email,
+    });
 
-  const user = await this.create({ username, password: hashedPW, email });
-
-  return user;
+    return newUser;
+  } catch (error) {
+    throw error; 
+  }
 };
 
 userSchema.statics.login = async function (username, password) {
-    if (!username || !password) throw Error('Please provide your credentials');
+  try {
+    const user = await this.findOne({ username });
+    if (!user) {
+      throw new Error("Incorrect username");
+    }
 
-    const user = await this.findOne({ username }).lean();
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      throw new Error("Incorrect password");
+    }
 
-    if (!user) throw Error('Incorrect username');
+    return user; 
+  } catch (error) {
+    throw error; 
+  }
+};
 
-    const match = await bcrypt.compare(password, user.password);
+const Users = mongoose.model("Users", userSchema);
 
-    if (!match) throw Error('Incorrect password');
-    
-    return user;
-}
-
-export default mongoose.model('Users', userSchema);
-
+export default Users;
