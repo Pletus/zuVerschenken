@@ -6,7 +6,7 @@ const ImageSchema = new mongoose.Schema({
     type: String,
   },
   filename: String,
-  size: Number
+  size: Number,
 });
 
 const userSchema = new mongoose.Schema({
@@ -30,18 +30,21 @@ userSchema.statics.signup = async function (username, password, email) {
 };
 
 userSchema.statics.login = async function (username, password) {
-    if (!username || !password) throw Error('Please provide your credentials');
+  if (!username || !password) throw Error("Please provide your credentials");
 
-    const user = await this.findOne({ username }).lean();
+  const user = await this.findOne({ username }).lean();
 
-    if (!user) throw Error('Incorrect username');
+  if (!user) throw Error("Incorrect username");
 
-    const match = await bcrypt.compare(password, user.password);
+  const match = await bcrypt.compare(password, user.password);
 
-    if (!match) throw Error('Incorrect password');
-    
-    return user;
-}
+  if (!match) throw Error("Incorrect password");
 
-export default mongoose.model('Users', userSchema);
+  return user;
+};
 
+userSchema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
+export default mongoose.model("Users", userSchema);

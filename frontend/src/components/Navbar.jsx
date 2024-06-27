@@ -1,11 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const Navbar = ({ onSearch }) => {
+const Navbar = ({ onSearch, navbarImageUrl }) => {
   const [user, setUser] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const [searchPostCode, setSearchPostCode] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [userId, setUserId] = useState("");
   const navigate = useNavigate();
+  console.log(imageUrl)
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      function decodeToken(token) {
+        const base64Url = token.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        return JSON.parse(atob(base64));
+      }
+
+      const decoded = decodeToken(token);
+      const userId = decoded.id;
+      setUserId(userId);
+      if (userId) {
+        fetchImageUrl(userId, token);
+      }
+    }
+  }, []);
+
+  const fetchImageUrl = async (userId, token) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/users/${userId}/image`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setImageUrl(response.data.image.url);
+    } catch (error) {
+      console.error("Error fetching user image:", error);
+    }
+  };
 
   useEffect(() => {
     const isToken = localStorage.getItem("token");
@@ -15,6 +53,7 @@ const Navbar = ({ onSearch }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUser(false);
+    navigate('/')
     window.location.reload();
   };
 
@@ -96,7 +135,7 @@ const Navbar = ({ onSearch }) => {
           <>
             <NavLink to="/profile" className="w-10 h-10 rounded-full overflow-hidden">
               <img
-                src="https://via.placeholder.com/40"
+                src={navbarImageUrl}
                 alt="User"
                 className="object-cover w-full h-full"
               />

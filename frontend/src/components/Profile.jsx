@@ -2,10 +2,46 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../App.css";
 
-function Profile() {
+function Profile({ setNavbarImageUrl }) {
   const [images, setImages] = useState([]);
   const [message, setMessage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [userId, setUserId] = useState("");
+
+  console.log(userId)
+
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setMessage("Token not found");
+      return;
+    }
+
+    try {
+      const response = await axios.put(
+        "http://localhost:8080/users/change-password",
+        {
+          userId: `${userId}`,
+          currentPassword,
+          newPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setMessage(response.data.msg);
+    } catch (error) {
+      console.error("Error changing password:", error);
+      setMessage("Error changing password");
+    }
+  };
 
   const handleImageChange = (e) => {
     setImages([...e.target.files]);
@@ -38,19 +74,16 @@ function Profile() {
     formData.append("image", images[0]);
 
     try {
-      await axios.put(
-        `http://localhost:8080/users/${userId}/image`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.put(`http://localhost:8080/users/${userId}/image`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       setMessage("Image uploaded");
       fetchImageUrl(userId, token); // Fetch the updated image URL after uploading
+      window.location.reload();
     } catch (error) {
       console.error("Error uploading the image:", error);
       setMessage("Error uploading the image");
@@ -85,6 +118,7 @@ function Profile() {
 
       const decoded = decodeToken(token);
       const userId = decoded.id;
+      setUserId(userId);
       if (userId) {
         fetchImageUrl(userId, token);
       }
@@ -124,7 +158,30 @@ function Profile() {
               Submit
             </button>
           </form>
-          {message && <p>{message}</p>}
+          <div>
+            <form onSubmit={handleChangePassword}>
+              <label>
+                Current Password:
+                <input
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  required
+                />
+              </label>
+              <label>
+                New Password:
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                />
+              </label>
+              <button type="submit">Change Password</button>
+            </form>
+            {message && <p>{message}</p>}
+          </div>
         </div>
         <div className="flex items-center justify-center">Items Posted</div>
         <div className="flex items-center justify-center">Comments</div>
