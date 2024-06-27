@@ -11,6 +11,7 @@ import Layout from "./components/Layout";
 import "./App.css";
 import "./index.css";
 import OneItem from "./components/OneItem";
+import Wishlist from "./components/Wishlist";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -32,6 +33,7 @@ function App() {
             path="/additem"
             element={user ? <AddItem /> : <Navigate to="/login" />}
           />
+          <Route path="/wishlist" element={<Wishlist />} />
         </Route>
       </Routes>
     </>
