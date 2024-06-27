@@ -126,27 +126,78 @@ h3 {
 } */
 
 .responsiveDiv {
-  width: 1300px;
-  height: 800px;
+  width: auto;
+  height: auto;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 0px) and (max-width: 324px) {
   .responsiveDiv {
-    width: 400px;
-    height: 600px;
+    width: 300px;
+    height: auto;
   }
 }
 
-/* @media (min-width: 601px) and (max-width: 1024px) {
+@media (max-width: 425px) {
+  .responsiveDiv {
+    width: 325px;
+    height: auto;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
   .responsiveDiv {
     width: 80%;
-    height: 150px;
+    height: auto;
   }
 }
 
 @media (min-width: 1025px) {
   .responsiveDiv {
-    width: 60%;
-    height: 100px;
+    width: 70%;
+    height: auto;
   }
-} */
+}
+
+@media (min-width: 1441px) {
+  .responsiveDiv {
+    width: 60%;
+    height: auto;
+  }
+}
+
+
+.file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom-file-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #3b82f6; /* Tailwind class: bg-blue-500 */
+  color: white;
+  border-radius: 9999px; /* Tailwind class: rounded-full */
+  padding-left: 0.5rem; /* Tailwind class: pl-2 */
+  border: 2px solid #60a5fa; /* Tailwind class: border-blue-400 */
+  transition: border-color 0.3s;
+  cursor: pointer;
+}
+
+.custom-file-label:hover {
+  border-color: #2563eb; /* Tailwind class: focus:border-blue-600 */
+}
+
+.custom-file-label::placeholder {
+  color: #9ca3af; /* Tailwind class: placeholder-gray-500 */
+}
+
+.custom-file-label:focus {
+  outline: none;
+  border-color: #2563eb; /* Tailwind class: focus:border-blue-600 */
+}
