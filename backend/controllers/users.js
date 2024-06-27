@@ -30,29 +30,30 @@ const loginUser = async (req, res) => {
 };
 
 const updateUserImage = async (req, res) => {
-  const { image } = req.body;
+  const userId = req.params.id;
+  const { url, filename, size } = req.body;
 
   try {
-    let user = await User.findById(req.params.id);
+    let user = await User.findById(userId);
 
     if (!user) {
-      return res.status(404).json({ msg: 'user not found' });
+      return res.status(404).json({ msg: 'User not found' });
     }
 
-    if (user.postedBy.toString() !== req.user.id) {
-      return res.status(401).json({ msg: 'User not authorized' });
-    }
+    const newImage = {
+      url,
+      filename,
+      size
+    };
 
-    user = await User.findByIdAndUpdate(
-      req.params.id,
-      { $set: { image } },
-      { new: true }
-    );
+    user.image.push(newImage);
+
+    user = await user.save();
 
     res.json(user);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send('Error on the server');
   }
 };
 

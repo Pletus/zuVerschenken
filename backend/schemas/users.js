@@ -4,7 +4,6 @@ import bcrypt from "bcrypt";
 const ImageSchema = new mongoose.Schema({
   url: {
     type: String,
-    required: true
   },
   filename: String,
   size: Number
