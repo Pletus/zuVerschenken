@@ -33,6 +33,7 @@ function App() {
             path="/additem"
             element={user ? <AddItem /> : <Navigate to='/login'/>}
           />
+          <Route path="/wishlist" element={<Wishlist />} />
         </Route>
       </Routes>
       <ToastContainer />

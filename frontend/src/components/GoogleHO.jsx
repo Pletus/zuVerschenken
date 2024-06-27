@@ -9,7 +9,7 @@ const withGoogleScript = (WrappedComponent) => {
       const loadGoogleMapsScript = () => {
         if (!window.google) {
           const script = document.createElement('script');
-          script.src = `https://maps.googleapis.com/maps/api/js?AIzaSyAlzTfObq8drpzkji75QRt9ATiY9KFtICQ&libraries=places`;
+          script.src = `https://maps.googleapis.com/maps/api/js?API=KEY&libraries=places`;
           script.async = true;
           script.defer = true;
           script.onload = () => setIsScriptLoaded(true);

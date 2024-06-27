@@ -26,7 +26,7 @@ const ItemSchema = new mongoose.Schema({
   images: [ImageSchema],
   postedBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Assuming 'User' is the name of your user model
+    ref: 'User', 
   },
   createdAt: {
     type: Date,

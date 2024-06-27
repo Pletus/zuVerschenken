@@ -35,15 +35,6 @@ export const createItem = async (req, res) => {
   }
 };
 
-/* export const getItems = async (req, res) => {
-  try {
-    const items = await Item.find().populate('postedBy', 'username');
-    res.json(items);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-}; */
 
 export const getItems = async (req, res) => {
   try {

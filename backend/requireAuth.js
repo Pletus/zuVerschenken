@@ -1,18 +1,21 @@
 import jwt from 'jsonwebtoken';
-import User from './schemas/users.js';
+import Users from './schemas/users.js';
 
-const requireAuth = async function (req, res, next) {
+const requireAuth = async (req, res, next) => {
     const { authorization } = req.headers;
 
     if (!authorization) {
-        return res.status(401).json({ error: 'Not Authorized' })
+        return res.status(401).json({ error: 'Not Authorized' });
     }
+
     const token = authorization.split(' ')[1];
 
     try {
         const payload = jwt.verify(token, process.env.SECRET);
-
-        res.user = await User.findById(payload.id);
+        req.user = await Users.findById(payload.id); // Corrected assignment to req.user
+        if (!req.user) {
+            return res.status(401).json({ error: 'User not found' });
+        }
         next();
     } catch (error) {
         return res.status(401).json({ error: 'Not Authorized' });
