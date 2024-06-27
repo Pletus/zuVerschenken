@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Hero from "./components/Hero";
-import Cards from "./components/Cards";
+import Profile from "./components/Profile";
+import Wishlist from './components/Wishlist';
 import Login from "./components/Login";
 import AddItem from "./components/AddItem";
-import 'react-toastify/dist/ReactToastify.css';
 import Signup from "./components/Signup";
 import Layout from "./components/Layout";
+import OneItem from "./components/OneItem";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import "./index.css";
-import OneItem from "./components/OneItem";
-import Wishlist from "./components/Wishlist";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -34,8 +34,10 @@ function App() {
             element={user ? <AddItem /> : <Navigate to="/login" />}
           />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </>
   );
 }
