@@ -77,14 +77,14 @@ function Profile() {
       return;
     }
 
-    function decodeToken(token) {
-      const base64Url = token.split(".")[1];
-      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-      return JSON.parse(atob(base64));
-    }
+    // function decodeToken(token) {
+    //   const base64Url = token.split(".")[1];
+    //   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    //   return JSON.parse(atob(base64));
+    // }
 
-    const decoded = decodeToken(token);
-    const userId = decoded.id;
+    // const decoded = decodeToken(token);
+    // const userId = decoded.id;
 
     if (!userId) {
       setMessage("User ID not found in token");
@@ -205,7 +205,7 @@ function Profile() {
                     className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
                     type="submit"
                   >
-                    Change Password
+                    change your password
                   </button>
                   <button
                     onClick={handleChangePasswordClick}
@@ -236,7 +236,7 @@ function Profile() {
                 onClick={handleChangePasswordClick}
                 className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
               >
-                change password
+                change your password
               </button>
             )}
           </div>
