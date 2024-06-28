@@ -14,6 +14,8 @@ const OneItem = () => {
   const [commentText, setCommentText] = useState("");
   const [commentsVisible, setCommentsVisible] = useState(false);
 
+  console.log(id);
+
   useEffect(() => {
     const fetchItem = async () => {
       try {
@@ -43,7 +45,7 @@ const OneItem = () => {
     }
     fetchItem();
     fetchItemComments();
-  }, [id]);
+  }, []);
 
   const handleAddComment = async () => {
     try {

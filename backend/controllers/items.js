@@ -58,9 +58,18 @@ export const getItemById = async (req, res) => {
       return res.status(404).json({ msg: 'Item not found' });
     }
 
+    console.log('Fetched item:', item);
+
     res.json({
-      ...item.toObject(),
-      createdAt: item.createdAt, 
+      _id: item._id,
+      title: item.title,
+      description: item.description,
+      location: item.location,
+      images: item.images,
+      postedBy: {
+        username: item.postedBy.username  // Ensure this is correct based on your data model
+      },
+      createdAt: item.createdAt,
     });
   } catch (err) {
     console.error(err.message);

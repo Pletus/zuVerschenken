@@ -16,7 +16,14 @@ configureCloudinary();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+/* const whitelist = process.env.FRONTENDPATH || process.env.LOCALPATH;
+app.use(
+  cors({
+    origin: whitelist,
+    optionsSuccessStatus: 200,
+  })
+); */
+app.use(cors())
 app.use('/api/items', items);
 app.use("/users", userRouter);
 app.use('/api/items', commentRouter);
