@@ -50,9 +50,8 @@
 }
 
 .product-card {
-  background-color: #bae6fd;
+  background-color:white;
   border: 1px solid #ddd;
-  padding: 16px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: calc(25% - 32px); /* Three columns with space between */
@@ -64,16 +63,14 @@
   height: 300px; /* Adjust as needed */
   object-fit: cover; /* Ensures the image covers the entire area */
   border-radius: 8px;
-  padding-bottom: 25px;
 }
 
-/* .product-card h3 {
-margin-top: 8px;
+.product-card h3 {
 font-size: 1.2rem;
-} */
+}
 
-.product-card p {
-  margin: 8px 0;
+.product-card  {
+  margin: 0 auto;
 }
 
 h3 {

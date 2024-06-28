@@ -2,10 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const Cards = () => {
   const [items, setItems] = useState([]);
   const [searchQuery] = useOutletContext();
+  
+
+  useEffect(() => {
+    Aos.init({ duration: 3000 });
+  }, []);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -29,27 +36,36 @@ const Cards = () => {
       : true;
     return matchesItem && matchesPostCode;
   });
+useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
 
+
+  
   return (
-    <div className="product-grid">
-      {filteredItems.map(item => (
-        <Link to={`/items/${item._id}`} key={item._id} className="product-card">
-        <img
-          src={item.images[0]?.url}
-          alt={item.title}
-          className="product-image"
-        />
-          <h3 className='font-bold'>{item.title}</h3>
-          <a
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="location-link"
-          >
-            {item.location}
-          </a>
-          </Link>
-      ))}
+    <div className='bg-black'>
+<h1 className="text-5xl font-bold pt-6 px-20  text-white">Item List</h1 > 
+      
+      <div className="product-grid py-20 px-20 items-center justify-center" data-aos="zoom-in">
+        {filteredItems.map(item => (
+          <Link to={`/items/${item._id}`} key={item._id} className="product-card">
+          <img
+            src={item.images[0]?.url}
+            alt={item.title}
+            className="product-image"
+          />
+            <h3 className='font-bold'>{item.title}</h3>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="location-link"
+            >
+              {item.location}
+            </a>
+            </Link>
+        ))}
+      </div>
     </div>
   );
 };
