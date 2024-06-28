@@ -37,7 +37,7 @@ function Profile() {
 
     try {
       const response = await axios.put(
-        "http://localhost:8080/users/change-password",
+        "https://zuverschenken.onrender.com/users/change-password",
         {
           userId: `${userId}`,
           currentPassword,
@@ -95,7 +95,7 @@ function Profile() {
     formData.append("image", images[0]);
 
     try {
-      await axios.put(`http://localhost:8080/users/${userId}/image`, formData, {
+      await axios.put(`https://zuverschenken.onrender.com/users/${userId}/image`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -120,7 +120,7 @@ function Profile() {
   const fetchImageUrl = async (userId, token) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/users/${userId}/image`,
+        `https://zuverschenken.onrender.com/users/${userId}/image`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

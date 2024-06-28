@@ -14,7 +14,7 @@ const Wishlist = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/items');
+        const response = await axios.get('https://zuverschenken.onrender.com/api/items');
         setItems(response.data);
       } catch (err) {
         console.error('Error fetching items', err);
