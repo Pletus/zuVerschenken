@@ -267,7 +267,7 @@ function Profile() {
             </button>
           </form>
 
-          <div className="flex space-x-4">
+          <div className="grid grid-cols-3 space-x-3 space-y-3">
             {categories.map((category, index) => (
               <span
                 key={index}
