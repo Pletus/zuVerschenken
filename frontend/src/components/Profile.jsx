@@ -1,16 +1,30 @@
 import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 
-function Profile({ setNavbarImageUrl }) {
+function Profile() {
   const [images, setImages] = useState([]);
   const [message, setMessage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [userId, setUserId] = useState("");
+  const [isChangePasswordVisible, setIsChangePasswordVisible] = useState(false);
+  const [isChangePictureVisible, setIsChangePictureVisible] = useState(false);
+  const [fileName, setFileName] = useState("change your profile picture");
 
-  console.log(userId)
+  const navigate = useNavigate();
+
+  const handleChangePasswordClick = () => {
+    setIsChangePasswordVisible(!isChangePasswordVisible);
+  };
+
+  const handleChangePictureClick = () => {
+    setIsChangePictureVisible(!isChangePictureVisible);
+  };
 
   const handleChangePassword = async (e) => {
     e.preventDefault();
@@ -36,10 +50,17 @@ function Profile({ setNavbarImageUrl }) {
         }
       );
 
+      toast.success("Password changed", {
+        onClose: () => {
+          window.location.reload();
+        },
+      });
       setMessage(response.data.msg);
+      setIsChangePasswordVisible(false);
     } catch (error) {
       console.error("Error changing password:", error);
       setMessage("Error changing password");
+      toast("Wrong username or password");
     }
   };
 
@@ -56,14 +77,14 @@ function Profile({ setNavbarImageUrl }) {
       return;
     }
 
-    function decodeToken(token) {
-      const base64Url = token.split(".")[1];
-      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-      return JSON.parse(atob(base64));
-    }
+    // function decodeToken(token) {
+    //   const base64Url = token.split(".")[1];
+    //   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    //   return JSON.parse(atob(base64));
+    // }
 
-    const decoded = decodeToken(token);
-    const userId = decoded.id;
+    // const decoded = decodeToken(token);
+    // const userId = decoded.id;
 
     if (!userId) {
       setMessage("User ID not found in token");
@@ -81,12 +102,18 @@ function Profile({ setNavbarImageUrl }) {
         },
       });
 
+      setIsChangePictureVisible(false);
       setMessage("Image uploaded");
-      fetchImageUrl(userId, token); // Fetch the updated image URL after uploading
-      window.location.reload();
+      fetchImageUrl(userId, token);
+      toast.success("Image uploaded", {
+        onClose: () => {
+          window.location.reload();
+        },
+      });
     } catch (error) {
       console.error("Error uploading the image:", error);
       setMessage("Error uploading the image");
+      toast("Error uploading the image");
     }
   };
 
@@ -127,8 +154,8 @@ function Profile({ setNavbarImageUrl }) {
 
   return (
     <section className="flex justify-center min-w-min min-h-screen p-6 md:p-20">
-      <div className="responsiveDiv shadow-2xl bg-blue-500 bg-opacity-30 grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg text-center">
-        <div className="flex flex-col items-center justify-center">
+      <div className="responsiveDiv p-20 shadow-2xl bg-blue-400 bg-opacity-20 grid grid-cols-1 md:grid-cols-2 rounded-lg text-center">
+        <div className="flex flex-col gap-4 items-center justify-center">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -142,51 +169,83 @@ function Profile({ setNavbarImageUrl }) {
               className="object-cover w-48 h-48 rounded-full border-2 border-blue-500 shadow-md"
             />
           )}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="flex flex-col">
             <input
               type="file"
+              onClick={handleChangePictureClick}
               name="profileImage"
               id="fileInput"
               onChange={handleImageChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              className="hidden"
               required
             />
-            <button
-              type="submit"
-              className="flex justify-center items-center bg-blue-700 rounded-full text-white p-2 mt-2"
+            <label
+              htmlFor="fileInput"
+              className="flex justify-center items-center bg-blue-500 text-white rounded-full p-2 cursor-pointer"
             >
-              Submit
-            </button>
+              {fileName}
+            </label>
+            {isChangePictureVisible ? (
+              <button
+                type="submit"
+                className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+              >
+                Submit
+              </button>
+            ) : null}
           </form>
           <div>
-            <form onSubmit={handleChangePassword}>
-              <label>
-                Current Password:
+            {isChangePasswordVisible ? (
+              <form
+                onSubmit={handleChangePassword}
+                className="flex flex-col gap-2 justify-center items-center"
+              >
+                <div className="flex flex-row gap-2">
+                  <button
+                    className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+                    type="submit"
+                  >
+                    change your password
+                  </button>
+                  <button
+                    onClick={handleChangePasswordClick}
+                    className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+                  >
+                    X
+                  </button>
+                </div>
                 <input
                   type="password"
                   value={currentPassword}
+                  placeholder="password"
                   onChange={(e) => setCurrentPassword(e.target.value)}
                   required
+                  className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 placeholder-gray-500 focus:outline-none focus:border-blue-600"
                 />
-              </label>
-              <label>
-                New Password:
                 <input
                   type="password"
                   value={newPassword}
+                  placeholder="new password"
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
+                  className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600"
                 />
-              </label>
-              <button type="submit">Change Password</button>
-            </form>
-            {message && <p>{message}</p>}
+              </form>
+            ) : (
+              <button
+                onClick={handleChangePasswordClick}
+                className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+              >
+                change your password
+              </button>
+            )}
           </div>
         </div>
         <div className="flex items-center justify-center">Items Posted</div>
-        <div className="flex items-center justify-center">Comments</div>
         <div className="flex items-center justify-center">Wishlist</div>
+        <div className="flex items-center justify-center">Ranking</div>
       </div>
+      <ToastContainer />
     </section>
   );
 }
