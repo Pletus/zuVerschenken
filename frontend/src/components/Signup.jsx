@@ -46,10 +46,13 @@ function Signup() {
         throw new Error(errorData.error);
       }
 
+      toast('Sign up successful')
       const data = await response.json();
       localStorage.setItem("token", data.token);
-      navigate("/");
-      window.location.reload();
+      const timer = setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Signup failed: " + error.message);
@@ -59,7 +62,7 @@ function Signup() {
   };
 
   return (
-    <section className="loginSignup flex justify-center min-h-screen pt-32">
+    <section className="loginSignup flex justify-center min-h-screen pt-20">
       <form
         onSubmit={handleSubmit}
         className="mx-3 bg-blue-500 bg-opacity-30 loginSignupDiv2 flex flex-col flex-wrap justify-center text-center items-center align-middle gap-2"
