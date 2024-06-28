@@ -65,7 +65,7 @@ export const getItemById = async (req, res) => {
       location: item.location,
       images: item.images,
       postedBy: {
-        username: item.postedBy.username  // Ensure this is correct based on your data model
+        username: item.postedBy.username  
       },
       createdAt: item.createdAt,
     });
