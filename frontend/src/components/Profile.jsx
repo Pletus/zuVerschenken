@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 
@@ -92,15 +92,6 @@ function Profile() {
       setMessage("Token not found");
       return;
     }
-
-    // function decodeToken(token) {
-    //   const base64Url = token.split(".")[1];
-    //   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    //   return JSON.parse(atob(base64));
-    // }
-
-    // const decoded = decodeToken(token);
-    // const userId = decoded.id;
 
     if (!userId) {
       setMessage("User ID not found in token");
