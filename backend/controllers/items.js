@@ -59,8 +59,15 @@ export const getItemById = async (req, res) => {
     }
 
     res.json({
-      ...item.toObject(),
-      createdAt: item.createdAt, 
+      _id: item._id,
+      title: item.title,
+      description: item.description,
+      location: item.location,
+      images: item.images,
+      postedBy: {
+        username: item.postedBy.username  
+      },
+      createdAt: item.createdAt,
     });
   } catch (err) {
     console.error(err.message);

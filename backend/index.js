@@ -16,7 +16,7 @@ configureCloudinary();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors())
 app.use('/api/items', items);
 app.use("/users", userRouter);
 app.use('/api/items', commentRouter);

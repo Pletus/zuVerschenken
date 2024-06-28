@@ -31,7 +31,6 @@ const OneItem = () => {
     const fetchItemComments = async () => {
       try {
         const commentsData = await fetchComments(id);
-        console.log("Fetched comments:", commentsData);
         setComments(commentsData);
       } catch (err) {
         console.error("Error fetching comments", err);
@@ -78,8 +77,6 @@ const OneItem = () => {
   };
 
   return (
-
-    
     <div>
       <div className="max-w-screen-2xl mx-auto bg-slate-100 mt-10">
         <div className="flex flex-col justify-center items-center lg:flex-row gap-16 lg:items-center p-8">
@@ -124,50 +121,54 @@ const OneItem = () => {
                 <strong>Created At:</strong>{" "}
                 {moment(item.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
               </p>
+              <p className="mt-2">
+                <strong>Posted By:</strong> {item.postedBy.username}
+              </p>
             </div>
           </div>
         </div>
         
-      </div><div className="bg-white p-6 rounded-lg shadow-lg mt-6 max-w-screen-lg mx-auto">
-          <h4
-            className="text-xl font-semibold mb-4 cursor-pointer hover:bg-gray-200 p-2 rounded"
-            onClick={toggleCommentsVisibility}
+      </div>
+      <div className="bg-white p-6 rounded-lg shadow-lg mt-6 max-w-screen-lg mx-auto">
+        <h4
+          className="text-xl font-semibold mb-4 cursor-pointer hover:bg-gray-200 p-2 rounded"
+          onClick={toggleCommentsVisibility}
+        >
+          Comments
+        </h4>
+        <div className="mt-6">
+          <textarea
+            className="w-full p-4 border rounded-md"
+            rows=""
+            placeholder="Add a comment..."
+            value={commentText}
+            onChange={handleTextChange}
+          />
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded-md my-2"
+            onClick={handleAddComment}
           >
-            Comments
-          </h4>
-          <div className="mt-6">
-            <textarea
-              className="w-full p-4 border rounded-md"
-              rows=""
-              placeholder="Add a comment..."
-              value={commentText}
-              onChange={handleTextChange}
-            />
-            <button
-              className="bg-blue-500 text-white py-2 px-4 rounded-md my-2"
-              onClick={handleAddComment}
-            >
-              Submit
-            </button>
-          </div>
-          {commentsVisible && (
-            <div className="flex flex-col gap-4">
-              {comments.map((comment) => (
-                <div key={comment._id}>
-                  <div className="bg-gray-100 p-4 rounded-md">
-                    <p className="font-bold">{comment.userId?.username}</p>
-                    <p>{comment.text}</p>
-                  </div>
-                  <div>
-                    <p className="pl-2 text-sm text-gray-500">
-                      {moment(comment.createdAt).fromNow()}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+            Submit
+          </button>
         </div>
+        {commentsVisible && (
+          <div className="flex flex-col gap-4">
+            {comments.map((comment) => (
+              <div key={comment._id}>
+                <div className="bg-gray-100 p-4 rounded-md">
+                  <p className="font-bold">{comment.userId?.username}</p>
+                  <p>{comment.text}</p>
+                </div>
+                <div>
+                  <p className="pl-2 text-sm text-gray-500">
+                    {moment(comment.createdAt).fromNow()}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Navbar = ({ onSearch, navbarImageUrl }) => {
   const [user, setUser] = useState(false);
@@ -8,7 +9,6 @@ const Navbar = ({ onSearch, navbarImageUrl }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [userId, setUserId] = useState("");
   const navigate = useNavigate();
-  console.log(imageUrl)
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -38,7 +38,6 @@ const Navbar = ({ onSearch, navbarImageUrl }) => {
           },
         }
       );
-
       setImageUrl(response.data.image.url);
     } catch (error) {
       console.error("Error fetching user image:", error);
@@ -133,9 +132,9 @@ const Navbar = ({ onSearch, navbarImageUrl }) => {
 
         {user ? (
           <>
-            <NavLink to="/profile" className="w-10 h-10 rounded-full overflow-hidden">
+            <NavLink to="/profile"  className="w-10 h-10 rounded-full overflow-hidden">
               <img
-                src={navbarImageUrl}
+                src={imageUrl}
                 alt="User"
                 className="object-cover w-full h-full"
               />

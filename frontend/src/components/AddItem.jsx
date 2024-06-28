@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const AddItem = () => {
@@ -7,6 +7,22 @@ const AddItem = () => {
   const [location, setLocation] = useState("");
   const [images, setImages] = useState([]);
   const [message, setMessage] = useState("");
+  const [userId, setUserId] = useState("")
+
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      function decodeToken(token) {
+        const base64Url = token.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        return JSON.parse(atob(base64));
+      }
+      const decoded = decodeToken(token);
+      const userId = decoded.id;
+      setUserId(userId);
+    }
+  }, []);
 
   const handleImageChange = (e) => {
     setImages([...e.target.files]);
@@ -18,6 +34,7 @@ const AddItem = () => {
     formData.append("title", title);
     formData.append("description", description);
     formData.append("location", location);
+    formData.append("postedBy", userId);
     images.forEach((image) => {
       formData.append("images", image);
     });
@@ -36,8 +53,7 @@ const AddItem = () => {
       setTitle("");
       setDescription("");
       setLocation("");
-      setImages([]);
-      document.getElementById("fileInput").value = "";
+      console.log(formData);
     } catch (error) {
       if (error.response) {
         console.error("Server responded with status:", error.response.status);
@@ -51,15 +67,15 @@ const AddItem = () => {
 
   return (
     <div className="background-image h-screen w-screen content-center">
-      <div className="max-w-md mx-auto shadow-md opacity-80    bg-blue-100 rounded-lg p-6">
+      <div className="max-w-md mx-auto shadow-md opacity-80 bg-blue-100 rounded-lg p-6">
         <h2 className="text-2xl font-bold text-center mb-4 text-blue-700">
           Add New Item
         </h2>
         {message && <p className="mb-4">{message}</p>}
         <form
           onSubmit={handleSubmit}
-          methode="post"
-          encType="multipart/form-data "
+          method="post"
+          encType="multipart/form-data"
         >
           <div className="mb-4">
             <label
@@ -73,7 +89,7 @@ const AddItem = () => {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="border border-blue-700  rounded w-full py-3 px-3 bg-inherit  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
           </div>
@@ -95,7 +111,7 @@ const AddItem = () => {
           <div className="mb-4">
             <label
               htmlFor="location"
-              className="block  text-sm font-bold mb-2 text-blue-700"
+              className="block text-sm font-bold mb-2 text-blue-700"
             >
               Location
             </label>
@@ -104,7 +120,7 @@ const AddItem = () => {
               id="location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
           </div>
