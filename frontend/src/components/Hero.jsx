@@ -11,7 +11,7 @@ const Hero = () => {
 
   return (
     <>
-      <div className="w-full h-lvh bg-white py-16 pt-32">
+      <div className="w-full h-lvh bg-whit py-16 pt-24">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-around">
           <div className="text-left md:w-2/4">
             <h1
@@ -24,7 +24,7 @@ const Hero = () => {
               Rehome:
             </h1>
 
-            <p className="text-5xl text-blue-500" data-aos="zoom-out">
+            <p className="text-5xl pt-10 text-blue-500" data-aos="zoom-out">
               Give Your Goods a Second Life
             </p>
           </div>
