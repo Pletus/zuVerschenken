@@ -209,7 +209,6 @@ const OneItem = () => {
     const fetchItemComments = async () => {
       try {
         const commentsData = await fetchComments(id);
-        console.log("Fetched comments:", commentsData);
         setComments(commentsData);
       } catch (err) {
         console.error("Error fetching comments", err);

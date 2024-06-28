@@ -58,8 +58,6 @@ export const getItemById = async (req, res) => {
       return res.status(404).json({ msg: 'Item not found' });
     }
 
-    console.log('Fetched item:', item);
-
     res.json({
       _id: item._id,
       title: item.title,
