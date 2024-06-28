@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const AddItem = () => {
@@ -7,9 +7,22 @@ const AddItem = () => {
   const [location, setLocation] = useState("");
   const [images, setImages] = useState([]);
   const [message, setMessage] = useState("");
+  const [userId, setUserId] = useState("")
 
-  // Hardcoded user ID for testing purposes
-  const userId = "60d0fe4f5311236168a109ca"; // Replace with an actual user ID
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      function decodeToken(token) {
+        const base64Url = token.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        return JSON.parse(atob(base64));
+      }
+      const decoded = decodeToken(token);
+      const userId = decoded.id;
+      setUserId(userId);
+    }
+  }, []);
 
   const handleImageChange = (e) => {
     setImages([...e.target.files]);
