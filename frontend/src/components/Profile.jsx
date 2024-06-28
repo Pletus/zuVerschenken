@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 
@@ -15,6 +15,22 @@ function Profile() {
   const [isChangePasswordVisible, setIsChangePasswordVisible] = useState(false);
   const [isChangePictureVisible, setIsChangePictureVisible] = useState(false);
   const [fileName, setFileName] = useState("change your profile picture");
+  const [categories, setCategories] = useState([]);
+  const [newCategory, setNewCategory] = useState("");
+
+  const addCategory = (e) => {
+    e.preventDefault();
+    if (newCategory.trim() !== "") {
+      setCategories([...categories, newCategory.trim()]);
+      setNewCategory("");
+    }
+  };
+
+  const removeCategory = (categoryToRemove) => {
+    setCategories(
+      categories.filter((category) => category !== categoryToRemove)
+    );
+  };
 
   const navigate = useNavigate();
 
@@ -76,15 +92,6 @@ function Profile() {
       setMessage("Token not found");
       return;
     }
-
-    // function decodeToken(token) {
-    //   const base64Url = token.split(".")[1];
-    //   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    //   return JSON.parse(atob(base64));
-    // }
-
-    // const decoded = decodeToken(token);
-    // const userId = decoded.id;
 
     if (!userId) {
       setMessage("User ID not found in token");
@@ -242,7 +249,36 @@ function Profile() {
           </div>
         </div>
         <div className="flex items-center justify-center">Items Posted</div>
-        <div className="flex items-center justify-center">Wishlist</div>
+        <div className="flex flex-col items-center justify-center">
+          <NavLink to='/wishlist' className="text-xl mb-4">Wishlist</NavLink>
+          <form onSubmit={addCategory} className="mb-4 flex items-center justify-center flex-row gap-2">
+            <input
+              type="text"
+              value={newCategory}
+              onChange={(e) => setNewCategory(e.target.value)}
+              placeholder="Add category"
+              className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 placeholder-gray-500 focus:outline-none focus:border-blue-600"
+            />
+            <button
+              type="submit"
+              className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+            >
+              Add
+            </button>
+          </form>
+
+          <div className="flex space-x-4">
+            {categories.map((category, index) => (
+              <span
+                key={index}
+                onClick={() => removeCategory(category)}
+                className="p-2 bg-gray-200 rounded cursor-pointer hover:bg-red-300"
+              >
+                {category}
+              </span>
+            ))}
+          </div>
+        </div>
         <div className="flex items-center justify-center">Ranking</div>
       </div>
       <ToastContainer />
