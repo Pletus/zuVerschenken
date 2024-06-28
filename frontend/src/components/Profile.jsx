@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate,useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,6 +17,33 @@ function Profile() {
   const [fileName, setFileName] = useState("change your profile picture");
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
+  const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
+
+  console.log(items)
+  const { id } = useParams();
+
+  
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/items/`
+        );
+        const data = await response.json();
+        setItems(data);
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchItems();
+  }, [userId]);
+
+  useEffect(() => {
+    const filtered = items.filter(item => item.postedBy === userId);
+    setFilteredItems(filtered);
+  }, [items, userId]);
 
   const addCategory = (e) => {
     e.preventDefault();
@@ -248,10 +275,24 @@ function Profile() {
             )}
           </div>
         </div>
-        <div className="flex items-center justify-center">Items Posted</div>
+        <div className="flex items-center justify-center">
+          <div>
+            <h2>Items Posted</h2>
+            <ul>
+              {items.map((item) => (
+                <li key={item.id}>{item.name}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
         <div className="flex flex-col items-center justify-center">
-          <NavLink to='/wishlist' className="text-xl mb-4">Wishlist</NavLink>
-          <form onSubmit={addCategory} className="mb-4 flex items-center justify-center flex-row gap-2">
+          <NavLink to="/wishlist" className="text-xl mb-4">
+            Wishlist
+          </NavLink>
+          <form
+            onSubmit={addCategory}
+            className="mb-4 flex items-center justify-center flex-row gap-2"
+          >
             <input
               type="text"
               value={newCategory}
@@ -272,7 +313,7 @@ function Profile() {
               <span
                 key={index}
                 onClick={() => removeCategory(category)}
-                className="p-2 bg-gray-200 rounded cursor-pointer hover:bg-red-300"
+                className="p-2 bg-customGray rounded cursor-pointer hover:bg-red-300"
               >
                 {category}
               </span>
