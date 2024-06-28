@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -32,10 +32,13 @@ const Login = () => {
         throw new Error(errorData.error);
       }
 
+      toast('login successful')
       const data = await response.json();
       localStorage.setItem("token", data.token);
-      navigate("/");
-      window.location.reload();
+      const timer = setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       toast.error("Login failed: " + error.message);
     } finally {
@@ -44,7 +47,7 @@ const Login = () => {
   };
 
   return (
-    <section className="loginSignup flex justify-center min-h-screen pt-32">
+    <section className="loginSignup flex justify-center min-h-screen pt-20">
       <form
         onSubmit={handleSubmit}
         className="mx-3 bg-blue-500 bg-opacity-30 loginSignupDiv1 flex flex-col flex-wrap justify-center text-center items-center align-middle gap-2"
