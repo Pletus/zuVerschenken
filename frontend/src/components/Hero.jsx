@@ -11,7 +11,7 @@ const Hero = () => {
 
   return (
     <>
-      <div className="w-full h-lvh bg-whit py-16 pt-24">
+      <div className="w-full h-lvh bg-whit  py-10">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-around">
           <div className="text-left md:w-2/4">
             <h1
