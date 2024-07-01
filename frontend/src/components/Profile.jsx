@@ -21,9 +21,7 @@ function Profile() {
   const [filteredItems, setFilteredItems] = useState([]);
 
   console.log(items)
-  const { id } = useParams();
-
-  
+ 
   useEffect(() => {
     const fetchItems = async () => {
       try {
