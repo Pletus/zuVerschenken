@@ -1,195 +1,3 @@
-/* import React, { useEffect, useState } from "react";
-import axios from "axios";
-import moment from "moment";
-import { useParams } from "react-router-dom";
-import { addComment, fetchComments } from "../commentService";
-
-const OneItem = () => {
-  const { id } = useParams();
-  const [item, setItem] = useState(null);
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [activeImg, setActiveImg] = useState(0);
-  const [commentText, setCommentText] = useState("");
-  const [commentsVisible, setCommentsVisible] = useState(false);
-
-  const getCommentCount = (comments) => {
-    // Check if comments is an array and has elements
-    if (Array.isArray(comments) && comments.length > 0) {
-      return comments.length;  // Return the length of the comments array
-    } else {
-      return 0;  // Return 0 if comments is not an array or is empty
-    }
-  };
-
-  useEffect(() => {
-    const fetchItem = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/items/${id}`
-        );
-        setItem(response.data);
-        setLoading(false);
-      } catch (err) {
-        console.error("Error fetching item", err);
-        setLoading(false);
-      }
-    };
-
-    const fetchItemComments = async () => {
-      try {
-        const commentsData = await fetchComments(id);
-        setComments(commentsData);
-      } catch (err) {
-        console.error("Error fetching comments", err);
-      }
-    };
-
-    if (!comments.length) {
-      fetchItemComments();
-    }
-    fetchItem();
-    fetchItemComments();
-  }, [id]);
-
-  const handleAddComment = async () => {
-    try {
-      const addedComment = await addComment(id, commentText);
-      console.log("Comment added successfully:", addedComment);
-      setNewComment("");
-      setComments([...comments, addedComment]);
-      setCommentText("");
-    } catch (error) {
-      console.error("Error adding comment:", error);
-    }
-  };
-
-  const handleTextChange = (e) => {
-    setCommentText(e.target.value);
-  };
-
-  const toggleCommentsVisibility = () => {
-    setCommentsVisible(!commentsVisible);
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!item) {
-    return <div>Item not found</div>;
-  };
-
-
-  const handleThumbnailClick = (index) => {
-    setActiveImg(index);
-  };
-
-  const commentCount = getCommentCount(comments);
-  
-  
-
-  return (
-    <div className="bg-blue-300 p-10">
-      <div className="max-w-screen-xl mx-auto p-10">
-        <div className="flex flex-col justify-center items-center rounded-3xl lg:flex-row gap-16 lg:items-center bg-customGray p-8">
-          <div className="flex flex-col lg:w-1/2">
-            <img
-              src={item.images[activeImg]?.url}
-              alt={item.title}
-              className="w-full h-full aspect-square object-cover rounded-xl mb-4"
-            />
-            <div className="flex flow-row justify-center gap-10 h-24">
-              {item.images.slice(0, 3).map((image, index) => (
-                <div key={index}>
-                  <img
-                    src={image.url}
-                    alt={`${item.title} ${index + 1}`}
-                    className={`w-24 h-24 rounded-md gap-2 cursor-pointer ${
-                      index === activeImg
-                        ? "border-2 border-black"
-                        : "border-2 border-transparent"
-                    }`}
-                    onClick={() => handleThumbnailClick(index)}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-4 lg:w-1/2 p-4">
-            <h3 className="font-bold text-3xl">{item.title}</h3>
-            <span className="text-grey-700 lg:w-3/4">{item.description}</span>
-            <div>
-              <a
-                className="text-lg font-semibold"
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                  item.location
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.location}
-              </a>
-              <p className="mt-2">
-                <strong>Created At:</strong>{" "}
-                {moment(item.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
-              </p>
-              <p className="mt-2">
-                <strong>Posted By:</strong> {item.postedBy.username}
-              </p>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-      <div className="bg-white p-6 rounded-lg shadow-lg  max-w-screen-lg mx-auto">
-        <h4
-          className="text-xl font-semibold mb-4 cursor-pointer hover:bg-gray-200 pl-2 rounded"
-          onClick={toggleCommentsVisibility}
-        >
-          Comments ({commentCount})
-        </h4>
-        <div className="mt-6 flex flex-col gap-2">
-          <textarea
-            className="w-full p-4 border rounded-md"
-            rows="1"
-            placeholder="Add a comment..."
-            value={commentText}
-            onChange={handleTextChange}
-          />
-            <button
-              className="bg-blue-500  text-white py-2 px-4 rounded-full self-end my-2"
-              onClick={handleAddComment}
-            >
-              Submit
-            </button>
-        </div>
-        {commentsVisible && (
-          <div className="flex flex-col gap-4">
-            {comments.map((comment) => (
-              <div key={comment._id}>
-                <div className="bg-gray-100 p-4 rounded-3xl">
-                  <p className="font-semibold p-1">{comment.userId?.username}</p>
-                  <p>{comment.text}</p>
-                </div>
-                <div>
-                  <p className="pl-4 pt-2 text-sm text-gray-500">
-                    {moment(comment.createdAt).fromNow()}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default OneItem;
- */
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
@@ -202,6 +10,7 @@ const OneItem = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeImg, setActiveImg] = useState(0);
   const [commentText, setCommentText] = useState("");
   const [commentsVisible, setCommentsVisible] = useState(false);
@@ -219,9 +28,10 @@ const OneItem = () => {
       try {
         const response = await axios.get(`http://localhost:8080/api/items/${id}`);
         setItem(response.data);
-        setLoading(false);
       } catch (err) {
         console.error("Error fetching item", err);
+        setError("Error fetching item");
+      } finally {
         setLoading(false);
       }
     };
@@ -232,12 +42,10 @@ const OneItem = () => {
         setComments(commentsData);
       } catch (err) {
         console.error("Error fetching comments", err);
+        setError("Error fetching comments");
       }
     };
 
-    if (!comments.length) {
-      fetchItemComments();
-    }
     fetchItem();
     fetchItemComments();
   }, [id]);
@@ -246,11 +54,11 @@ const OneItem = () => {
     try {
       const addedComment = await addComment(id, commentText);
       console.log("Comment added successfully:", addedComment);
-      setNewComment("");
       setComments([...comments, addedComment]);
       setCommentText("");
     } catch (error) {
       console.error("Error adding comment:", error);
+      setError("Error adding comment");
     }
   };
 
@@ -264,6 +72,10 @@ const OneItem = () => {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
   }
 
   if (!item) {
@@ -327,7 +139,7 @@ const OneItem = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-               {item.location.city}, {item.location.street} {item.location.houseNumber}
+                {item.location.city}, {item.location.street} {item.location.houseNumber}
               </a>
               <p className="mt-2">
                 <strong>Created At:</strong>{" "}

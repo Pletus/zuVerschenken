@@ -5,12 +5,12 @@ import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 function Layout() {
-  const [searchQuery, setSearchQuery] = useState({ item: "", postCode: "" });
+  const [searchQuery, setSearchQuery] = useState({ item: "", postCode: "", city: "" });
 
-  const handleSearch = (item, postCode) => {
-    setSearchQuery({ item, postCode });
+  const handleSearch = (item, postCode, city) => {
+    setSearchQuery({ item, postCode, city });
   };
-
+  
   return (
     <div>
       <Navbar onSearch={handleSearch} />

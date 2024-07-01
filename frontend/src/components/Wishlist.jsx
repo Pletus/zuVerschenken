@@ -8,7 +8,7 @@ const Wishlist = () => {
   const [items, setItems] = useState([]);
   const [searchQuery] = useOutletContext();
   const [currentPage, setCurrentPage] = useState(1);
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+  const [viewMode, setViewMode] = useState('grid'); 
   const itemsPerPage = 6;
 
   useEffect(() => {
@@ -29,9 +29,12 @@ const Wishlist = () => {
       ? item.title.toLowerCase().includes(searchQuery.item.toLowerCase())
       : true;
     const matchesPostCode = searchQuery.postCode
-      ? item.location.toLowerCase().includes(searchQuery.postCode.toLowerCase())
+      ? item.location.postCode.toLowerCase().includes(searchQuery.postCode.toLowerCase())
       : true;
-    return matchesItem && matchesPostCode;
+    const matchesCity = searchQuery.city
+      ? item.location.city.toLowerCase().includes(searchQuery.city.toLowerCase())
+      : true;
+    return matchesItem && matchesPostCode && matchesCity;
   });
 
   // Pagination logic
@@ -67,12 +70,12 @@ const Wishlist = () => {
               <div className="p-4">
                 <h3 className="text-lg font-bold mb-2">{item.title}</h3>
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location)}`}
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location.city + ' ' + item.location.street + ' ' + item.location.houseNumber)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-500 hover:underline"
                 >
-                  {item.location}
+                  {item.location.city}, {item.location.street} {item.location.houseNumber}
                 </a>
               </div>
             </Link>
@@ -84,12 +87,12 @@ const Wishlist = () => {
             <Link to={`/items/${item._id}`} key={item._id} className="block bg-white shadow-md rounded-lg mb-4 p-4">
               <h3 className="text-lg font-bold mb-2">{item.title}</h3>
               <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location)}`}
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location.city + ' ' + item.location.street + ' ' + item.location.houseNumber)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:underline"
               >
-                {item.location}
+                {item.location.city}, {item.location.street} {item.location.houseNumber}
               </a>
             </Link>
           ))}
