@@ -3,15 +3,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import "aos/dist/aos.css";
-import Aos from "aos";
 
 const Cards = () => {
   const [items, setItems] = useState([]);
   const [searchQuery] = useOutletContext();
-
-  useEffect(() => {
-    Aos.init({ duration: 3000 });
-  }, []);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -36,15 +31,12 @@ const Cards = () => {
     return matchesItem && matchesPostCode;
   });
 
-  useEffect(() => {
-    Aos.init({ duration: 2000 });
-  }, []);
-
+ 
   return (
     <div className="bg-black min-h-screen">
-      <h1 className="text-5xl font-bold pt-6 px-28 text-white" data-aos="zoom-in">Item List</h1>
+      <h1 className="text-5xl font-bold pt-6 px-28 text-white" >Item List</h1>
 
-      <div className="grid-container py-10  px-20" data-aos="zoom-in">
+      <div className="grid-container py-10  px-20">
         {filteredItems.map((item) => (
           <Link to={`/items/${item._id}`} key={item._id} className="product-card">
             <img src={item.images[0]?.url} alt={item.title} className="product-image" />
