@@ -270,7 +270,7 @@ const AddItem = () => {
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="border border-blue-700 rounded bg-inherit h-48 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             ></textarea>
           </div>
@@ -287,30 +287,32 @@ const AddItem = () => {
               required
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="street" className="block text-sm font-bold mb-2 text-blue-700">
-              Street
-            </label>
-            <input
-              type="text"
-              id="street"
-              value={street}
-              onChange={(e) => setStreet(e.target.value)}
-              className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="houseNumber" className="block text-sm font-bold mb-2 text-blue-700">
-              House Number (optional)
-            </label>
-            <input
-              type="text"
-              id="houseNumber"
-              value={houseNumber}
-              onChange={(e) => setHouseNumber(e.target.value)}
-              className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
+          <div className="flex mb-4">
+            <div className="w-2/3 pr-2">
+              <label htmlFor="street" className="block text-sm font-bold mb-2 text-blue-700">
+                Street
+              </label>
+              <input
+                type="text"
+                id="street"
+                value={street}
+                onChange={(e) => setStreet(e.target.value)}
+                className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="w-1/3 pl-2">
+              <label htmlFor="houseNumber" className="block text-sm font-bold mb-2 text-blue-700">
+                House Nr. 
+              </label>
+              <input
+                type="text"
+                id="houseNumber"
+                value={houseNumber}
+                onChange={(e) => setHouseNumber(e.target.value)}
+                className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
           </div>
           <div className="mb-4">
             <label htmlFor="images" className="block text-blue-900 text-sm font-bold mb-2">
