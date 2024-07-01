@@ -245,7 +245,7 @@ const AddItem = () => {
     <div className="background-image h-screen w-screen flex items-center justify-center">
       <div className="max-w-md mx-auto shadow-md opacity-80 bg-blue-100 rounded-lg p-6">
         <h2 className="text-2xl font-bold text-center mb-4 text-blue-700">
-          Add New Item
+          Add New Box
         </h2>
         {message && <p className="mb-4">{message}</p>}
         <form onSubmit={handleSubmit} method="post" encType="multipart/form-data">

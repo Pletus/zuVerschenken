@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Navbar = ({ onSearch, navbarImageUrl }) => {
+const Navbar = ({ onSearch }) => {
   const [user, setUser] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const [searchPostCode, setSearchPostCode] = useState("");
@@ -58,9 +58,7 @@ const Navbar = ({ onSearch, navbarImageUrl }) => {
 
   const handleSearch = () => {
     onSearch(searchItem, searchPostCode);
-    navigate("/"); // Redirect to the homepage
-    setSearchItem(""); // Clear search item field
-    setSearchPostCode(""); // Clear post code field
+    navigate('/items');
   };
 
   const handleKeyDown = (e) => {
@@ -117,7 +115,17 @@ const Navbar = ({ onSearch, navbarImageUrl }) => {
             } transform transition-transform duration-200 hover:scale-125`
           }
         >
-          Add Item
+          Add Box
+        </NavLink>
+        <NavLink
+          to="/items"
+          className={({ isActive }) =>
+            `${
+              isActive ? "text-blue-500" : "text-gray-700"
+            } transform transition-transform duration-200 hover:scale-125`
+          }
+        >
+          Boxes
         </NavLink>
         <NavLink
           to="/wishlist"

@@ -4,14 +4,21 @@ import Cards from "../components/Cards";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
-const Hero = () => {
+const Hero = ({ reload }) => {
+
+  useEffect(() => {
+    if (reload) {
+      window.location.reload();
+    }
+  }, [reload]);
+
   useEffect(() => {
     Aos.init({ duration: 3000 });
   }, []);
 
   return (
     <>
-      <div className="w-full h-lvh bg-whit  py-10">
+      <div className="w-full h-lvh bg-white p-16">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-around">
           <div className="text-left md:w-2/4">
             <h1

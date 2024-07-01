@@ -205,7 +205,7 @@ function Profile() {
   }, []);
 
   return (
-    <section className="flex justify-center min-w-min min-h-screen p-2 md:p-12">
+    <section className="flex justify-center min-w-min min-h-screen p-6 md:p-12">
       <div className="responsiveDiv p-4 shadow-2xl bg-blue-400 bg-opacity-20 rounded-lg text-center">
         <div className="flex flex-col gap-4 items-center justify-center p-6 mb-8 mt-6 md:mb-0 md:mt-0">
           {imageUrl ? (
@@ -293,7 +293,7 @@ function Profile() {
             )}
           </div>
         </div>
-        <div className="flex items-center justify-center mt-12">
+        <div className="flex items-center justify-center my-2 mx-2 md:my-12 lg:mx-12">
           <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg p-4 bg-opacity-60 w-full">
             <h2 className="p-4 text-2xl">Items Posted</h2>
             <div className="grid grid-cols-1 2xl:grid-cols-2 gap-4">
