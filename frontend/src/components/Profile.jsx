@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate,useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,16 +20,10 @@ function Profile() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
 
-  console.log(items)
-  const { id } = useParams();
-
-  
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:8080/api/items/`
-        );
+        const response = await fetch(`http://localhost:8080/api/items/`);
         const data = await response.json();
         setItems(data);
       } catch (error) {
@@ -41,7 +35,7 @@ function Profile() {
   }, [userId]);
 
   useEffect(() => {
-    const filtered = items.filter(item => item.postedBy === userId);
+    const filtered = items.filter((item) => item.postedBy._id === userId);
     setFilteredItems(filtered);
   }, [items, userId]);
 
@@ -278,11 +272,18 @@ function Profile() {
         <div className="flex items-center justify-center">
           <div>
             <h2>Items Posted</h2>
-            <ul>
-              {items.map((item) => (
-                <li key={item.id}>{item.name}</li>
+            <div className="grid grid-cols-3 gap-4">
+              {filteredItems.map((item) => (
+                <div key={item.id} className="border p-4">
+                  <img
+                    src={item.images.url}
+                    alt={item.name}
+                    className="w-full h-32 object-cover mb-2"
+                  />
+                  <h3 className="text-lg font-bold">{item.name}</h3>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">
