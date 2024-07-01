@@ -19,6 +19,30 @@ function Profile() {
   const [newCategory, setNewCategory] = useState("");
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const itemsPerPage = 2;
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex + itemsPerPage < filteredItems.length
+        ? prevIndex + itemsPerPage
+        : 0
+    );
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex - itemsPerPage >= 0
+        ? prevIndex - itemsPerPage
+        : Math.max(filteredItems.length - itemsPerPage, 0)
+    );
+  };
+
+  const currentItems = filteredItems.slice(
+    currentIndex,
+    currentIndex + itemsPerPage
+  );
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -181,9 +205,9 @@ function Profile() {
   }, []);
 
   return (
-    <section className="flex justify-center min-w-min min-h-screen p-6 md:p-20">
-      <div className="responsiveDiv p-20 shadow-2xl bg-blue-400 bg-opacity-20 grid grid-cols-1 md:grid-cols-2 rounded-lg text-center">
-        <div className="flex flex-col gap-4 items-center justify-center">
+    <section className="flex justify-center min-w-min min-h-screen p-2 md:p-20">
+      <div className="responsiveDiv p-4 shadow-2xl bg-blue-400 bg-opacity-20 grid grid-cols-1 md:grid-cols-2 rounded-lg text-center">
+        <div className="flex flex-col gap-4 items-center justify-center mb-8 mt-6 md:mb-0 md:mt-0">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -269,24 +293,55 @@ function Profile() {
             )}
           </div>
         </div>
-        <div className="flex items-center justify-center">
-          <div>
-            <h2>Items Posted</h2>
-            <div className="grid grid-cols-3 gap-4">
-              {filteredItems.map((item) => (
-                <div key={item.id} className="border p-4">
-                  <img
-                    src={item.images.url}
-                    alt={item.name}
-                    className="w-full h-32 object-cover mb-2"
-                  />
-                  <h3 className="text-lg font-bold">{item.name}</h3>
-                </div>
+        <div className="flex items-center justify-center p-4">
+          <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg p-4 bg-opacity-60 w-full">
+            <h2 className="p-4 text-2xl">Items Posted</h2>
+            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-4">
+              {currentItems.map((item) => (
+                <NavLink to={`/items/${item._id}`}>
+                  <div
+                    key={item.id}
+                    className="flex flex-col justify-between bg-gray-300 shadow-md bg-opacity-80 p-3 rounded-lg h-full w-64"
+                  >
+                    <div>
+                      <img
+                        src={item.images[0].url}
+                        alt={item.title}
+                        className="w-full h-32 object-cover rounded-t-lg"
+                      />
+                      <h3 className="text-xl text-black border-black">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="bg-white rounded-b-lg p-2 mt-2">
+                      {item.location.city}, {item.location.street},{" "}
+                      {item.location.houseNumber}
+                    </p>
+                  </div>
+                </NavLink>
               ))}
+            </div>
+            <div className="flex justify-center gap-2 mt-4 w-full">
+              {currentIndex === 0 ? null : (
+                <button
+                  onClick={handlePrev}
+                  className="bg-blue-500 text-white p-2 rounded-full"
+                >
+                  &lt;
+                </button>
+              )}
+              {currentIndex + itemsPerPage < filteredItems.length && (
+                <button
+                  onClick={handleNext}
+                  className="bg-blue-500 text-white p-2 rounded-full mx-2"
+                >
+                  &gt;
+                </button>
+              )}
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg m-2 p-12 bg-opacity-60 w-full">
           <NavLink to="/wishlist" className="text-xl mb-4">
             Wishlist
           </NavLink>
@@ -308,8 +363,7 @@ function Profile() {
               Add
             </button>
           </form>
-
-          <div className="grid grid-cols-3 space-x-3 space-y-3">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 space-x-3 space-y-3">
             {categories.map((category, index) => (
               <span
                 key={index}
