@@ -136,12 +136,14 @@ const OneItem = () => {
             </div>
           </div>
           <div className="flex flex-col gap-4 lg:w-1/2 p-4">
-            <button onClick={handleWishlistClick}>
-              <h2 className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
+              <button onClick={handleWishlistClick}>
                 <strong>Wishlist Item</strong>
+              </button>
+              <button onClick={handleWishlistClick}>
                 <img src={wish} width={30} height={30} alt="wish icon" />
-              </h2>
-            </button>
+              </button>
+            </div>
             <h3 className="font-bold text-3xl">{item.title}</h3>
             <span className="text-grey-700 lg:w-3/4">{item.description}</span>
             <div>
