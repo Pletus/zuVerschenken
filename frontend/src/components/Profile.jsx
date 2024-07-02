@@ -205,9 +205,9 @@ function Profile() {
   }, []);
 
   return (
-    <section className="flex justify-center min-w-min min-h-screen p-2 md:p-20">
-      <div className="responsiveDiv p-4 shadow-2xl bg-blue-400 bg-opacity-20 grid grid-cols-1 md:grid-cols-2 rounded-lg text-center">
-        <div className="flex flex-col gap-4 items-center justify-center mb-8 mt-6 md:mb-0 md:mt-0">
+    <section className="flex justify-center min-w-min min-h-screen p-6 md:p-12">
+      <div className="responsiveDiv p-4 shadow-2xl bg-blue-400 bg-opacity-20 rounded-lg text-center">
+        <div className="flex flex-col gap-4 items-center justify-center p-6 mb-8 mt-6 md:mb-0 md:mt-0">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -293,7 +293,7 @@ function Profile() {
             )}
           </div>
         </div>
-        <div className="flex items-center justify-center p-4">
+        <div className="flex items-center justify-center my-2 mx-2 md:my-12 lg:mx-12">
           <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg p-4 bg-opacity-60 w-full">
             <h2 className="p-4 text-2xl">Items Posted</h2>
             <div className="grid grid-cols-1 2xl:grid-cols-2 gap-4">
@@ -341,41 +341,6 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg m-2 p-12 bg-opacity-60 w-full">
-          <NavLink to="/wishlist" className="text-xl mb-4">
-            Wishlist
-          </NavLink>
-          <form
-            onSubmit={addCategory}
-            className="mb-4 flex items-center justify-center flex-row gap-2"
-          >
-            <input
-              type="text"
-              value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
-              placeholder="Add category"
-              className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 placeholder-gray-500 focus:outline-none focus:border-blue-600"
-            />
-            <button
-              type="submit"
-              className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
-            >
-              Add
-            </button>
-          </form>
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 space-x-3 space-y-3">
-            {categories.map((category, index) => (
-              <span
-                key={index}
-                onClick={() => removeCategory(category)}
-                className="p-2 bg-customGray rounded cursor-pointer hover:bg-red-300"
-              >
-                {category}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="flex items-center justify-center">Ranking</div>
       </div>
       <ToastContainer />
     </section>

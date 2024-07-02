@@ -4,7 +4,14 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import Cards from "./Cards";
 
-const Hero = () => {
+const Hero = ({ reload }) => {
+
+  useEffect(() => {
+    if (reload) {
+      window.location.reload();
+    }
+  }, [reload]);
+
   useEffect(() => {
     Aos.init({ duration: 3000 });
   }, []);

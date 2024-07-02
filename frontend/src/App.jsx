@@ -3,9 +3,10 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Hero from "./components/Hero";
 import Profile from "./components/Profile";
-import Wishlist from './components/Wishlist';
+import Wishlist from "./components/Wishlist";
 import Login from "./components/Login";
 import AddItem from "./components/AddItem";
+import Items from "./components/Items";
 import Signup from "./components/Signup";
 import Layout from "./components/Layout";
 import OneItem from "./components/OneItem";
@@ -34,6 +35,7 @@ function App() {
             element={user ? <AddItem /> : <Navigate to="/login" />}
           />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/items" element={<Items />} />
           <Route path="/profile" element={<Profile />} />
           {/* <Route path="/items" element={<Cards />} /> */}
         </Route>
