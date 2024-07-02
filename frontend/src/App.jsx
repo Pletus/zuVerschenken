@@ -35,6 +35,7 @@ function App() {
           />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/items" element={<Cards />} /> */}
         </Route>
       </Routes>
       <ToastContainer />

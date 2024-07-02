@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
-import "aos/dist/aos.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { responsive } from "./ImageCarousel";
+
 
 const Cards = () => {
   const [items, setItems] = useState([]);
@@ -12,7 +15,15 @@ const Cards = () => {
     const fetchItems = async () => {
       try {
         const response = await axios.get("http://localhost:8080/api/items");
-        setItems(response.data);
+        const fetchedItems = response.data;
+
+       
+        const shuffledItems = fetchedItems.sort(() => 0.5 - Math.random());
+
+        
+        const selectedItems = shuffledItems.slice(0, 30);
+
+        setItems(selectedItems);
       } catch (err) {
         console.error("Error fetching items", err);
       }
@@ -31,21 +42,25 @@ const Cards = () => {
     return matchesItem && matchesPostCode;
   });
 
- 
   return (
-    <div className="bg-black min-h-screen">
-      <h1 className="text-5xl font-bold pt-6 px-28 text-white" >Item List</h1>
-
-      <div className="grid-container py-10  px-20">
-        {filteredItems.map((item) => (
-          <Link to={`/items/${item._id}`} key={item._id} className="product-card">
-            <img src={item.images[0]?.url} alt={item.title} className="product-image" />
-            <h3 className="font-bold text-white">{item.title}</h3>
-            <p className="text-black pl-2">
-              {item.location.city} {/* Render only the city name */}
-            </p>
-          </Link>
-        ))}
+    <div className="bg-white h-[800px] items-center justify-center flex">
+      <div className="container pb-20 m-auto">
+        <h1 className="font-bold text-4xl pb-24 text-blue-700 text-center">Featured Items</h1>
+        <Carousel responsive={responsive} showDots={true} dotListStyle={{ marginBottom: '20px' }}>
+          {filteredItems.map((item) => (
+            <div key={item._id} className="card--pri shadow-lg bg-blue-400 mx-auto flex items-center gap-2">
+              <Link to={`/items/${item._id}`}>
+                <img
+                  src={item.images[0]?.url}
+                  alt={item.title}
+                  className="product--image bg-white justify-center object-cover w-96"
+                />
+                <h2 className="font-bold text-center text-white">{item.title}</h2>
+                <p className="text-center text-white">{item.location.city}</p>
+              </Link>
+            </div>
+          ))}
+        </Carousel>
       </div>
     </div>
   );

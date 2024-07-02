@@ -89,15 +89,15 @@ const OneItem = () => {
   const commentCount = getCommentCount(comments);
 
   return (
-    <div className="bg-blue-300 p-10">
-      <div className="max-w-screen-xl mx-auto p-10">
-        <div className="flex flex-col justify-center items-center rounded-3xl lg:flex-row gap-16 lg:items-center bg-customGray p-8">
+    <div className="">
+      <div className="max-w-screen-lg mx-auto p-10">
+        <div className="flex flex-col justify-center items-center lg:flex-row gap-16 lg:items-center shadow-md shadow-blue-200 p-8">
           <div className="flex flex-col lg:w-1/2">
             {item.images && item.images[activeImg] && item.images[activeImg].url ? (
               <img
                 src={item.images[activeImg].url}
                 alt={item.title}
-                className="w-full h-full aspect-square object-cover rounded-xl mb-4"
+                className="w-full h-full aspect-square object-cover mb-4"
               />
             ) : (
               <div className="w-full h-full aspect-square object-cover rounded-xl mb-4 bg-gray-300">
@@ -113,7 +113,7 @@ const OneItem = () => {
                       alt={`${item.title} ${index + 1}`}
                       className={`w-24 h-24 rounded-md gap-2 cursor-pointer ${
                         index === activeImg
-                          ? "border-2 border-black"
+                          ? "border-2 border-blue-200"
                           : "border-2 border-transparent"
                       }`}
                       onClick={() => handleThumbnailClick(index)}
@@ -152,7 +152,7 @@ const OneItem = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-screen-lg mx-auto">
+      <div className="bg-white p-6 mb-10 rounded-lg shadow-md shadow-blue-200 max-w-screen-md mx-auto">
         <h4
           className="text-xl font-semibold mb-4 cursor-pointer hover:bg-gray-200 pl-2 rounded"
           onClick={toggleCommentsVisibility}

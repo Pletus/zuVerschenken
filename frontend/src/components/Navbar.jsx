@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import logo from '../assets/Logo.png'
 
 const Navbar = ({ onSearch, navbarImageUrl }) => {
   const [user, setUser] = useState(false);
@@ -70,8 +71,8 @@ const Navbar = ({ onSearch, navbarImageUrl }) => {
   };
 
   return (
-    <nav className="flex items-center justify-between w-full p-4 shadow-md bg-customGray top-0 left-0">
-      <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
+    <nav className="flex items-center justify-between w-full p-4 shadow-md bg-customBlue top-0 left-0 font-bold text-white">
+      <img src={logo} alt="" className="logo" />
 
       <div className="flex items-center space-x-2">
         <input

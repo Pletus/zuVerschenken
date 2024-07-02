@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-customGray text-black font-semibold pt-20 pb-10 ">
+    <footer className="bg-customDBlue text-black font-semibold pt-20 pb-10 ">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/about-us" className="text-lg hover:text-gray-400">
           About Us
