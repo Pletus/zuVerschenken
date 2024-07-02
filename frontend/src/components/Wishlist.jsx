@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
-import { FaTh, FaList } from 'react-icons/fa';
+import { FaTh, FaList, FaTrash } from 'react-icons/fa';
 
 const Wishlist = () => {
   const [items, setItems] = useState([]);
@@ -33,6 +33,24 @@ const Wishlist = () => {
 
     fetchWishlistItems();
   }, []);
+
+  const handleRemoveFromWishlist = (itemId) => {
+    try {
+      // Get the current wishlist from localStorage
+      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+      // Remove the item ID from the wishlist array
+      const updatedWishlist = wishlist.filter(id => id !== itemId);
+
+      // Update localStorage with the updated wishlist
+      localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+
+      // Refresh the page to reflect the changes
+      window.location.reload();
+    } catch (error) {
+      console.error('Error removing item from wishlist', error);
+    }
+  };
 
   const filteredItems = items.filter(item => {
     const matchesItem = searchQuery.item
@@ -71,13 +89,39 @@ const Wishlist = () => {
       {viewMode === 'grid' ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {currentItems.map(item => (
-            <Link to={`/items/${item._id}`} key={item._id} className="bg-white shadow-md rounded-lg overflow-hidden">
-              <img
-                src={item.images[0]?.url}
-                alt={item.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
+            <div key={item._id} className="relative bg-white shadow-md rounded-lg overflow-hidden">
+              <Link to={`/items/${item._id}`}>
+                <img
+                  src={item.images[0]?.url}
+                  alt={item.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location.city + ' ' + item.location.street + ' ' + item.location.houseNumber)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {item.location.city}, {item.location.street} {item.location.houseNumber}
+                  </a>
+                </div>
+              </Link>
+              <button
+                className="absolute bottom-2 right-2 text-gray-500 hover:text-red-500"
+                onClick={() => handleRemoveFromWishlist(item._id)}
+              >
+                <FaTrash />
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="list-view">
+          {currentItems.map(item => (
+            <div key={item._id} className="relative block bg-white shadow-md rounded-lg mb-4 p-4">
+              <Link to={`/items/${item._id}`}>
                 <h3 className="text-lg font-bold mb-2">{item.title}</h3>
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location.city + ' ' + item.location.street + ' ' + item.location.houseNumber)}`}
@@ -87,24 +131,14 @@ const Wishlist = () => {
                 >
                   {item.location.city}, {item.location.street} {item.location.houseNumber}
                 </a>
-              </div>
-            </Link>
-          ))}
-        </div>
-      ) : (
-        <div className="list-view">
-          {currentItems.map(item => (
-            <Link to={`/items/${item._id}`} key={item._id} className="block bg-white shadow-md rounded-lg mb-4 p-4">
-              <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location.city + ' ' + item.location.street + ' ' + item.location.houseNumber)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
+              </Link>
+              <button
+                className="absolute bottom-2 right-2 text-gray-500 hover:text-red-500"
+                onClick={() => handleRemoveFromWishlist(item._id)}
               >
-                {item.location.city}, {item.location.street} {item.location.houseNumber}
-              </a>
-            </Link>
+                <FaTrash />
+              </button>
+            </div>
           ))}
         </div>
       )}
