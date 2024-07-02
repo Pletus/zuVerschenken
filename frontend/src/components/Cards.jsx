@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -74,12 +74,13 @@ const Cards = () => {
             ))}
           </Carousel>
         <div className="flex justify-center items-center mt-20">
-          <button
+          <NavLink
             className="loginButton flex justify-center items-center font-bold bg-blue-500 rounded-full text-white"
             type="submit"
+            to="/items"
           >
             Click for More
-          </button>
+          </NavLink>
         </div>
       </div>
     </div>

@@ -18,11 +18,11 @@ const Hero = ({ reload }) => {
 
   return (
     <>
-      <div className="w-full h-[900px] bg-customBlue  py-10">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-around">
+      <div className="w-full bg-slate-200 h-[900px] py-10">
+        <div className="container mx-auto flex flex-col  md:flex-row items-center justify-around">
           <div className="text-left md:w-2/4">
             <h1
-              className="text-7xl font-bold text-white mb-2"
+              className="text-7xl font-bold text-blue-500 mb-2"
               data-aos="zoom-in-right"
             >
               Reduce, Reuse,
@@ -52,6 +52,9 @@ const Hero = ({ reload }) => {
           </div>
         </div>
       </div>
+      <div className='block' >
+        <h1 data-aos="fade-out">From One Person's Junk to Another's Gemome dummy text</h1>
+    </div>
       <Cards />
     </>
   );
