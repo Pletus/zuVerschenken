@@ -12,16 +12,26 @@ const Wishlist = () => {
   const itemsPerPage = 6;
 
   useEffect(() => {
-    const fetchItems = async () => {
+    const fetchWishlistItems = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/items');
-        setItems(response.data);
+        // Get the wishlist IDs from local storage
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        // Fetch the items using the wishlist IDs
+        const itemPromises = wishlist.map(id =>
+          axios.get(`http://localhost:8080/api/items/${id}`)
+        );
+
+        const itemResponses = await Promise.all(itemPromises);
+        const fetchedItems = itemResponses.map(response => response.data);
+
+        setItems(fetchedItems);
       } catch (err) {
-        console.error('Error fetching items', err);
+        console.error('Error fetching wishlist items', err);
       }
     };
 
-    fetchItems();
+    fetchWishlistItems();
   }, []);
 
   const filteredItems = items.filter(item => {

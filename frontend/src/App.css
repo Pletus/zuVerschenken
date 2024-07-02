@@ -67,6 +67,7 @@
   margin: auto 1rem;
   text-align: center;
   font-family: arial;
+  padding-bottom: 10px;
 }
 
 .product--image {
@@ -89,8 +90,6 @@
 .react-multiple-carousel__arrow  {
   background-color:blue;
   opacity: 0.6;
-  
- 
 }
 
 
