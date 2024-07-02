@@ -3,16 +3,16 @@ import axios from "axios";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import { addComment, fetchComments } from "../commentService";
+import wish from "../assets/wish.svg";
 
 const OneItem = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
+  const [commentText, setCommentText] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeImg, setActiveImg] = useState(0);
-  const [commentText, setCommentText] = useState("");
   const [commentsVisible, setCommentsVisible] = useState(false);
 
   const getCommentCount = (comments) => {
@@ -68,6 +68,14 @@ const OneItem = () => {
 
   const toggleCommentsVisibility = () => {
     setCommentsVisible(!commentsVisible);
+  };
+
+  const handleWishlistClick = () => {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    if (!wishlist.includes(id)) {
+      wishlist.push(id);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
   };
 
   if (loading) {
@@ -128,6 +136,12 @@ const OneItem = () => {
             </div>
           </div>
           <div className="flex flex-col gap-4 lg:w-1/2 p-4">
+            <button onClick={handleWishlistClick}>
+              <h2 className="flex items-center space-x-2">
+                <strong>Wishlist Item</strong>
+                <img src={wish} width={30} height={30} alt="wish icon" />
+              </h2>
+            </button>
             <h3 className="font-bold text-3xl">{item.title}</h3>
             <span className="text-grey-700 lg:w-3/4">{item.description}</span>
             <div>
