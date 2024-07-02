@@ -164,7 +164,7 @@ export const createItem = async (req, res) => {
 
 export const getItems = async (req, res) => {
   try {
-    const items = await Item.find().select('title description location images').populate('postedBy').lean();
+    const items = await Item.find().select('title description location images createdAt').populate('postedBy').lean();
     const image = items.map(item => ({
       ...item,
       images: item.images.length > 0 ? [item.images[0]] : []
