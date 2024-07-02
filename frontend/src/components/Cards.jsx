@@ -61,7 +61,15 @@ const Cards = () => {
             </div>
           ))}
         </Carousel>
+        <div className="flex justify-center items-center mt-6">
+          <button
+              className="loginButton flex justify-center items-center bg-blue-700 rounded-full text-white"
+              type="submit"
+            >Click for More
+            </button>
+        </div>
       </div>
+      
     </div>
   );
 };
