@@ -41,48 +41,47 @@ const AddItem = () => {
     formData.append("location", JSON.stringify(location));
 
     images.forEach((image) => {
-        formData.append("images", image);
+      formData.append("images", image);
     });
 
     console.log("Form Data: ");
     for (let [key, value] of formData.entries()) {
-        console.log(key, value);
+      console.log(key, value);
     }
 
     try {
-        const response = await axios.post(
-            "http://localhost:8080/api/items",
-            formData,
-            {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            }
-        );
-        toast('Item added successfully!')
-        setTitle("");
-        setDescription("");
-        setCity("");
-        setStreet("");
-        setHouseNumber("");
-        setImages([]);
-        console.log("Response data:", response.data);
-    } catch (error) {
-        if (error.response) {
-            console.error("Server responded with status:", error.response.status);
-            console.error("Server responded with data:", error.response.data);
-            setMessage(`Error: ${error.response.data.message || "Unknown error"}`);
-        } else if (error.request) {
-            console.error("No response received:", error.request);
-            setMessage("Network error: Please check your connection.");
-        } else {
-            console.error("Error setting up the request:", error.message);
-            setMessage("An error occurred. Please try again.");
+      const response = await axios.post(
+        "http://localhost:8080/api/items",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-        console.error("There was an error!", error);
+      );
+      toast("Item added successfully!");
+      setTitle("");
+      setDescription("");
+      setCity("");
+      setStreet("");
+      setHouseNumber("");
+      setImages([]);
+      console.log("Response data:", response.data);
+    } catch (error) {
+      if (error.response) {
+        console.error("Server responded with status:", error.response.status);
+        console.error("Server responded with data:", error.response.data);
+        setMessage(`Error: ${error.response.data.message || "Unknown error"}`);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+        setMessage("Network error: Please check your connection.");
+      } else {
+        console.error("Error setting up the request:", error.message);
+        setMessage("An error occurred. Please try again.");
+      }
+      console.error("There was an error!", error);
     }
-};
-
+  };
 
   return (
     <div className="background-image h-screen w-screen flex items-center justify-center">
@@ -91,9 +90,16 @@ const AddItem = () => {
           Add New Box
         </h2>
         {message && <p className="mb-4">{message}</p>}
-        <form onSubmit={handleSubmit} method="post" encType="multipart/form-data">
+        <form
+          onSubmit={handleSubmit}
+          method="post"
+          encType="multipart/form-data"
+        >
           <div className="mb-4">
-            <label htmlFor="title" className="text-blue-700 text-sm font-bold mb-2">
+            <label
+              htmlFor="title"
+              className="text-blue-700 text-sm font-bold mb-2"
+            >
               Title
             </label>
             <input
@@ -106,7 +112,10 @@ const AddItem = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="description" className="text-blue-900 text-sm font-bold mb-2">
+            <label
+              htmlFor="description"
+              className="text-blue-900 text-sm font-bold mb-2"
+            >
               Description
             </label>
             <textarea
@@ -118,7 +127,10 @@ const AddItem = () => {
             ></textarea>
           </div>
           <div className="mb-4">
-            <label htmlFor="city" className="text-sm font-bold mb-2 text-blue-700">
+            <label
+              htmlFor="city"
+              className="text-sm font-bold mb-2 text-blue-700"
+            >
               City
             </label>
             <input
@@ -132,7 +144,10 @@ const AddItem = () => {
           </div>
           <div className="flex mb-4">
             <div className="w-2/3 pr-2">
-              <label htmlFor="street" className="text-sm font-bold mb-2 text-blue-700">
+              <label
+                htmlFor="street"
+                className="text-sm font-bold mb-2 text-blue-700"
+              >
                 Street
               </label>
               <input
@@ -145,8 +160,11 @@ const AddItem = () => {
               />
             </div>
             <div className="w-1/3 pl-2">
-              <label htmlFor="houseNumber" className="text-sm font-bold mb-2 text-blue-700">
-                House Nr. 
+              <label
+                htmlFor="houseNumber"
+                className="text-sm font-bold mb-2 text-blue-700"
+              >
+                House Nr.
               </label>
               <input
                 type="text"
@@ -158,7 +176,10 @@ const AddItem = () => {
             </div>
           </div>
           <div className="mb-4">
-            <label htmlFor="images" className="text-blue-900 text-sm font-bold mb-2">
+            <label
+              htmlFor="images"
+              className="text-blue-900 text-sm font-bold mb-2"
+            >
               Images
             </label>
             <input
@@ -179,10 +200,21 @@ const AddItem = () => {
           </button>
         </form>
       </div>
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Slide
+      />
     </div>
   );
 };
 
 export default AddItem;
-
