@@ -15,7 +15,7 @@ const OneItem = () => {
   const [activeImg, setActiveImg] = useState(0);
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [isInWishlist, setIsInWishlist] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(false);
 
   const getCommentCount = (comments) => {
     if (Array.isArray(comments) && comments.length > 0) {
@@ -54,20 +54,33 @@ const OneItem = () => {
     fetchItemComments();
   }, [id]);
 
+  
+
+  useEffect(() => {
+    const isToken = localStorage.getItem("token");
+    if (isToken) setUser(true);
+  }, []);
+
   useEffect(() => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     setIsInWishlist(wishlist.includes(id));
   }, [id]);
 
   const handleAddComment = async () => {
-    try {
-      const addedComment = await addComment(id, commentText);
-      console.log("Comment added successfully:", addedComment);
-      setComments([...comments, addedComment]);
-      setCommentText("");
-    } catch (error) {
-      console.error("Error adding comment:", error);
-      setError("Error adding comment");
+    if (!user) {
+      alert("You need to be logged in to comment. Please log in or sign up.");
+      return;
+    } else {
+      console.log("Adding comment with text:", commentText);
+      try {
+        const addedComment = await addComment(id, commentText);
+        console.log("Comment added successfully:", addedComment);
+        setComments([...comments, addedComment]);
+        setCommentText("");
+      } catch (error) {
+        console.error("Error adding comment:", error);
+        setError("Error adding comment");
+      }
     }
   };
 
@@ -215,10 +228,16 @@ const OneItem = () => {
             value={commentText}
             onChange={handleTextChange}
           />
+          <div className="mt-2 text-red-500 text-sm" hidden={user}>
+            Please log in to add a comment!
+          </div>
+
           <button
-            className="bg-blue-500 text-white py-2 px-4 rounded-full self-end my-2"
+            className={`bg-blue-500 text-white py-2 px-4 rounded-full self-end my-2 ${
+              !user? "disabled opacity-50 cursor-not-allowed" : ""
+            }`}
             onClick={handleAddComment}
-            disabled={!isLoggedIn} // Disable if not logged in
+            disabled={!user}
           >
             Submit
           </button>
@@ -230,7 +249,6 @@ const OneItem = () => {
                 <div className="bg-gray-100 p-4 rounded-3xl">
                   <p className="font-semibold p-1">
                     {comment.userId?.username || "Anonymous"}{" "}
-                    {/* Display username if available, otherwise "Anonymous" */}
                   </p>
                   <p>{comment.text}</p>
                 </div>

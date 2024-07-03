@@ -13,7 +13,7 @@ const Cards = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/items");
+        const response = await axios.get("http://localhost:8080/api/items/top");
         const fetchedItems = response.data;
 
         const shuffledItems = fetchedItems.sort(() => 0.5 - Math.random());
@@ -29,18 +29,6 @@ const Cards = () => {
     fetchItems();
   }, []);
 
-  const filteredItems = items.filter((item) => {
-    const matchesItem = searchQuery.item
-      ? item.title.toLowerCase().includes(searchQuery.item.toLowerCase())
-      : true;
-    const matchesPostCode = searchQuery.postCode
-      ? item.location.city
-          .toLowerCase()
-          .includes(searchQuery.postCode.toLowerCase())
-      : true;
-    return matchesItem && matchesPostCode;
-  });
-
   return (
     <div className="bg-white h-[800px] items-center justify-center flex">
       <div className="container pb-20 m-auto">
@@ -54,7 +42,7 @@ const Cards = () => {
             showDots={true}
             dotListStyle={{ marginBottom: "20px" }}
           >
-            {filteredItems.map((item) => (
+            {items.map((item) => (
               <div
                 key={item._id}
                 className="card--pri shadow-lg  mx-auto flex items-center gap-2"

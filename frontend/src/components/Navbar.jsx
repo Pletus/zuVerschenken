@@ -69,7 +69,7 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="flex items-center justify-between w-full p-4 shadow-md bg-customBlue top-0 left-0 font-bold text-white">
+    <nav className="flex items-center justify-between w-full p-4 shadow-md bg-customBlue top-0 left-0 font-bold">
       <img src={logo} alt="" className="logo" />
 
       <div className="flex items-center space-x-2">
@@ -97,12 +97,12 @@ const Navbar = ({ onSearch }) => {
         </button>
       </div>
 
-      <div className="flex items-center space-x-8 ml-4">
+      <div className="flex items-center space-x-8 ml-4 ">
         <NavLink
           to="/"
           className={({ isActive }) =>
             `${
-              isActive ? "text-blue-500" : "text-gray-700"
+              isActive ? "text-blue-500" : "text-white"
             } transform transition-transform duration-200 hover:scale-125`
           }
         >
@@ -112,7 +112,7 @@ const Navbar = ({ onSearch }) => {
           to="/additem"
           className={({ isActive }) =>
             `${
-              isActive ? "text-blue-500" : "text-gray-700"
+              isActive ? "text-blue-500" : "text-white"
             } transform transition-transform duration-200 hover:scale-125`
           }
         >
@@ -122,7 +122,7 @@ const Navbar = ({ onSearch }) => {
           to="/items"
           className={({ isActive }) =>
             `${
-              isActive ? "text-blue-500" : "text-gray-700"
+              isActive ? "text-blue-500" : "text-white"
             } transform transition-transform duration-200 hover:scale-125`
           }
         >
@@ -132,7 +132,7 @@ const Navbar = ({ onSearch }) => {
           to="/wishlist"
           className={({ isActive }) =>
             `${
-              isActive ? "text-blue-500" : "text-gray-700"
+              isActive ? "text-blue-500" : "text-white"
             } transform transition-transform duration-200 hover:scale-125`
           }
         >
