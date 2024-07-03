@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import axios from "axios";
+import logout from "../assets/icon-logout.png";
+import login from "../assets/icon-user.png";
 
 const Navbar = ({ onSearch }) => {
   const [user, setUser] = useState(false);
@@ -10,25 +12,9 @@ const Navbar = ({ onSearch }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [userId, setUserId] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const listRef = useRef(null);
   const navigate = useNavigate();
 
   const handleMenuToggle = () => {
-    const list = listRef.current;
-    if (!list) return;
-
-    if (isMenuOpen) {
-      list.classList.remove("top-[60px]");
-      list.classList.remove("opacity-100");
-      list.classList.add("absolute");
-      list.classList.remove("pointer-events-auto");
-    } else {
-      list.classList.add("top-[60px]");
-      list.classList.add("opacity-100");
-      list.classList.remove("absolute");
-      list.classList.add("pointer-events-auto");
-    }
-
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -90,124 +76,141 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="flex items-center justify-between text-center w-full h-16 p-2 md:p-4 shadow-md bg-customGray top-0 left-0">
-      <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
-      <div className="flex items-center space-x-2">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchItem}
-          onChange={(e) => setSearchItem(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="px-4 py-2 w-16 sm:w-20 md:w-40 lg:w-full border border-gray-300 rounded-md"
-        />
-        <input
-          type="text"
-          placeholder="Post Code"
-          value={searchPostCode}
-          onChange={(e) => setSearchPostCode(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="px-4 py-2 w-16 sm:w-20 md:w-40 lg:w-full border border-gray-300 rounded-md"
-        />
-        <button
-          onClick={handleSearch}
-          className="px-4 py-2 w-20 sm:w-20 md:w-40 lg:w-full text-white bg-blue-500 rounded-md"
-        >
-          Search
+    <nav className="flex flex-col lg:flex-row justify-between md:justify-around lg:justify-between w-full p-2 shadow-md bg-customGray relative">
+      <div className="flex justify-between">
+        <div className="flex gap-1 sm:gap-4 lg:pl-1">
+          <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
+          <div className="flex items-center space-x-1 sm:space-x-4 lg:space-x-2">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchItem}
+              onChange={(e) => setSearchItem(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="px-4 py-2 w-20 md:w-28 lg:w-full border border-gray-300 rounded-md"
+            />
+            <input
+              type="text"
+              placeholder="Post Code"
+              value={searchPostCode}
+              onChange={(e) => setSearchPostCode(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="px-4 py-2 w-16 md:w-28 lg:w-full border border-gray-300 rounded-md"
+            />
+            <button
+              onClick={handleSearch}
+              className="px-4 py-2 w-18 sm:w-20 lg:w-32 text-white bg-blue-500 rounded-md"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+        <button onClick={handleMenuToggle} className="lg:hidden text-3xl ml-2">
+          {isMenuOpen ? (
+            <IoCloseOutline size={24} />
+          ) : (
+            <IoMenuOutline size={24} />
+          )}
         </button>
-        <span className="text-3xl cursor-pointer mx-2 md:hidden block">
-          <button onClick={handleMenuToggle}>
-            {isMenuOpen ? (
-              <IoCloseOutline size={24} />
-            ) : (
-              <IoMenuOutline size={24} />
-            )}
-          </button>
-        </span>
       </div>
-      <ul ref={listRef} className="flex items-center space-x-8 ml-4">
+      <ul
+        className={`flex flex-col md:flex-row lg:flex-row pl-12 align-middle lg:items-center lg:space-x-8 transition-transform transform ${
+          isMenuOpen
+            ? "max-h-full opacity-100 pt-1 gap-2 md:gap-8 md:items-center mt-2 md:pl-40"
+            : "max-h-0 gap-4 lg:gap-10 opacity-0"
+        } overflow-hidden lg:overflow-visible lg:opacity-100 lg:max-h-full w-full lg:w-auto`}
+      >
         <li>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `${
-                isActive ? "text-blue-500" : "text-gray-700"
-              } transform transition-transform duration-200 hover:scale-125`
-            }
-          >
-            Home
-          </NavLink>
+          <div>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `${
+                  isActive ? "text-blue-500" : "text-gray-700"
+                } transform transition-transform duration-200 pr-2 flex md:hover:scale-125`
+              }
+            >
+              Home
+            </NavLink>
+          </div>
         </li>
         <li>
-          <NavLink
-            to="/additem"
-            className={({ isActive }) =>
-              `${
-                isActive ? "text-blue-500" : "text-gray-700"
-              } transform transition-transform duration-200 hover:scale-125`
-            }
-          >
-            Add Box
-          </NavLink>
+          <div>
+            <NavLink
+              to="/additem"
+              className={({ isActive }) =>
+                `${
+                  isActive ? "text-blue-500" : "text-gray-700"
+                } transform transition-transform duration-200 pr-2 flex md:hover:scale-125`
+              }
+            >
+              Add Box
+            </NavLink>
+          </div>
         </li>
         <li>
-          <NavLink
-            to="/items"
-            className={({ isActive }) =>
-              `${
-                isActive ? "text-blue-500" : "text-gray-700"
-              } transform transition-transform duration-200 hover:scale-125`
-            }
-          >
-            Boxes
-          </NavLink>
+          <div>
+            <NavLink
+              to="/items"
+              className={({ isActive }) =>
+                `${
+                  isActive ? "text-blue-500" : "text-gray-700"
+                } transform transition-transform duration-200 pr-2 flex md:hover:scale-125`
+              }
+            >
+              Boxes
+            </NavLink>
+          </div>
         </li>
         <li>
-          <NavLink
-            to="/wishlist"
-            className={({ isActive }) =>
-              `${
-                isActive ? "text-blue-500" : "text-gray-700"
-              } transform transition-transform duration-200 hover:scale-125`
-            }
-          >
-            Wishlist
-          </NavLink>
+          <div>
+            <NavLink
+              to="/wishlist"
+              className={({ isActive }) =>
+                `${
+                  isActive ? "text-blue-500" : "text-gray-700"
+                } transform transition-transform duration-200 pr-2 flex md:hover:scale-125`
+              }
+            >
+              Wishlist
+            </NavLink>
+          </div>
+        </li>
+        <li>
+          <div className="flex flex-col md:flex-row lg:flex-row items-center absolute md:relative lg:relative inset-x-40 sm:inset-x-56 md:inset-x-0 lg:inset-x-0 top-16 md:top-0 lg:top-0 gap-4 lg:gap-1">
+            {user ? (
+              <div className="flex pr-2 gap-4">
+                <NavLink to="/profile" className="rounded-full overflow-hidden">
+                  <img
+                    src={imageUrl}
+                    alt="User"
+                    className="object-cover w-10 h-10 rounded-full overflow-hidden"
+                  />
+                </NavLink>
+                <button
+                  onClick={handleLogout}
+                  className="p-2 bg-blue-500 w-10 h-10 rounded-full hover:bg-gray-300"
+                >
+                  <img src={logout} alt="logout" className="" />
+                </button>
+              </div>
+            ) : (
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `${
+                    isActive ? "text-blue-500" : "text-gray-700"
+                  } transform transition-transform duration-200 pr-2 flex hover:scale-125`
+                }
+              >
+                <button className="bg-blue-500 w-auto h-8 rounded-full hover:bg-gray-300">
+                  <img src={login} alt="login" className="w-full h-full" />
+                </button>
+              </NavLink>
+            )}
+          </div>
         </li>
       </ul>
-      <div className="flex flex-row gap-2">
-        {user ? (
-          <>
-            <NavLink
-              to="/profile"
-              className="w-10 h-10 rounded-full overflow-hidden"
-            >
-              <img
-                src={imageUrl}
-                alt="User"
-                className="object-cover w-10 h-10 rounded-full overflow-hidden"
-              />
-            </NavLink>
-            <button
-              onClick={handleLogout}
-              className="ml-4 px-3 py-1 text-sm text-white bg-blue-500 rounded-md hover:bg-gray-300"
-            >
-              Log out
-            </button>
-          </>
-        ) : (
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              `${
-                isActive ? "text-blue-500" : "text-gray-700"
-              } transform transition-transform duration-200 hover:scale-125`
-            }
-          >
-            Log in | Sign up
-          </NavLink>
-        )}
-      </div>
     </nav>
   );
 };
