@@ -10,6 +10,7 @@ import Items from "./components/Items";
 import Signup from "./components/Signup";
 import Layout from "./components/Layout";
 import OneItem from "./components/OneItem";
+import About from "./components/About";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import "./index.css";
@@ -37,7 +38,7 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/items" element={<Items />} />
           <Route path="/profile" element={<Profile />} />
-          {/* <Route path="/items" element={<Cards />} /> */}
+          <Route path="/about-us" element={<About />} />
         </Route>
       </Routes>
       <ToastContainer />
