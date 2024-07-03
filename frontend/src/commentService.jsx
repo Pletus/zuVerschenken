@@ -23,7 +23,7 @@ const addComment = async (itemId, commentText) => {
 
 const fetchComments = async (itemId) => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/items/${itemId}/comments`, { headers });
+    const response = await axios.get(`http://localhost:8080/api/items/${itemId}/comments`, /* { headers } */);
     
     const commentsWithUsernames = response.data.map(comment => ({
       ...comment,

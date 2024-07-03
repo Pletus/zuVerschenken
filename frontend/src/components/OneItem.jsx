@@ -15,6 +15,7 @@ const OneItem = () => {
   const [activeImg, setActiveImg] = useState(0);
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [isInWishlist, setIsInWishlist] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const getCommentCount = (comments) => {
     if (Array.isArray(comments) && comments.length > 0) {
@@ -27,7 +28,9 @@ const OneItem = () => {
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/items/${id}`);
+        const response = await axios.get(
+          `http://localhost:8080/api/items/${id}`
+        );
         setItem(response.data);
       } catch (err) {
         console.error("Error fetching item", err);
@@ -79,7 +82,7 @@ const OneItem = () => {
   const handleWishlistClick = () => {
     let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     if (wishlist.includes(id)) {
-      wishlist = wishlist.filter(itemId => itemId !== id);
+      wishlist = wishlist.filter((itemId) => itemId !== id);
       setIsInWishlist(false);
     } else {
       wishlist.push(id);
@@ -111,7 +114,9 @@ const OneItem = () => {
       <div className="max-w-screen-xl mx-auto p-10">
         <div className="flex flex-col justify-center items-center lg:flex-row gap-16 lg:items-center shadow-md shadow-blue-200 p-8">
           <div className="flex flex-col lg:w-1/2">
-            {item.images && item.images[activeImg] && item.images[activeImg].url ? (
+            {item.images &&
+            item.images[activeImg] &&
+            item.images[activeImg].url ? (
               <img
                 src={item.images[activeImg].url}
                 alt={item.title}
@@ -123,26 +128,29 @@ const OneItem = () => {
               </div>
             )}
             <div className="flex flow-row justify-center gap-10 h-24">
-              {item.images && item.images.slice(0, 3).map((image, index) => (
-                <div key={index}>
-                  {image.url ? (
-                    <img
-                      src={image.url}
-                      alt={`${item.title} ${index + 1}`}
-                      className={`w-24 h-24 rounded-md gap-2 cursor-pointer ${
-                        index === activeImg
-                          ? "border-2 border-blue-200"
-                          : "border-2 border-transparent"
-                      }`}
-                      onClick={() => handleThumbnailClick(index)}
-                    />
-                  ) : (
-                    <div className="w-24 h-24 rounded-md gap-2 cursor-pointer bg-gray-300">
-                      No Image
+              {item.images &&
+                item.images
+                  .slice(0, 3)
+                  .map((image, index) => (
+                    <div key={index}>
+                      {image.url ? (
+                        <img
+                          src={image.url}
+                          alt={`${item.title} ${index + 1}`}
+                          className={`w-24 h-24 rounded-md gap-2 cursor-pointer ${
+                            index === activeImg
+                              ? "border-2 border-blue-200"
+                              : "border-2 border-transparent"
+                          }`}
+                          onClick={() => handleThumbnailClick(index)}
+                        />
+                      ) : (
+                        <div className="w-24 h-24 rounded-md gap-2 cursor-pointer bg-gray-300">
+                          No Image
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              ))}
+                  ))}
             </div>
           </div>
           <div className="flex flex-col gap-4 lg:w-1/2 p-4">
@@ -150,19 +158,25 @@ const OneItem = () => {
               <strong>Wishlist Item</strong>
               <button
                 onClick={handleWishlistClick}
-                className={`transition-colors duration-200 ${isInWishlist ? 'bg-red-500' : 'hover:bg-blue-500'} p-2 rounded-full`}
+                className={`transition-colors duration-200 ${
+                  isInWishlist ? "bg-red-500" : "hover:bg-blue-500"
+                } p-2 rounded-full`}
               >
                 <img
                   src={wish}
                   width={30}
                   height={30}
                   alt="wish icon"
-                  className={`transition-colors duration-200 ${isInWishlist ? 'filter-red' : ''}`}
+                  className={`transition-colors duration-200 ${
+                    isInWishlist ? "filter-red" : ""
+                  }`}
                 />
               </button>
             </div>
             <h3 className="font-bold text-3xl">{item.title}</h3>
-            <span className=" position text-grey-700 lg:w-3/4">{item.description}</span>
+            <span className=" position text-grey-700 lg:w-3/4">
+              {item.description}
+            </span>
             <div>
               <a
                 className="text-lg font-semibold"
@@ -172,7 +186,8 @@ const OneItem = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {item.location.city}, {item.location.street} {item.location.houseNumber}
+                {item.location.city}, {item.location.street}{" "}
+                {item.location.houseNumber}
               </a>
               <p className="mt-2">
                 <strong>Created At:</strong>{" "}
@@ -203,6 +218,7 @@ const OneItem = () => {
           <button
             className="bg-blue-500 text-white py-2 px-4 rounded-full self-end my-2"
             onClick={handleAddComment}
+            disabled={!isLoggedIn} // Disable if not logged in
           >
             Submit
           </button>
@@ -212,7 +228,10 @@ const OneItem = () => {
             {comments.map((comment) => (
               <div key={comment._id}>
                 <div className="bg-gray-100 p-4 rounded-3xl">
-                  <p className="font-semibold p-1">{comment.userId?.username}</p>
+                  <p className="font-semibold p-1">
+                    {comment.userId?.username || "Anonymous"}{" "}
+                    {/* Display username if available, otherwise "Anonymous" */}
+                  </p>
                   <p>{comment.text}</p>
                 </div>
                 <div>
