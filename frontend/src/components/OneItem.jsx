@@ -3,17 +3,18 @@ import axios from "axios";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import { addComment, fetchComments } from "../commentService";
+import wish from "../assets/wish.svg";
 
 const OneItem = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
+  const [commentText, setCommentText] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeImg, setActiveImg] = useState(0);
-  const [commentText, setCommentText] = useState("");
   const [commentsVisible, setCommentsVisible] = useState(false);
+  const [isInWishlist, setIsInWishlist] = useState(false);
 
   const getCommentCount = (comments) => {
     if (Array.isArray(comments) && comments.length > 0) {
@@ -50,6 +51,11 @@ const OneItem = () => {
     fetchItemComments();
   }, [id]);
 
+  useEffect(() => {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    setIsInWishlist(wishlist.includes(id));
+  }, [id]);
+
   const handleAddComment = async () => {
     try {
       const addedComment = await addComment(id, commentText);
@@ -68,6 +74,18 @@ const OneItem = () => {
 
   const toggleCommentsVisibility = () => {
     setCommentsVisible(!commentsVisible);
+  };
+
+  const handleWishlistClick = () => {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    if (wishlist.includes(id)) {
+      wishlist = wishlist.filter(itemId => itemId !== id);
+      setIsInWishlist(false);
+    } else {
+      wishlist.push(id);
+      setIsInWishlist(true);
+    }
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
   };
 
   if (loading) {
@@ -128,6 +146,21 @@ const OneItem = () => {
             </div>
           </div>
           <div className="flex flex-col gap-4 lg:w-1/2 p-4">
+            <div className="flex items-center space-x-2">
+              <strong>Wishlist Item</strong>
+              <button
+                onClick={handleWishlistClick}
+                className={`transition-colors duration-200 ${isInWishlist ? 'bg-red-500' : 'hover:bg-blue-500'} p-2 rounded-full`}
+              >
+                <img
+                  src={wish}
+                  width={30}
+                  height={30}
+                  alt="wish icon"
+                  className={`transition-colors duration-200 ${isInWishlist ? 'filter-red' : ''}`}
+                />
+              </button>
+            </div>
             <h3 className="font-bold text-3xl">{item.title}</h3>
             <span className="text-grey-700 lg:w-3/4">{item.description}</span>
             <div>
