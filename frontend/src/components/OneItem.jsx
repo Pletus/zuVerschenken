@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { addComment, fetchComments } from "../commentService";
 import wish from "../assets/wish.svg";
 
@@ -23,7 +23,7 @@ const OneItem = () => {
       return 0;
     }
   };
-
+console.log(item)
   useEffect(() => {
     const fetchItem = async () => {
       try {
@@ -178,9 +178,9 @@ const OneItem = () => {
                 <strong>Created At:</strong>{" "}
                 {moment(item.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
               </p>
-              <p className="mt-2">
+              <Link to={`/users/${item.postedBy._id}`} className="mt-2">
                 <strong>Posted By:</strong> {item.postedBy.username}
-              </p>
+              </Link>
             </div>
           </div>
         </div>

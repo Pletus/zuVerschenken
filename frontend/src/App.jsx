@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Profile from "./components/Profile";
 import Wishlist from "./components/Wishlist";
 import Login from "./components/Login";
+import NotYourProfile from "./components/NotYourProfile";
 import AddItem from "./components/AddItem";
 import Items from "./components/Items";
 import Signup from "./components/Signup";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/items" element={<Items />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/users/:id" element={<NotYourProfile />} />
         </Route>
       </Routes>
       <ToastContainer />

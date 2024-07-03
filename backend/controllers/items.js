@@ -178,7 +178,7 @@ export const getItems = async (req, res) => {
 
 export const getItemById = async (req, res) => {
   try {
-    const item = await Item.findById(req.params.id).populate('postedBy', 'username');
+    const item = await Item.findById(req.params.id).populate('postedBy').lean();
 
     if (!item) {
       return res.status(404).json({ msg: 'Item not found' });
@@ -191,7 +191,8 @@ export const getItemById = async (req, res) => {
       location: item.location,
       images: item.images,
       postedBy: {
-        username: item.postedBy.username  
+        username: item.postedBy.username,
+        _id: item.postedBy._id,
       },
       createdAt: item.createdAt,
     });

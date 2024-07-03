@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 const Cards = () => {
   const [items, setItems] = useState([]);
   const [searchQuery] = useOutletContext();
-
+  
   useEffect(() => {
     const fetchItems = async () => {
       try {
