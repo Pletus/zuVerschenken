@@ -1,4 +1,4 @@
-import Cards from "./Cards";
+
 
 export const responsive = {
   superLargeDesktop: {
