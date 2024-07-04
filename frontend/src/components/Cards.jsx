@@ -7,7 +7,6 @@ import { responsive } from "./ImageCarousel";
 
 const Cards = () => {
   const [items, setItems] = useState([]);
-
   useEffect(() => {
     const fetchItems = async () => {
       try {

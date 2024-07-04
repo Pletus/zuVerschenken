@@ -53,7 +53,7 @@ function Items() {
   });
 
   return (
-    <div className="p-4 md:px-32 lg:px-72 xl:px-96 bg-blue-400 bg-opacity-60">
+    <div className="flex flex-col lg:grid lg:grid-cols-2 xl:grid xl:grid-cols-3 gap-3 items-center p-8 bg-blue-400 bg-opacity-60">
       {filteredItems.map((item) => {
         const createdAt = item.createdAt ? parseISO(item.createdAt) : null;
         let timeAgo = "Date not available";
@@ -82,7 +82,7 @@ function Items() {
                 className="w-40 h-40 object-cover rounded-l-lg mr-2"
               />
             </Link>
-            <div className="flex flex-col md:mt-4 lg:mt-2 xl:mt-4 pl-4 sm:pl-4 md:pl-8 lg:pl-8 xl:pl-20 gap-1">
+            <div className="flex flex-col md:mt-4 lg:mt-2 xl:mt-4 pl-2 gap-1">
               <Link
                 className="text-lg font-bold mb-1"
                 to={`/items/${item._id}`}
