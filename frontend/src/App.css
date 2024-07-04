@@ -108,10 +108,25 @@
 }
 
 /* CARD CAROUSEL END */
+.gd-carousel-wrapper {
+  position:relative;
 
-.react-multiple-carousel__arrow {
-  background-color: blue;
-  opacity: 0.6;
+}
+
+.gd-carousel {
+  position:unset;
+
+  .react-multiple-carousel__arrow {
+      position:absolute;
+  }
+
+  .react-multiple-carousel__arrow--left {
+      left: calc(-3% + 1px)
+  }
+
+  .react-multiple-carousel__arrow--right {
+      right: calc(-3% + 1px)
+  }
 }
 
 .block {
