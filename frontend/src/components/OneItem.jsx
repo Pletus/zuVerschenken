@@ -150,10 +150,10 @@ console.log(item)
                         <img
                           src={image.url}
                           alt={`${item.title} ${index + 1}`}
-                          className={`w-24 h-24 rounded-md gap-2 cursor-pointer ${
+                          className={`w-24 h-24 rounded-md border-2 gap-2 cursor-pointer ${
                             index === activeImg
                               ? "border-2 border-blue-200"
-                              : "border-2 border-transparent"
+                              : "border-2 border-grey-100"
                           }`}
                           onClick={() => handleThumbnailClick(index)}
                         />

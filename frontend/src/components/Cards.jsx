@@ -15,7 +15,7 @@ const Cards = () => {
 
         const shuffledItems = fetchedItems.sort(() => 0.5 - Math.random());
 
-        const selectedItems = shuffledItems.slice(0, 10);
+        const selectedItems = shuffledItems.slice(0, 20);
 
         setItems(selectedItems);
       } catch (err) {
@@ -33,30 +33,34 @@ const Cards = () => {
           <h1 className="font-bold text-4xl pb-20 text-blue-500 text-center pt-20">
             Featured Items
           </h1>
-          <Carousel
-            responsive={responsive}
-            customTransition="transform .5s ease-in-out"
-            transitionDuration={500}
-            showDots={true}
-            dotListStyle={{ marginBottom: "20px" }}
-          >
-            {items.map((item) => (
-              <div
-                key={item._id}
-                className="card--pri shadow-lg mx-auto flex items-center gap-2"
-              >
-                <Link to={`/items/${item._id}`}>
-                  <img
-                    src={item.images[0]?.url}
-                    alt={item.title}
-                    className="product--image bg-white justify-center object-cover w-96"
-                  />
-                  <h2 className="font-bold text-center">{item.title}</h2>
-                  <p className="text-center">{item.location.city}</p>
-                </Link>
-              </div>
-            ))}
-          </Carousel>
+          <div className="gd-carousel-wrapper">
+            <Carousel
+              responsive={responsive}
+              customTransition="transform .5s ease-in-out"
+              transitionDuration={500}
+              showDots={false}
+              className="gd-carousel"
+              dotListStyle={{ marginBottom: "20px" }}
+            >
+              {items.map((item) => (
+                <div
+                  key={item._id}
+                  className="card--pri shadow-lg mx-auto flex items-center gap-2"
+                >
+                  <Link to={`/items/${item._id}`}>
+                    <img
+                      src={item.images[0]?.url}
+                      alt={item.title}
+                      className="product--image bg-white justify-center object-cover w-96"
+                    />
+                    <h2 className="font-bold text-center">{item.title}</h2>
+                    <p className="text-center">{item.location.city}</p>
+                  </Link>
+                </div>
+              ))}
+            </Carousel>
+          </div>
+
           <div className="flex justify-center items-center mt-20 mb-20">
             <NavLink
               className="loginButton flex justify-center items-center font-bold bg-blue-500 rounded-full text-white"
