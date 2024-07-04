@@ -40,7 +40,7 @@ function App() {
           <Route path="/items" element={<Items />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/users/:id" element={<NotYourProfile />} />
-          <Route path="about-us" element={<About />} />
+          <Route path="/about-us" element={<About />} />
         </Route>
       </Routes>
       <ToastContainer />
