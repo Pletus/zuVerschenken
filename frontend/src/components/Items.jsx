@@ -53,7 +53,7 @@ function Items() {
   });
 
   return (
-    <div className="flex flex-col lg:grid lg:grid-cols-2 xl:grid xl:grid-cols-3 gap-3 items-center p-8 bg-blue-400 bg-opacity-60">
+    <div className="flex flex-col lg:grid lg:grid-cols-2 xl:grid xl:grid-cols-2 2xl:grid-cols-2 lg:px-6 2xl:px-72 gap-2 items-center p-4 bg-blue-400 bg-opacity-60">
       {filteredItems.map((item) => {
         const createdAt = item.createdAt ? parseISO(item.createdAt) : null;
         let timeAgo = "Date not available";
@@ -73,7 +73,7 @@ function Items() {
         return (
           <div
             key={item._id}
-            className=" bg-white shadow-md rounded-lg mb-4 p-4 flex"
+            className=" bg-white shadow-md rounded-lg p-2 flex"
           >
             <Link to={`/items/${item._id}`}>
               <img

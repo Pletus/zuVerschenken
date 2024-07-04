@@ -77,7 +77,7 @@ function NotYourProfile() {
           alt="profile-picture"
           className="w-44 rounded-lg border-2 border-black drop-shadow-xl auto"
         />
-        <h1 className="text-3xl p-2 mt-2 text-center">{user.username}</h1>
+        <h1 className="text-4xl text-black p-2 mt-2 text-center">{user.username}</h1>
       </div>
       <div className="drop-shadow-xl shadow-xl p-4 rounded-lg">
         <div className="flex p-2 items-center justify-between">
