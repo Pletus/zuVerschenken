@@ -125,7 +125,7 @@ console.log(item)
   return (
     <div className=" bg-sky-100 pb-20">
       <div className="max-w-screen-xl mx-auto p-10 mb-10">
-        <div className="flex flex-col justify-center items-center bg-white lg:flex-row gap-16 lg:items-center shadow-xl shadow-grey-700 p-8">
+        <div className="flex flex-col justify-center items-center bg-white lg:flex-row gap-16 m-auto lg:items-center shadow-xl shadow-grey-700 p-8">
           <div className="flex flex-col lg:w-1/2">
             {item.images &&
             item.images[activeImg] &&
