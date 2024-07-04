@@ -63,20 +63,6 @@ function Profile() {
     setFilteredItems(filtered);
   }, [items, userId]);
 
-  const addCategory = (e) => {
-    e.preventDefault();
-    if (newCategory.trim() !== "") {
-      setCategories([...categories, newCategory.trim()]);
-      setNewCategory("");
-    }
-  };
-
-  const removeCategory = (categoryToRemove) => {
-    setCategories(
-      categories.filter((category) => category !== categoryToRemove)
-    );
-  };
-
   const navigate = useNavigate();
 
   const handleChangePasswordClick = () => {
