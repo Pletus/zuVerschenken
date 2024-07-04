@@ -18,7 +18,7 @@ const Cards = () => {
 
         const shuffledItems = fetchedItems.sort(() => 0.5 - Math.random());
 
-        const selectedItems = shuffledItems.slice(0, 30);
+        const selectedItems = shuffledItems.slice(0, 10);
 
         setItems(selectedItems);
       } catch (err) {
@@ -69,13 +69,6 @@ const Cards = () => {
               Click for More
             </NavLink>
           </div>
-        </div>
-      </div>
-      <div className="block">
-        <div className="blockTitle">
-          <h1 data-aos="fade-out">
-            From One Person's Junk to Another's Gemome dummy text
-          </h1>
         </div>
       </div>
     </div>

@@ -76,10 +76,10 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="flex flex-col lg:flex-row justify-between md:justify-around lg:justify-between w-full p-2 shadow-md bg-customGray relative">
-      <div className="flex justify-between">
+    <nav className="flex flex-col lg:flex-row justify-evenly md:justify-around lg:justify-center w-full p-2 shadow-md bg-customGray relative">
+      <div className="flex">
         <div className="flex gap-1 sm:gap-4 lg:pl-1">
-          <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
+          <div className="w-10 h-10 bg-gray-900 rounded-full mx-10 mt-2"></div>
           <div className="flex items-center space-x-1 sm:space-x-4 lg:space-x-2">
             <input
               type="text"
@@ -114,7 +114,7 @@ const Navbar = ({ onSearch }) => {
         </button>
       </div>
       <ul
-        className={`flex flex-col md:flex-row lg:flex-row pl-12 align-middle lg:items-center lg:space-x-8 transition-transform transform ${
+        className={`flex flex-col md:flex-row lg:flex-row pl-12 align-middle lg:items-center  lg:space-x-8 transition-transform transform ${
           isMenuOpen
             ? "max-h-full opacity-100 pt-1 gap-2 md:gap-8 md:items-center mt-2 md:pl-40"
             : "max-h-0 gap-4 lg:gap-10 opacity-0"

@@ -54,7 +54,6 @@ const Hero = ({ reload }) => {
         </div>
       </div>
       <Cards />
-      <About />
     </>
   );
 };
