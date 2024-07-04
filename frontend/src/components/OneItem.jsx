@@ -123,7 +123,7 @@ console.log(item)
   const commentCount = getCommentCount(comments);
 
   return (
-    <div className=" bg-sky-100">
+    <div className=" bg-sky-100 pb-20">
       <div className="max-w-screen-xl mx-auto p-10 mb-10">
         <div className="flex flex-col justify-center items-center bg-white lg:flex-row gap-16 lg:items-center shadow-xl shadow-grey-700 p-8">
           <div className="flex flex-col lg:w-1/2">
@@ -204,7 +204,7 @@ console.log(item)
               </a>
               <p className="mt-2">
                 <strong>Created At:</strong>{" "}
-                {moment(item.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
+                {moment(item.createdAt).format("MMMM Do YYYY")}
               </p>
               <Link to={`/users/${item.postedBy._id}`} className="mt-2">
                 <strong>Posted By:</strong> {item.postedBy.username}
@@ -228,8 +228,8 @@ console.log(item)
             value={commentText}
             onChange={handleTextChange}
           />
-          <div className="mt-2 text-red-500 text-sm" hidden={user}>
-            lease log in to add a comment!
+          <div className="mt-2 text-center text-red-500 text-sm" hidden={user}>
+            Please log in to add a comment!
           </div>
 
           <button
