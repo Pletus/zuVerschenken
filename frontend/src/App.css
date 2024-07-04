@@ -55,6 +55,23 @@
   margin-bottom: 10px;
   padding: 10px;
 }
+/* HERO START */
+
+.heading {
+  text-align: center;
+  font-weight: 900;
+  font-size: clamp(45px, 4vw, 75px)
+}
+.heading-1 {
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(25px, 4vw, 55px)
+}
+
+
+
+
+
 
 /* CARDS FOR CAROUSEL */
 
@@ -82,6 +99,9 @@
   font-size: 16px;
   padding-bottom: 10px;
 }
+
+
+@media
 /* CARD CAROUSEL END */
 
 .react-multiple-carousel__arrow {

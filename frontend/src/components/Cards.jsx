@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
-import { useOutletContext } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { responsive } from "./ImageCarousel";
 
 const Cards = () => {
   const [items, setItems] = useState([]);
-  const [searchQuery] = useOutletContext();
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -33,7 +31,7 @@ const Cards = () => {
     <div>
       <div className="cardBackground h-[800px] items-center justify-center flex">
         <div className="container pb-20 m-auto">
-          <h1 className="font-bold text-4xl pb-20 text-blue-700 text-center pt-20">
+          <h1 className="font-bold text-4xl pb-20 text-blue-500 text-center pt-20">
             Featured Items
           </h1>
           <Carousel

@@ -19,23 +19,23 @@ const Hero = ({ reload }) => {
 
   return (
     <>
-      <div className="w-full bg-white h-[900px] py-10">
-        <div className="container mx-auto flex flex-col  md:flex-row items-center justify-around">
-          <div className="md:w-2/4 text-center">
+      <div className="w-full bg-white h-[800px]">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-around">
+          <div className="md:w-2/4 ">
             <h1
-              className="text-7xl font-bold text-blue-500 mb-2 "
+              className="heading text-blue-500 "
               data-aos="zoom-in-right"
             >
               Reduce, Reuse,
             </h1>
             <h1
-              className=" text-fuchsia-600 text-7xl font-bold"
+              className="heading text-fuchsia-600"
               data-aos="zoom-in-left"
             >
               Rehome:
             </h1>
 
-            <p className="text-5xl pt-10 text-blue-500" data-aos="zoom-out">
+            <p className="heading-1 text-blue-500" data-aos="zoom-out">
               Give Your Goods a Second Life
             </p>
           </div>
