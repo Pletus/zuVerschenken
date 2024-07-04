@@ -33,7 +33,7 @@ const Cards = () => {
     <div>
       <div className="cardBackground h-[800px] items-center justify-center flex">
         <div className="container pb-20 m-auto">
-          <h1 className="font-bold text-4xl pb-24 text-blue-700 text-center">
+          <h1 className="font-bold text-4xl pb-20 text-blue-700 text-center pt-20">
             Featured Items
           </h1>
           <Carousel
@@ -46,7 +46,7 @@ const Cards = () => {
             {items.map((item) => (
               <div
                 key={item._id}
-                className="card--pri shadow-lg  mx-auto flex items-center gap-2"
+                className="card--pri shadow-lg mx-auto flex items-center gap-2"
               >
                 <Link to={`/items/${item._id}`}>
                   <img

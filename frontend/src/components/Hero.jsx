@@ -21,9 +21,9 @@ const Hero = ({ reload }) => {
     <>
       <div className="w-full bg-white h-[900px] py-10">
         <div className="container mx-auto flex flex-col  md:flex-row items-center justify-around">
-          <div className="text-left md:w-2/4">
+          <div className="md:w-2/4 text-center">
             <h1
-              className="text-7xl font-bold text-blue-500 mb-2"
+              className="text-7xl font-bold text-blue-500 mb-2 "
               data-aos="zoom-in-right"
             >
               Reduce, Reuse,
