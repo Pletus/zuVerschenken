@@ -3,6 +3,7 @@ import Herro from "../assets/Herro.png";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Cards from "./Cards";
+import About from "./About";
 
 const Hero = ({ reload }) => {
 
@@ -18,7 +19,7 @@ const Hero = ({ reload }) => {
 
   return (
     <>
-      <div className="w-full bg-slate-200 h-[900px] py-10">
+      <div className="w-full bg-white h-[900px] py-10">
         <div className="container mx-auto flex flex-col  md:flex-row items-center justify-around">
           <div className="text-left md:w-2/4">
             <h1
@@ -52,10 +53,8 @@ const Hero = ({ reload }) => {
           </div>
         </div>
       </div>
-      <div className='block' >
-        <h1 data-aos="fade-out">From One Person's Junk to Another's Gemome dummy text</h1>
-    </div>
       <Cards />
+      <About />
     </>
   );
 };

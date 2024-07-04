@@ -1,12 +1,10 @@
-.logo{
-  height:180px;
+.logo {
+  height: 180px;
   width: 180px;
   overflow: hidden;
   margin-top: -60px;
   margin-bottom: -30px;
 }
-
-
 
 .loginSignup {
   background-image: url(./assets/vecteezy_volunteers-packing-donation-boxes_6901865.jpg);
@@ -51,18 +49,20 @@
   opacity: 0.9;
 }
 
-
 .location-link {
   color: #00bfff;
   text-decoration: none;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   padding: 10px;
 }
 
-
-
 /* CARDS FOR CAROUSEL */
+
+.cardBackground {
+  background-color: #ddf1f7;
+}
 .card--pri {
+  background-color: white;
   max-width: 280px;
   margin: auto 1rem;
   text-align: center;
@@ -72,46 +72,49 @@
 
 .product--image {
   height: 18em;
- 
 }
 
-.card--pri h2{
+.card--pri h2 {
   font-size: 16px;
-  padding-top: 10px;
+  padding-top: 20px;
 }
-.card--pri p{
+.card--pri p {
   font-size: 16px;
   padding-bottom: 10px;
 }
 /* CARD CAROUSEL END */
 
-
-
-.react-multiple-carousel__arrow  {
-  background-color:blue;
+.react-multiple-carousel__arrow {
+  background-color: blue;
   opacity: 0.6;
 }
 
-
- .block{
+.block {
   position: relative;
   display: flex;
-  bottom: 60px;
+  bottom: 95px;
   width: 75%;
-  height: 8rem;
-  background-color: dodgerblue;
+  height: 12rem;
+  background: rgb(1,130,244);
+background: linear-gradient(90deg, rgba(1,130,244,1) 74%, rgba(227,188,26,0.3701855742296919) 99%);
   margin: auto;
-  border-radius: 100px;
+  border-radius: 50px;
+}
 
- }
- 
-
-.block , h1 {
+.block,
+h1 {
+  position: relative;
   justify-content: center;
   text-align: center;
   align-items: center;
-  padding-top: 15px;
+  padding: 30px;
   color: White;
   font-size: 40px;
-
 }
+
+.blockTitle {
+  border: 2px solid white;
+  border-radius: 25px;
+  justify-content: center;
+}
+

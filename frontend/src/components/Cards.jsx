@@ -30,11 +30,12 @@ const Cards = () => {
   }, []);
 
   return (
-    <div className="bg-white h-[800px] items-center justify-center flex">
-      <div className="container pb-20 m-auto">
-        <h1 className="font-bold text-4xl pb-24 text-blue-700 text-center">
-          Featured Items
-        </h1>
+    <div>
+      <div className="cardBackground h-[800px] items-center justify-center flex">
+        <div className="container pb-20 m-auto">
+          <h1 className="font-bold text-4xl pb-24 text-blue-700 text-center">
+            Featured Items
+          </h1>
           <Carousel
             responsive={responsive}
             customTransition="transform .5s ease-in-out"
@@ -53,22 +54,28 @@ const Cards = () => {
                     alt={item.title}
                     className="product--image bg-white justify-center object-cover w-96"
                   />
-                  <h2 className="font-bold text-center">
-                    {item.title}
-                  </h2>
+                  <h2 className="font-bold text-center">{item.title}</h2>
                   <p className="text-center">{item.location.city}</p>
                 </Link>
               </div>
             ))}
           </Carousel>
-        <div className="flex justify-center items-center mt-20">
-          <NavLink
-            className="loginButton flex justify-center items-center font-bold bg-blue-500 rounded-full text-white"
-            type="submit"
-            to="/items"
-          >
-            Click for More
-          </NavLink>
+          <div className="flex justify-center items-center mt-20 mb-20">
+            <NavLink
+              className="loginButton flex justify-center items-center font-bold bg-blue-500 rounded-full text-white"
+              type="submit"
+              to="/items"
+            >
+              Click for More
+            </NavLink>
+          </div>
+        </div>
+      </div>
+      <div className="block">
+        <div className="blockTitle">
+          <h1 data-aos="fade-out">
+            From One Person's Junk to Another's Gemome dummy text
+          </h1>
         </div>
       </div>
     </div>

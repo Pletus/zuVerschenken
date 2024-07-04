@@ -73,7 +73,7 @@ function Items() {
         return (
           <div
             key={item._id}
-            className="flex bg-white shadow-md rounded-lg mb-4 p-4 flex"
+            className=" bg-white shadow-md rounded-lg mb-4 p-4 flex"
           >
             <Link to={`/items/${item._id}`}>
               <img
