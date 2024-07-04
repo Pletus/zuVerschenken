@@ -76,7 +76,7 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="flex flex-col lg:flex-row justify-between md:justify-around lg:justify-between w-full p-2 shadow-md bg-customGray relative">
+    <nav className="flex flex-col lg:flex-row justify-between md:justify-around w-full p-3 shadow-md bg-customGray relative">
       <div className="flex justify-between">
         <div className="flex gap-1 sm:gap-4 lg:pl-1">
           <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
@@ -87,7 +87,7 @@ const Navbar = ({ onSearch }) => {
               value={searchItem}
               onChange={(e) => setSearchItem(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="px-4 py-2 w-20 md:w-28 lg:w-full border border-gray-300 rounded-md"
+              className="px-4 py-2 w-20 md:w-28 lg:w-40 2xl:w-full border border-gray-300 rounded-md"
             />
             <input
               type="text"
@@ -95,7 +95,7 @@ const Navbar = ({ onSearch }) => {
               value={searchPostCode}
               onChange={(e) => setSearchPostCode(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="px-4 py-2 w-16 md:w-28 lg:w-full border border-gray-300 rounded-md"
+              className="px-4 py-2 w-16 md:w-28 lg:w-40 2xl:w-full border border-gray-300 rounded-md"
             />
             <button
               onClick={handleSearch}
@@ -114,10 +114,10 @@ const Navbar = ({ onSearch }) => {
         </button>
       </div>
       <ul
-        className={`flex flex-col md:flex-row lg:flex-row pl-12 align-middle lg:items-center lg:space-x-8 transition-transform transform ${
+        className={`flex flex-col md:flex-row lg:flex-row align-middle items-end lg:items-center transition-transform transform ${
           isMenuOpen
-            ? "max-h-full opacity-100 pt-1 gap-2 md:gap-8 md:items-center mt-2 md:pl-40"
-            : "max-h-0 gap-4 lg:gap-10 opacity-0"
+            ? "max-h-full opacity-100 pt-1 gap-2 md:gap-4 md:items-center mt-2 md:pl-40"
+            : "max-h-0 gap-4 xl:gap-8 2xl:gap-24 opacity-0"
         } overflow-hidden lg:overflow-visible lg:opacity-100 lg:max-h-full w-full lg:w-auto`}
       >
         <li>
@@ -177,7 +177,7 @@ const Navbar = ({ onSearch }) => {
           </div>
         </li>
         <li>
-          <div className="flex flex-col md:flex-row lg:flex-row items-center absolute md:relative lg:relative inset-x-40 sm:inset-x-56 md:inset-x-0 lg:inset-x-0 top-16 md:top-0 lg:top-0 gap-4 lg:gap-1">
+          <div className="">
             {user ? (
               <div className="flex pr-2 gap-4">
                 <NavLink to="/profile" className="rounded-full overflow-hidden">
