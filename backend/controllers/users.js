@@ -112,4 +112,37 @@ const changePassword = async (req, res) => {
   }
 };
 
-export { loginUser, signupUser, updateUserImage, getUserImage, changePassword };
+// const getUsers = async (req, res) => {
+//   try {
+//     const users = await User.find().select('username image').lean();
+//     const image = users.map(user => ({
+//       ...user,
+//       images: user.image.length > 0 ? [user.image[0]] : []
+//     }));
+//     res.json(image);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send('Server Error');
+//   }
+// };
+
+const getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('username image');
+
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+
+    res.json({
+      _id: user._id,
+      username: user.username,
+      image: user.image[0],
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+export { loginUser, signupUser, updateUserImage, getUserImage, changePassword, getUserById };

@@ -7,7 +7,7 @@ import requireAuth from '../requireAuth.js';
 const commentRouter = express.Router();
 
 
-commentRouter.get('/:itemId/comments',requireAuth, getComments);
+commentRouter.get('/:itemId/comments', getComments);
 commentRouter.post('/:itemId/comments',requireAuth, addComment);
 
 export default commentRouter

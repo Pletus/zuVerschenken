@@ -1,3 +1,11 @@
+.logo {
+  height: 180px;
+  width: 180px;
+  overflow: hidden;
+  margin-top: -60px;
+  margin-bottom: -30px;
+}
+
 .loginSignup {
   background-image: url(./assets/vecteezy_volunteers-packing-donation-boxes_6901865.jpg);
   background-size: cover;
@@ -23,6 +31,13 @@
   border-radius: 3%;
 }
 
+.itemDiv {
+  position: relative;
+  height: 195px;
+  max-width: auto;
+  border-radius: 3%;
+}
+
 .inputWidth {
   width: 300px;
   height: 42px;
@@ -41,127 +56,90 @@
   opacity: 0.9;
 }
 
-/* ProductCard.css */
-/* 
-.product-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.product-card {
-  background-color:white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: calc(25% - 32px); 
-  box-sizing: border-box;
-}
-
-.product-image {
-  width: 100%;
-  height: 300px; 
-  object-fit: cover; 
-  border-radius: 8px;
-}
-
-.product-card h3 {
-font-size: 1.2rem;
-}
-
-.product-card  {
-  margin: 0 auto;
-}
-
-h3 {
-  font-size: 12px;
-  font-weight: bold;
-}
- */
-/* src/components/OneCard.css */
-/* .one-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.large-image-container {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 20px;
-}
-
-.large-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.carousel-container {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 20px;
-}
-
-.carousel-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.font-bold {
-  font-weight: bold;
-}
-
-.one-card a {
-  color: blue;
-  text-decoration: none;
-}
-
-.one-card a:hover {
-  text-decoration: underline;
-} */
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-items: center; /* Centers items horizontally */
-}
-
-.product-card {
-  background-color: lightgrey; /* Card background color */
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: left;;
-  transition: transform 0.3s ease-in-out;
-  width: 300px; /* Set a fixed width for the cards */
-  height: 400px; /* Set a fixed height for the cards */
-  display: flex;
-  flex-direction: column; /* Ensure elements stack vertically */
-  ; /* Distribute space evenly */
-}
-
-.product-card:hover {
-  transform: scale(1.05);
-}
-
-.product-image {
-  width: 100%;
-  height: 80%; /* Adjust height to fit within the card */
-  object-fit: cover; /* Ensure image covers the area without distortion */
-}
-
-.product-card h3 {
-  color: black;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding-left: 10px;
-  padding-top: 10px; /* Adjust spacing as needed */
-}
-
 .location-link {
   color: #00bfff;
   text-decoration: none;
-  margin-bottom: 10px; 
-  padding: 10px;/* Adjust spacing as needed */
+  margin-bottom: 10px;
+  padding: 10px;
 }
+/* HERO START */
+
+.heading {
+  text-align: center;
+  font-weight: 900;
+  font-size: clamp(45px, 4vw, 75px)
+}
+.heading-1 {
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(25px, 4vw, 55px)
+}
+
+
+
+
+
+
+/* CARDS FOR CAROUSEL */
+
+.cardBackground {
+  background-color: #ddf1f7;
+}
+.card--pri {
+  background-color: white;
+  max-width: 280px;
+  margin: auto 1rem;
+  text-align: center;
+  font-family: arial;
+  padding-bottom: 10px;
+}
+
+.product--image {
+  height: 18em;
+}
+
+.card--pri h2 {
+  font-size: 16px;
+  padding-top: 20px;
+}
+.card--pri p {
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+/* CARD CAROUSEL END */
+
+.react-multiple-carousel__arrow {
+  background-color: blue;
+  opacity: 0.6;
+}
+
+.block {
+  position: relative;
+  display: flex;
+  bottom: 95px;
+  width: 75%;
+  height: 12rem;
+  background: rgb(1,130,244);
+background: linear-gradient(90deg, rgba(1,130,244,1) 74%, rgba(227,188,26,0.3701855742296919) 99%);
+  margin: auto;
+  border-radius: 50px;
+}
+
+.block,
+h1 {
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 30px;
+  color: White;
+  font-size: 40px;
+}
+
+.blockTitle {
+  border: 2px solid white;
+  border-radius: 25px;
+  justify-content: center;
+}
+
