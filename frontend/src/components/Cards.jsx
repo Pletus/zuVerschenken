@@ -30,7 +30,7 @@ const Cards = () => {
     <div>
       <div className="cardBackground h-[800px] items-center justify-center flex">
         <div className="container pb-20 m-auto">
-          <h1 className="font-bold text-4xl pb-20 text-blue-500 text-center pt-20">
+          <h1 className="font-bold sans-serif text-5xl pb-20 text-blue-500 text-center pt-20">
             Featured Items
           </h1>
           <div className="gd-carousel-wrapper">
@@ -53,8 +53,8 @@ const Cards = () => {
                       alt={item.title}
                       className="product--image bg-white justify-center object-cover w-96"
                     />
-                    <h2 className="font-bold text-center">{item.title}</h2>
-                    <p className="text-center">{item.location.city}</p>
+                    <h2 className="font-bold font-f text-center">{item.title}</h2>
+                    <p className="text-center font-f">{item.location.city}</p>
                   </Link>
                 </div>
               ))}

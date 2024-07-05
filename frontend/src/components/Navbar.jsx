@@ -4,6 +4,7 @@ import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import axios from "axios";
 import logout from "../assets/icon-logout.png";
 import login from "../assets/icon-user.png";
+import logo from "../assets/logo-n.svg";
 
 const Navbar = ({ onSearch }) => {
   const [user, setUser] = useState(false);
@@ -79,7 +80,12 @@ const Navbar = ({ onSearch }) => {
     <nav className="flex flex-col lg:flex-row justify-between md:justify-around w-full p-3 shadow-md bg-customGray relative">
       <div className="flex justify-between">
         <div className="flex gap-1 sm:gap-4 lg:pl-1">
-          <div className="w-10 h-10 bg-gray-900 rounded-full mx-10 mt-2"></div>
+          <div className="h-3 w-32">
+          <img
+              src={logo}
+              alt="logo"
+              className="w-full object-cover"/>
+          </div>
           <div className="flex items-center space-x-1 sm:space-x-4 lg:space-x-2">
             <input
               type="text"
@@ -114,7 +120,7 @@ const Navbar = ({ onSearch }) => {
         </button>
       </div>
       <ul
-        className={`flex flex-col md:flex-row lg:flex-row align-middle items-end lg:items-center transition-transform transform ${
+        className={`flex flex-col md:flex-row lg:flex-row  items-end lg:items-center transition-transform transform ${
           isMenuOpen
             ? "max-h-full opacity-100 pt-1 gap-2 md:gap-4 md:items-center mt-2 md:pl-40"
             : "max-h-0 gap-4 xl:gap-8 2xl:gap-24 opacity-0"
