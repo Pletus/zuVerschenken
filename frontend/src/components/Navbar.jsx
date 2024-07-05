@@ -78,7 +78,7 @@ const Navbar = ({ onSearch }) => {
   return (
     <nav className="flex flex-col lg:flex-row justify-between md:justify-around w-full px-1 py-3 shadow-md bg-customGray relative">
       <div className="flex justify-between">
-        <div className="flex items-center gap-1 sm:gap-4 lg:pl-1">
+        <div className="flex items-center gap-1 ml-2 sm:gap-4 lg:pl-1">
           <div className="w-10 h-10 bg-gray-900 rounded-full md:mx-4 lg:mr-6 xl:mr-24"></div>
           <div className="flex items-center space-x-1 sm:space-x-4 lg:space-x-2">
             <input
@@ -116,8 +116,8 @@ const Navbar = ({ onSearch }) => {
       <ul
         className={`flex flex-col md:flex-row lg:flex-row align-middle items-end lg:items-center transition-transform transform ${
           isMenuOpen
-            ? "max-h-full opacity-100 pt-1 gap-2 md:gap-4 md:items-center mt-2 md:pl-40"
-            : "max-h-0 gap-4 xl:gap-8 2xl:gap-24 opacity-0"
+            ? "max-h-full opacity-100 pt-1 pr-3 gap-2 md:gap-4 md:items-center mt-2 md:pl-40"
+            : "max-h-0 gap-6 2xl:gap-12 opacity-0"
         } overflow-hidden lg:overflow-visible lg:opacity-100 lg:max-h-full w-full lg:w-auto`}
       >
         <li>
@@ -127,7 +127,7 @@ const Navbar = ({ onSearch }) => {
               className={({ isActive }) =>
                 `${
                   isActive ? "text-blue-500" : "text-gray-700"
-                } transform transition-transform duration-200 pr-2 flex md:hover:scale-125`
+                } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
               Home
@@ -141,7 +141,7 @@ const Navbar = ({ onSearch }) => {
               className={({ isActive }) =>
                 `${
                   isActive ? "text-blue-500" : "text-gray-700"
-                } transform transition-transform duration-200 pr-2 flex md:hover:scale-125`
+                } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
               Add Box
@@ -155,7 +155,7 @@ const Navbar = ({ onSearch }) => {
               className={({ isActive }) =>
                 `${
                   isActive ? "text-blue-500" : "text-gray-700"
-                } transform transition-transform duration-200 pr-2 flex md:hover:scale-125`
+                } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
               Boxes
@@ -169,7 +169,7 @@ const Navbar = ({ onSearch }) => {
               className={({ isActive }) =>
                 `${
                   isActive ? "text-blue-500" : "text-gray-700"
-                } transform transition-transform duration-200 pr-2 flex md:hover:scale-125`
+                } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
               Wishlist
@@ -179,7 +179,7 @@ const Navbar = ({ onSearch }) => {
         <li>
           <div className="">
             {user ? (
-              <div className="flex pr-2 gap-4">
+              <div className="flex gap-2">
                 <NavLink to="/profile" className="rounded-full overflow-hidden">
                   <img
                     src={imageUrl}
@@ -200,7 +200,7 @@ const Navbar = ({ onSearch }) => {
                 className={({ isActive }) =>
                   `${
                     isActive ? "text-blue-500" : "text-gray-700"
-                  } transform transition-transform duration-200 pr-2 flex hover:scale-125`
+                  } transform transition-transform duration-200 flex hover:scale-125`
                 }
               >
                 <button className="bg-blue-500 w-auto h-8 rounded-full hover:bg-gray-300">

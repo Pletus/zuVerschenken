@@ -32,10 +32,9 @@
 }
 
 .itemDiv {
-  position: relative;
   height: 195px;
-  max-width: auto;
-  border-radius: 3%;
+  max-width: 800px;
+  border-radius: 3%; 
 }
 
 .inputWidth {
