@@ -106,7 +106,7 @@ function NotYourProfile() {
             <NavLink to={`/items/${item._id}`}>
               <div
                 key={item.id}
-                className="flex flex-col rounded-lg justify-between bg-gray-400 bg-opacity-40 shadow-md bg-opacity-80 p-3 h-full w-64"
+                className="flex flex-col rounded-lg justify-between bg-gray-300 bg-opacity-40 shadow-md bg-opacity-80 p-3 h-full w-64"
               >
                 <div>
                   <img
@@ -118,9 +118,8 @@ function NotYourProfile() {
                     {item.title}
                   </h3>
                 </div>
-                <p className=" bg-blue-700 bg-opacity-70 text-white rounded-lg p-2 mt-2">
-                  {item.location.city}, {item.location.street},{" "}
-                  {item.location.houseNumber}
+                <p className=" bg-blue-700 text-center bg-opacity-70 text-white rounded-lg p-2 mt-2">
+                  {item.location.city}
                 </p>
               </div>
             </NavLink>
