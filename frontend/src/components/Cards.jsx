@@ -29,7 +29,7 @@ const Cards = () => {
 
   return (
     <div>
-      <div className="cardBackground h-[800px] items-center justify-center flex">
+      <div className="cardBackground h-[800px] customGrey items-center justify-center flex">
         <div className="container pb-20 m-auto">
           <h1 className="font-bold sans-serif text-5xl pb-20 text-blue-500 text-center pt-20">
             Featured Items
