@@ -25,26 +25,23 @@ function App() {
   }, []);
 
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Hero />} />
-          <Route path="/items/:id" element={<OneItem />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/additem"
-            element={user ? <AddItem /> : <Navigate to="/login" />}
-          />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/items" element={<Items />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/users/:id" element={<NotYourProfile />} />
-          <Route path="/about-us" element={<About />} />
-        </Route>
-      </Routes>
-      <ToastContainer />
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Hero />} />
+        <Route path="/items/:id" element={<OneItem />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/additem"
+          element={user ? <AddItem /> : <Navigate to="/login" />}
+        />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/items" element={<Items />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/users/:id" element={<NotYourProfile />} />
+        <Route path="/about-us" element={<About />} />
+      </Route>
+    </Routes>
   );
 }
 
