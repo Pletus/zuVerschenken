@@ -187,28 +187,27 @@ console.log(item)
               </button>
             </div>
             <h3 className=" font-f font-semibold text-3xl">{item.title}</h3>
-            <p className="mt-2 font-f">
-                <strong className="font-f font-semibold">Created At:</strong>{" "}
-                {moment(item.createdAt).format("MMMM Do")}
-              </p>
+            <div><span className="font-f italic text-sm">
+                {moment(item.createdAt).format("MMMM D, YYYY")}
+              </span> <span><Link to={`/users/${item.postedBy._id}`}>
+               |&nbsp; <span className="text-blue-500 font-semibold"
+               >{item.postedBy.username}</span>
+              </Link></span></div>
             <span className=" position text-grey-700 font-f text-sm text-justify font-normal lg:w-3/4">
               {item.description}
             </span>
             <div>
               <a
-                className="text-lg font-semibold f-font"
+                className="text-lg font-semibold text-sm f-font"
                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                   `${item.location.street} ${item.location.houseNumber}, ${item.location.city}`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-              ><p>{item.location.city}, {item.location.street}{" "}
-                {item.location.houseNumber}</p>
-                
+              >Location: <span className="italic text-blue-500">{item.location.city}, {item.location.street}{" "}
+                {item.location.houseNumber}</span>
               </a>
-              <Link to={`/users/${item.postedBy._id}`} className="mt-2">
-                <strong className="">Posted By:</strong> {item.postedBy.username}
-              </Link>
+              
             </div>
           </div>
         </div>
