@@ -76,10 +76,10 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="flex flex-col lg:flex-row justify-between md:justify-around w-full p-3 shadow-md bg-customGray relative">
+    <nav className="flex flex-col lg:flex-row justify-between md:justify-around w-full px-1 py-3 shadow-md bg-customGray relative">
       <div className="flex justify-between">
-        <div className="flex gap-1 sm:gap-4 lg:pl-1">
-          <div className="w-10 h-10 bg-gray-900 rounded-full md:mx-4 lg:mr-24 mt-2"></div>
+        <div className="flex items-center gap-1 sm:gap-4 lg:pl-1">
+          <div className="w-10 h-10 bg-gray-900 rounded-full md:mx-4 lg:mr-6 xl:mr-24"></div>
           <div className="flex items-center space-x-1 sm:space-x-4 lg:space-x-2">
             <input
               type="text"
