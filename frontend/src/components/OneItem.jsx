@@ -187,7 +187,11 @@ console.log(item)
               </button>
             </div>
             <h3 className=" font-f font-semibold text-3xl">{item.title}</h3>
-            <span className=" position text-grey-700 font-f text-justify font-normal lg:w-3/4">
+            <p className="mt-2 font-f">
+                <strong className="font-f font-semibold">Created At:</strong>{" "}
+                {moment(item.createdAt).format("MMMM Do")}
+              </p>
+            <span className=" position text-grey-700 font-f text-sm text-justify font-normal lg:w-3/4">
               {item.description}
             </span>
             <div>
@@ -198,14 +202,10 @@ console.log(item)
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                {item.location.city}, {item.location.street}{" "}
-                {item.location.houseNumber}
+              ><p>{item.location.city}, {item.location.street}{" "}
+                {item.location.houseNumber}</p>
+                
               </a>
-              <p className="mt-2 font-f">
-                <strong className="font-f font-semibold">Created At:</strong>{" "}
-                {moment(item.createdAt).format("MMMM Do YYYY")}
-              </p>
               <Link to={`/users/${item.postedBy._id}`} className="mt-2">
                 <strong className="">Posted By:</strong> {item.postedBy.username}
               </Link>
