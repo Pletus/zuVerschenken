@@ -43,13 +43,13 @@ import ins from "../assets/instagram.svg";
 const Footer = () => {
   return (
     <> <div className="bg-customDBlue  pt-5 pb-5 flex ">
-      <div className="w-1/3 flex justify-center items-center ">
+      {<div className="w-1/3 flex justify-center items-center ">
         <div className="w-32">
           <li>
             <img src={logo} alt="logo" className="w-full object-cover" />
           </li>
         </div>
-      </div>
+      </div>}
       <div className="w-1/3 flex-row justify-center items-center">
         <div>
           <ul className="flex flex-row justify-center gap-4 items-center">
