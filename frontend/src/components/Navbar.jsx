@@ -4,7 +4,7 @@ import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import axios from "axios";
 import logout from "../assets/icon-logout.png";
 import login from "../assets/icon-user.png";
-import logo from "../assets/logo-n.svg";
+import "../components/CSS/Navbar.css"
 
 const Navbar = ({ onSearch }) => {
   const [user, setUser] = useState(false);

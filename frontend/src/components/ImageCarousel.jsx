@@ -1,4 +1,4 @@
-
+import "../components/CSS/ImageCarousel.css";
 
 export const responsive = {
   superLargeDesktop: {
