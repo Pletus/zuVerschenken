@@ -50,7 +50,7 @@ function Items() {
   });
 
   return (
-    <div className="grid justify-items-center grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 lg:px-32 2xl:px-72 gap-2 p-4 bg-blue-400 bg-opacity-60">
+    <div className="grid justify-items-center grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 lg:px-32 2xl:px-72 gap-2 p-4 bg-blue-400 bg-opacity-60">
       {filteredItems.map((item) => {
         const createdAt = item.createdAt ? parseISO(item.createdAt) : null;
         let timeAgo = "Date not available";
@@ -62,18 +62,18 @@ function Items() {
           const minutes = differenceInMinutes(now, createdAt) % 60;
 
           if (days > 0) {
-            timeAgo = `${days} day and ${hours} hours ago`;
+            timeAgo = `${days}d ago`;
           } else if (hours > 0) {
-            timeAgo = `${hours} hours and ${minutes} minutes ago`;
+            timeAgo = `${hours}h ago`;
           } else {
-            timeAgo = `${minutes} minutes ago`;
+            timeAgo = `${minutes}m ago`;
           }
         }
 
         return (
           <div
             key={item._id}
-            className="bg-white px-4 md:px-5 itemDiv shadow-2xl rounded-lg flex gap-2 items-center justify-center"
+            className="bg-white px-4 md:px-5 itemDiv shadow-2xl rounded-lg flex gap-2 items-center justify-between"
           >
             <Link to={`/items/${item._id}`}>
               <img
@@ -82,11 +82,11 @@ function Items() {
                 className="w-40 h-40 object-cover shadow-md rounded-l-lg"
               />
             </Link>
-            <div className="flex flex-col mt-0 md:pt-4 lg:p-2 xl:p-4 pl-4 gap-1">
+            <div className="flex flex-col text-center mt-0 md:pt-4 lg:p-2 xl:p-4 pl-4 gap-1">
               <span className="text-blue-700 font-bold">{item.title}</span>
               <span className="text-blue-700">{timeAgo}</span>
               <span className="text-black">by {item.postedBy.username}</span>
-              <div className="">
+              <div className="pl-2 font-bold">
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                     `${item.location.city} ${item.location.street} ${item.location.houseNumber}`
@@ -96,7 +96,7 @@ function Items() {
                   className="text-black flex items-center hover:underline"
                 >
                   {item.location.city}
-                  <div className="pl-1 hover:scale-150">
+                  <div className="pl-1 transform transition-transform duration-700 hover:scale-150">
                     <img src={pin} alt="location" className="h-5 w-5" />
                   </div>
                 </a>
