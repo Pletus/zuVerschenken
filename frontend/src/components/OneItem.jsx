@@ -16,6 +16,22 @@ const OneItem = () => {
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [user, setUser] = useState(false);
+  const [userId, setUserId] = useState([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      function decodeToken(token) {
+        const base64Url = token.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        return JSON.parse(atob(base64));
+      }
+
+      const decoded = decodeToken(token);
+      const userId = decoded.id;
+      setUserId(userId);
+    }
+  }, []);
 
   const getCommentCount = (comments) => {
     if (Array.isArray(comments) && comments.length > 0) {
@@ -24,7 +40,7 @@ const OneItem = () => {
       return 0;
     }
   };
-console.log(item)
+
   useEffect(() => {
     const fetchItem = async () => {
       try {
@@ -53,8 +69,6 @@ console.log(item)
     fetchItem();
     fetchItemComments();
   }, [id]);
-
-  
 
   useEffect(() => {
     const isToken = localStorage.getItem("token");
@@ -233,7 +247,7 @@ console.log(item)
 
           <button
             className={`bg-blue-500 text-white py-2 px-4 rounded-full self-end my-2 ${
-              !user? "disabled opacity-50 cursor-not-allowed" : ""
+              !user ? "disabled opacity-50 cursor-not-allowed" : ""
             }`}
             onClick={handleAddComment}
             disabled={!user}

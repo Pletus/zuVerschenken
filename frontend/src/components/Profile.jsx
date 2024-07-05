@@ -20,6 +20,22 @@ function Profile() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/users/${userId}`
+        );
+        setUser(response.data);
+      } catch (err) {
+        console.error("Error fetching user", err);
+      }
+    };
+
+    fetchUser();
+  }, [userId]);
 
   const itemsPerPage = 2;
 
@@ -192,8 +208,9 @@ function Profile() {
 
   return (
     <section className="flex justify-center min-w-min min-h-screen p-6 md:p-12">
-      <div className="responsiveDiv p-4 shadow-2xl bg-blue-400 bg-opacity-20 rounded-lg text-center">
+      <div className="responsiveDiv flex flex-col md:flex-row md:justify-between md:gap-12 md:px-20 p-4 shadow-2xl bg-blue-400 bg-opacity-20 rounded-lg text-center">
         <div className="flex flex-col gap-4 items-center justify-center p-6 mb-8 mt-6 md:mb-0 md:mt-0">
+          <h1 className="text-5xl font-bold text-blue-500">{user.username}</h1>
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -280,50 +297,51 @@ function Profile() {
           </div>
         </div>
         <div className="flex items-center justify-center my-2 mx-2 md:my-12 lg:mx-12">
-          <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg p-4 bg-opacity-60 w-full">
-            <h2 className="p-4 text-2xl">Items Posted</h2>
-            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-4">
+          <div className="drop-shadow-xl bg-white shadow-xl p-4 rounded-lg">
+            <div className="flex p-2 items-center justify-between">
+              <h3 className="text-2xl">Posted boxes</h3>
+              <div className="flex justify-end gap-2 mt-1 rounded-lg w-auto">
+                {currentIndex === 0 ? null : (
+                  <button
+                    onClick={handlePrev}
+                    className="border-2 drop-shadow-md border-black text-black p-2 rounded-lg"
+                  >
+                    &lt;
+                  </button>
+                )}
+                {currentIndex + itemsPerPage < filteredItems.length && (
+                  <button
+                    onClick={handleNext}
+                    className="border-2 drop-shadow-md border-black text-black p-2 rounded-lg mx-2"
+                  >
+                    &gt;
+                  </button>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row rounded-lg justify-end gap-4">
               {currentItems.map((item) => (
                 <NavLink to={`/items/${item._id}`}>
                   <div
                     key={item.id}
-                    className="flex flex-col justify-between bg-gray-300 shadow-md bg-opacity-80 p-3 rounded-lg h-full w-64"
+                    className="flex flex-col rounded-lg justify-between bg-gray-300 bg-opacity-40 shadow-md bg-opacity-80 p-3 h-full w-64"
                   >
                     <div>
                       <img
                         src={item.images[0].url}
                         alt={item.title}
-                        className="w-full h-32 object-cover rounded-t-lg"
+                        className="w-full h-32 rounded-lg object-cover"
                       />
-                      <h3 className="text-xl text-black border-black">
+                      <h3 className="text-xl pt-2 text-black text-center">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="bg-white rounded-b-lg p-2 mt-2">
-                      {item.location.city}, {item.location.street},{" "}
-                      {item.location.houseNumber}
+                    <p className=" bg-blue-700 text-center bg-opacity-70 text-white rounded-lg p-2 mt-2">
+                      {item.location.city}
                     </p>
                   </div>
                 </NavLink>
               ))}
-            </div>
-            <div className="flex justify-center gap-2 mt-4 w-full">
-              {currentIndex === 0 ? null : (
-                <button
-                  onClick={handlePrev}
-                  className="bg-blue-500 text-white p-2 rounded-full"
-                >
-                  &lt;
-                </button>
-              )}
-              {currentIndex + itemsPerPage < filteredItems.length && (
-                <button
-                  onClick={handleNext}
-                  className="bg-blue-500 text-white p-2 rounded-full mx-2"
-                >
-                  &gt;
-                </button>
-              )}
             </div>
           </div>
         </div>

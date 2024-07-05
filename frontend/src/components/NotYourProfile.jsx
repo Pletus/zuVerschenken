@@ -77,7 +77,7 @@ function NotYourProfile() {
           alt="profile-picture"
           className="w-44 rounded-lg border-2 border-black drop-shadow-xl auto"
         />
-        <h1 className="text-3xl p-2 mt-2 text-center">{user.username}</h1>
+        <h1 className="text-4xl text-black p-2 mt-2 text-center">{user.username}</h1>
       </div>
       <div className="drop-shadow-xl shadow-xl p-4 rounded-lg">
         <div className="flex p-2 items-center justify-between">
@@ -106,7 +106,7 @@ function NotYourProfile() {
             <NavLink to={`/items/${item._id}`}>
               <div
                 key={item.id}
-                className="flex flex-col rounded-lg justify-between bg-gray-400 bg-opacity-40 shadow-md bg-opacity-80 p-3 h-full w-64"
+                className="flex flex-col rounded-lg justify-between bg-gray-300 bg-opacity-40 shadow-md bg-opacity-80 p-3 h-full w-64"
               >
                 <div>
                   <img
@@ -118,9 +118,8 @@ function NotYourProfile() {
                     {item.title}
                   </h3>
                 </div>
-                <p className=" bg-blue-700 bg-opacity-70 text-white rounded-lg p-2 mt-2">
-                  {item.location.city}, {item.location.street},{" "}
-                  {item.location.houseNumber}
+                <p className=" bg-blue-700 text-center bg-opacity-70 text-white rounded-lg p-2 mt-2">
+                  {item.location.city}
                 </p>
               </div>
             </NavLink>
