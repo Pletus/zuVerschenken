@@ -43,8 +43,8 @@ const Contact = () => {
 
   return (
     <section className="contact pt-6">
-      <form onSubmit={onSubmit} className="mx-3 bg-white bg-opacity-80">
-        <h2 className="text-4xl pb-2 font-f text-blue-500 font-bold drop-shadow-xl">Contact Form</h2>
+      <form onSubmit={onSubmit} className="mx-6">
+        <h2 className="text-4xl pb-2 text-blue-500 font-bold drop-shadow-xl">Contact Form</h2>
         <div className="input-box">
           <label htmlFor="name">Full Name</label>
           <input
@@ -74,7 +74,7 @@ const Contact = () => {
             required
           ></textarea>
         </div>
-        <button type="submit">Send Message</button>
+        <button type="submit">Submit</button>
       </form>
     </section>
   );

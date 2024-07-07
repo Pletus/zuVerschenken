@@ -2,20 +2,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ddf1f7;
+  background-image: linear-gradient(
+  130deg,
+  hsl(202deg 68% 48%) 0%,
+  hsl(207deg 63% 51%) 3%,
+  hsl(211deg 64% 54%) 6%,
+  hsl(216deg 65% 56%) 10%,
+  hsl(221deg 65% 58%) 14%,
+  hsl(225deg 65% 57%) 19%,
+  hsl(231deg 64% 56%) 25%,
+  hsl(237deg 63% 55%) 32%,
+  hsl(240deg 52% 49%) 42%,
+  hsl(240deg 52% 40%) 57%,
+  hsl(240deg 52% 29%) 77%,
+  hsl(227deg 100% 2%) 100%
+);
   background-size:cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 form {
+  background-color: transparent ;
+  border: 1px solid white;
+  border-radius: 0;
   max-width: 600px;
   width: 100%;
-  background: #fff;
-  padding: 25px 25px 100px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rbga(0, 0, 0, 0.1);
-  margin: 25px;
+  padding: 25px 25px 25px;
+  margin: 50px;
   font-family: 'Roboto', cursive;
   color: #475569;
 }
@@ -31,10 +45,9 @@ form .input-box {
 
 .input-box .field {
   width: 100%;
-  height: 50px;
-  background: transparent;
+  height: 45px;
+  background: white;
   outline: 1px solid #93c5fd;
-  border-radius: 6px;
   font-size: 16px;
   padding: 15px;
   color: #333;
@@ -42,32 +55,38 @@ form .input-box {
 }
 
 .input-box .message {
-
   height: 200px;
   resize: none;
   
 }
 
 .input-box label {
-  font-family: font-f;
-  font-weight: 600;
-  color: dodgerblue;
+   font-weight: 300;
+   color: white;
 }
 
 form button {
-  width: 100%;
-  height: 55px;
+  display: inline-block;
+  width: 27%;
+  height: 45px;
   background-color: dodgerblue;
   border: none;
-  border-radius: 6px;
-  box-sizing: 0 0 10px rgba (0, 0, 0, 0.1);
   font-size: 16px;
+  font-family: 'Roboto', cursive;
   color: #fff;
   font-weight: 500;
-  margin-top: 25px;
+  margin-top: 15px;
   transition: 0.5s;
+  text-wrap: nowrap;
 }
 
 form button:hover {
-  background: blue;
+  background: #2563eb;
 }
+
+@media all and (max-width:30em){
+    a.button1{
+    display:block;
+    margin:0.4em auto;
+    }
+    };
