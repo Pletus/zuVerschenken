@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import "../components/CSS/AddItem.css";
+import Swal from "sweetalert2";
 
 const AddItem = () => {
   const [title, setTitle] = useState("");
@@ -60,13 +60,17 @@ const AddItem = () => {
           },
         }
       );
-      toast("Item added successfully!");
       setTitle("");
       setDescription("");
       setCity("");
       setStreet("");
       setHouseNumber("");
       setImages([]);
+      Swal.fire({
+        title: "Success!",
+        text: "Item added successfully!",
+        icon: "success"
+      });
       console.log("Response data:", response.data);
     } catch (error) {
       if (error.response) {
@@ -86,15 +90,16 @@ const AddItem = () => {
 
   return (
     <div className="background-image h-screen w-screen flex items-center justify-center">
-      <div className="max-w-md mx-auto shadow-md opacity-80 bg-blue-100 rounded-lg p-6">
-        <h2 className="text-2xl font-bold text-center mb-4 text-blue-700">
+      <div className="max-w-md mx-auto shadow-md opacity-80 bg-blue-100 rounded-lg  flex flex-col justify-center items-center">
+        <h2 className="text-2xl font-bold text-center mb-4 pt-10 text-blue-700">
           Add New Box
         </h2>
-        {message && <p className="mb-4">{message}</p>}
+        {message && <p className="">{message}</p>}
         <form
           onSubmit={handleSubmit}
           method="post"
           encType="multipart/form-data"
+          className="bg-blue-100"
         >
           <div className="mb-4">
             <label
@@ -108,14 +113,14 @@ const AddItem = () => {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="border border-blue-400 rounded w-full py-3 px-3 bg-inherit leading-tight focus:outline-none focus:shadow-outline"
               required
             />
           </div>
           <div className="mb-4">
             <label
               htmlFor="description"
-              className="text-blue-900 text-sm font-bold mb-2"
+              className="text-blue-700 text-sm font-bold mb-2"
             >
               Description
             </label>
@@ -123,7 +128,7 @@ const AddItem = () => {
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="border border-blue-400 rounded w-full py-3 px-3 bg-inherit h-48 leading-tight focus:outline-none focus:shadow-outline"
               required
             ></textarea>
           </div>
@@ -139,7 +144,7 @@ const AddItem = () => {
               id="city"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="border border-blue-400 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
           </div>
@@ -156,7 +161,7 @@ const AddItem = () => {
                 id="street"
                 value={street}
                 onChange={(e) => setStreet(e.target.value)}
-                className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border border-blue-400 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
             </div>
@@ -172,14 +177,14 @@ const AddItem = () => {
                 id="houseNumber"
                 value={houseNumber}
                 onChange={(e) => setHouseNumber(e.target.value)}
-                className="border border-blue-700 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border border-blue-400 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
           </div>
           <div className="mb-4">
             <label
               htmlFor="images"
-              className="text-blue-900 text-sm font-bold mb-2"
+              className="text-blue-700 text-sm font-bold mb-2"
             >
               Images
             </label>
@@ -195,25 +200,12 @@ const AddItem = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold rounded focus:outline-none focus:shadow-outline"
           >
             Add Item
           </button>
         </form>
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition:Slide
-      />
     </div>
   );
 };

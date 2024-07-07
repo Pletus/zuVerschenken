@@ -51,7 +51,7 @@ const Login = () => {
     <section className="loginSignup flex justify-center min-h-screen pt-4">
       <form
         onSubmit={handleSubmit}
-        className="mx-3 bg-blue-500 bg-opacity-30 loginSignupDiv1 flex flex-col flex-wrap justify-center text-center items-center align-middle gap-2"
+        className="mx-3 bg-blue-500 bg-opacity-30 loginSignupDiv1 flex flex-col justify-center text-center items-center align-middle gap-2"
       >
         <h2 className="text-4xl pb-4 text-blue-500 font-bold drop-shadow-xl">
           Log in

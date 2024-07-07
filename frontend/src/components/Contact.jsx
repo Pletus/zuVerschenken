@@ -1,10 +1,11 @@
 import React from "react";
 import "../components/CSS/Contact.css";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
-    const form = event.target; // Ensure the form is defined here
+    const form = event.target; 
     const formData = new FormData(form);
 
     formData.append("access_key", import.meta.env.VITE_FORM_KEY);
@@ -26,8 +27,12 @@ const Contact = () => {
       const result = await res.json();
 
       if (result.success) {
-        console.log("Success", result);
-        form.reset(); // Reset the form fields
+        Swal.fire({
+          title: "Sucess!",
+          text: "Message submitted successfully!",
+          icon: "success"
+        });
+        form.reset(); 
       } else {
         console.error("Error", result);
       }
@@ -37,9 +42,9 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact">
-      <form onSubmit={onSubmit} className="mx-3 bg-blue-500 bg-opacity-30">
-        <h2 className="text-4xl pb-4 font-f text-blue-500 font-bold drop-shadow-xl">Contact Form</h2>
+    <section className="contact pt-6">
+      <form onSubmit={onSubmit} className="mx-3 bg-white bg-opacity-80">
+        <h2 className="text-4xl pb-2 font-f text-blue-500 font-bold drop-shadow-xl">Contact Form</h2>
         <div className="input-box">
           <label htmlFor="name">Full Name</label>
           <input
@@ -64,7 +69,7 @@ const Contact = () => {
           <label htmlFor="message">Your Message</label>
           <textarea
             name="message"
-            className="field message"
+            className="field message font-f"
             placeholder="Enter your message"
             required
           ></textarea>

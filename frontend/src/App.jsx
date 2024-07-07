@@ -41,7 +41,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/users/:id" element={<NotYourProfile />} />
         <Route path="/about-us" element={<About />} />
-        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} />
       </Route>
     </Routes>
   );
