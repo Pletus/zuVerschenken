@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
-import "../components/CSS/Login.css";
+import "../components/CSS/Signup.css";
 
 function Signup() {
   const [formValues, setFormValues] = useState({

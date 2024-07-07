@@ -17,6 +17,11 @@
     border-radius: 3%;
   }
   
+  .inputWidth {
+    width: 300px;
+    height: 42px;
+  }
+  
   .loginButton {
     width: 153px;
     height: 41.8px;

@@ -88,7 +88,7 @@ const Login = () => {
         </div>
         <NavLink
           to="/signup"
-          className="text-md text-blue-500 drop-shadow-xl pt-1"
+          className="flex justify-center items-center text-md text-blue-500 drop-shadow-xl pt-1"
         >
           you don´t have an account yet?
         </NavLink>

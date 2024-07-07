@@ -1,0 +1,38 @@
+
+.loginSignupDiv1 {
+    position: relative;
+    height: 400px;
+    width: 400px;
+    padding: 3rem;
+    margin-top: 4rem;
+    border-radius: 3%;
+  }
+  
+  .loginSignupDiv2 {
+    position: relative;
+    height: 480px;
+    width: 400px;
+    padding: 3rem;
+    margin-top: 4rem;
+    border-radius: 3%;
+  }
+  
+  .loginButton {
+    width: 153px;
+    height: 41.8px;
+  }
+  
+  .background-image {
+    background-image: url("./assets/vecteezy_clothing-donation-illustration_6916012.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+  }
+  
+  .location-link {
+    color: #00bfff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
