@@ -117,7 +117,7 @@ const Navbar = ({ onSearch }) => {
         </button>
       </div>
       <ul
-        className={`flex flex-col md:flex-row lg:flex-row  items-end lg:items-center transition-transform transform ${
+        className={`flex flex-col md:flex-row lg:flex-row text-white items-end lg:items-center transition-transform transform ${
           isMenuOpen
             ? "max-h-full opacity-100 pt-1 pr-3 gap-2 md:gap-4 md:items-center mt-2 md:pl-40"
             : "max-h-0 gap-6 2xl:gap-12 opacity-0"
@@ -129,7 +129,7 @@ const Navbar = ({ onSearch }) => {
               to="/"
               className={({ isActive }) =>
                 `${
-                  isActive ? "text-blue-500" : "text-gray-700"
+                  isActive ? "text-blue-500" : "text-white"
                 } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
@@ -143,7 +143,7 @@ const Navbar = ({ onSearch }) => {
               to="/additem"
               className={({ isActive }) =>
                 `${
-                  isActive ? "text-blue-500" : "text-gray-700"
+                  isActive ? "text-blue-500" : "text-white"
                 } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
@@ -157,7 +157,7 @@ const Navbar = ({ onSearch }) => {
               to="/items"
               className={({ isActive }) =>
                 `${
-                  isActive ? "text-blue-500" : "text-gray-700"
+                  isActive ? "text-blue-500" : "text-t-white"
                 } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
@@ -171,7 +171,7 @@ const Navbar = ({ onSearch }) => {
               to="/wishlist"
               className={({ isActive }) =>
                 `${
-                  isActive ? "text-blue-500" : "text-gray-700"
+                  isActive ? "text-blue-500" : "text-white"
                 } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
@@ -202,7 +202,7 @@ const Navbar = ({ onSearch }) => {
                 to="/login"
                 className={({ isActive }) =>
                   `${
-                    isActive ? "text-blue-500" : "text-gray-700"
+                    isActive ? "text-blue-500" : "text-white"
                   } transform transition-transform duration-200 flex hover:scale-125`
                 }
               >

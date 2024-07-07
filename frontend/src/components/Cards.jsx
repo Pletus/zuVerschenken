@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { responsive } from "./ImageCarousel";
-import "../components/CSS/Cards.css"
+import "../components/CSS/Cards.css";
 
 const Cards = () => {
   const [items, setItems] = useState([]);
@@ -31,7 +31,7 @@ const Cards = () => {
     <div>
       <div className="cardBackground h-[800px] customGrey items-center justify-center flex">
         <div className="container pb-20 m-auto">
-          <h1 className="font-bold sans-serif text-5xl pb-20 text-blue-500 text-center pt-20">
+          <h1 className="font-bold sans-serif text-5xl pb-20 text-black text-center pt-20">
             Featured Items
           </h1>
           <div className="gd-carousel-wrapper">
