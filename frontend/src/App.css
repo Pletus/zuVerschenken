@@ -1,4 +1,160 @@
 .font-f {
-  font-family: 'Roboto', cursive;
+  font-family: "Roboto", cursive;
 }
 
+.logo {
+  height: 180px;
+  width: 180px;
+  overflow: hidden;
+  margin-top: -60px;
+  margin-bottom: -30px;
+}
+
+.loginSignup {
+  background-image: url(./assets/vecteezy_volunteers-packing-donation-boxes_6901865.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.loginSignupDiv1 {
+  position: relative;
+  height: 400px;
+  width: 400px;
+  padding: 3rem;
+  margin-top: 4rem;
+  border-radius: 3%;
+}
+
+.loginSignupDiv2 {
+  position: relative;
+  height: 480px;
+  width: 400px;
+  padding: 3rem;
+  margin-top: 4rem;
+  border-radius: 3%;
+}
+
+.itemDiv {
+  height: 195px;
+  width: 310px;
+  border-radius: 3%;
+}
+
+.inputWidth {
+  width: 300px;
+  height: 42px;
+}
+
+.loginButton {
+  width: 153px;
+  height: 41.8px;
+}
+
+.background-image {
+  background-image: url("./assets/vecteezy_clothing-donation-illustration_6916012.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+}
+
+.location-link {
+  color: #00bfff;
+  text-decoration: none;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+/* HERO START */
+
+.heading {
+  text-align: center;
+  font-weight: 900;
+  font-size: clamp(45px, 4vw, 75px);
+}
+.heading-1 {
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(25px, 4vw, 55px);
+}
+
+/* CARDS FOR CAROUSEL */
+
+.cardBackground {
+  background-color: #ddf1f7;
+}
+.card--pri {
+  background-color: white;
+  max-width: 280px;
+  margin: auto 1rem;
+  text-align: center;
+  font-family: arial;
+  padding-bottom: 10px;
+}
+
+.product--image {
+  height: 18em;
+}
+
+.card--pri h2 {
+  font-size: 16px;
+  padding-top: 20px;
+}
+.card--pri p {
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+/* CARD CAROUSEL END */
+.gd-carousel-wrapper {
+  position: relative;
+}
+
+.gd-carousel {
+  position: unset;
+
+  .react-multiple-carousel__arrow {
+    position: absolute;
+  }
+
+  .react-multiple-carousel__arrow--left {
+    left: calc(-3% + 1px);
+  }
+
+  .react-multiple-carousel__arrow--right {
+    right: calc(-3% + 1px);
+  }
+}
+
+.block {
+  position: relative;
+  display: flex;
+  bottom: 95px;
+  width: 75%;
+  height: 12rem;
+  background: rgb(1, 130, 244);
+  background: linear-gradient(
+    90deg,
+    rgba(1, 130, 244, 1) 74%,
+    rgba(227, 188, 26, 0.3701855742296919) 99%
+  );
+  margin: auto;
+  border-radius: 50px;
+}
+
+.block,
+h1 {
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 30px;
+  color: White;
+  font-size: 40px;
+}
+
+.blockTitle {
+  border: 2px solid white;
+  border-radius: 25px;
+  justify-content: center;
+}
