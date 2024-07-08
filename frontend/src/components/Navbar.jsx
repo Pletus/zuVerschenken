@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
+import { IoMenuOutline, IoCloseOutline, IoMailOpenOutline } from "react-icons/io5";
 import axios from "axios";
 import logout from "../assets/icon-logout.png";
 import login from "../assets/icon-user.png";
-import logo from "../assets/logo-n.svg";
+import "../components/CSS/Navbar.css";
+import Logo from "../assets/logo-n.svg";
+
 
 const Navbar = ({ onSearch }) => {
   const [user, setUser] = useState(false);
@@ -77,10 +79,10 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="flex flex-col lg:flex-row justify-between md:justify-around w-full px-1 py-3 shadow-md bg-customGray relative">
+    <nav className="flex flex-col lg:flex-row justify-between md:justify-around w-full px-1 py-3  shadow-md bg-customBlue relative">
       <div className="flex justify-between">
         <div className="flex items-center gap-1 ml-2 sm:gap-4 lg:pl-1">
-          <div className="w-10 h-10 bg-gray-900 rounded-full md:mx-4 lg:mr-6 xl:mr-24"></div>
+          <div className= " rounded-full md:mx-4 lg:mr-6 xl:mr-24"><img src={Logo} alt="" className="w-32" /></div>
           <div className="flex items-center space-x-1 sm:space-x-4 lg:space-x-2">
             <input
               type="text"
