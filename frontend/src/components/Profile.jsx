@@ -275,7 +275,7 @@ function Profile() {
                   placeholder="Password"
                   onChange={(e) => setCurrentPassword(e.target.value)}
                   required
-                  className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 placeholder-gray-500 focus:outline-none focus:border-blue-600"
+                  className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 placeholder-gray-500 focus:outline-none hover:border-blue-600 focus:border-blue-600"
                 />
                 <input
                   type="password"
@@ -283,7 +283,7 @@ function Profile() {
                   placeholder="New Password"
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
-                  className="pl-2 text-center rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600"
+                  className="pl-2 text-center rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-white placeholder-gray-500 focus:outline-none hover:border-blue-600 focus:border-blue-600"
                 />
               </form>
             ) : (
