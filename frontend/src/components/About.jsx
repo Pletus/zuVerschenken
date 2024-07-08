@@ -21,7 +21,7 @@ const About = () => {
             testing and an expert in automating tests for complex web and
             application environments. Continuously expanding technical skills in
             fullstack development to stay ahead in the dynamic field of QA
-            engineering.{" "}
+            engineering.
           </p>
         </div>
       </div>

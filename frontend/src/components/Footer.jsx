@@ -56,12 +56,12 @@ const Footer = () => {
             <ul className="flex flex-row justify-center gap-4 items-center">
               <li>
                 <a href="">
-                  <img src={fb} alt="logo" className="w-10 h-10" />
+                  <img src={fb} alt="logo" className="w-9 h-9" />
                 </a>
               </li>
               <li>
                 <a href="">
-                  <img src={tw} alt="logo" className="w-10 h-10" />
+                  <img src={tw} alt="logo" className="w-9 h-9" />
                 </a>
               </li>
               <li>
@@ -71,7 +71,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="">
-                  <img src={yt} alt="logo" className="w-12 h-12" />
+                  <img src={yt} alt="logo" className="w-10 h-10" />
                 </a>
               </li>
             </ul>
