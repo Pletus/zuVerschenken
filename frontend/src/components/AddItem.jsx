@@ -178,6 +178,7 @@ const AddItem = () => {
                 value={houseNumber}
                 onChange={(e) => setHouseNumber(e.target.value)}
                 className="border border-blue-400 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
               />
             </div>
           </div>
@@ -186,7 +187,7 @@ const AddItem = () => {
               htmlFor="images"
               className="text-blue-700 text-sm font-bold mb-2"
             >
-              Images
+              <span>Images </span> 
             </label>
             <input
               type="file"
