@@ -77,7 +77,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="flex justify-evenly mt-5">
-            <ul className="flex text-md text-customGray">
+            <ul className="flex text-sm text-customGray">
               <li className="flex border-r-2 px-4">
                 <Link to="/">
                   <p> Home </p>
