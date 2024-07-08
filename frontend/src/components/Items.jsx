@@ -3,6 +3,7 @@ import { useOutletContext, Link } from "react-router-dom";
 import { parseISO, differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
 import axios from "axios";
 import pin from "../assets/icon-location.png";
+import "../components/CSS/Items.css"
 
 function Items() {
   const [items, setItems] = useState([]);

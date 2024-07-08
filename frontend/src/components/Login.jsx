@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../components/CSS/Login.css"
 
 const Login = () => {
   const [formValues, setFormValues] = useState({
@@ -50,7 +51,7 @@ const Login = () => {
     <section className="loginSignup flex justify-center min-h-screen pt-4">
       <form
         onSubmit={handleSubmit}
-        className="mx-3 bg-blue-500 bg-opacity-30 loginSignupDiv1 flex flex-col flex-wrap justify-center text-center items-center align-middle gap-2"
+        className="mx-3 bg-blue-500 bg-opacity-30 loginSignupDiv1 flex flex-col justify-center text-center items-center align-middle gap-2"
       >
         <h2 className="text-4xl pb-4 text-blue-500 font-bold drop-shadow-xl">
           Log in
@@ -87,7 +88,7 @@ const Login = () => {
         </div>
         <NavLink
           to="/signup"
-          className="text-md text-blue-500 drop-shadow-xl pt-1"
+          className="flex justify-center items-center text-md text-blue-500 drop-shadow-xl pt-1"
         >
           you don´t have an account yet?
         </NavLink>

@@ -12,6 +12,7 @@ import Signup from "./components/Signup";
 import Layout from "./components/Layout";
 import OneItem from "./components/OneItem";
 import About from "./components/About";
+import Contact from "./components/Contact";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import "./index.css";
@@ -40,6 +41,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/users/:id" element={<NotYourProfile />} />
         <Route path="/about-us" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Route>
     </Routes>
   );

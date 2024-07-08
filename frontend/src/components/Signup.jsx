@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
+import "../components/CSS/Signup.css";
 
 function Signup() {
   const [formValues, setFormValues] = useState({
@@ -65,7 +66,7 @@ function Signup() {
     <section className="loginSignup flex justify-center min-h-screen pt-4">
       <form
         onSubmit={handleSubmit}
-        className="mx-3 bg-blue-500 bg-opacity-30 loginSignupDiv2 flex flex-col flex-wrap justify-center text-center items-center align-middle gap-2"
+        className="mx-3 bg-blue-500 bg-opacity-30 loginSignupDiv2 flex flex-col justify-center text-center items-center align-middle gap-2"
       >
         <h2 className="text-4xl pb-4 text-blue-500 font-bold drop-shadow-xl">
           Sign up
