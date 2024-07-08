@@ -89,8 +89,8 @@ const AddItem = () => {
   };
 
   return (
-    <div className="background-image h-screen w-screen flex items-center justify-center">
-      <div className="max-w-md mx-auto shadow-md opacity-80 bg-blue-100 rounded-lg  flex flex-col justify-center items-center">
+    <div className="background-image w-screen flex items-center justify-center">
+      <div className="max-w-md mx-auto shadow-md opacity-80 bg-blue-100 rounded-lg  flex flex-col justify-center items-center my-10">
         <h2 className="text-2xl font-bold text-center mb-4 pt-10 text-blue-700">
           Add New Box
         </h2>
@@ -99,7 +99,7 @@ const AddItem = () => {
           onSubmit={handleSubmit}
           method="post"
           encType="multipart/form-data"
-          className="bg-blue-100"
+          className=""
         >
           <div className="mb-4">
             <label
