@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 const Contact = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
-    const form = event.target; 
+    const form = event.target;
     const formData = new FormData(form);
 
     formData.append("access_key", import.meta.env.VITE_FORM_KEY);
@@ -20,9 +20,9 @@ const Contact = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json"
+          Accept: "application/json",
         },
-        body: json
+        body: json,
       });
       const result = await res.json();
 
@@ -30,9 +30,9 @@ const Contact = () => {
         Swal.fire({
           title: "Sucess!",
           text: "Message submitted successfully!",
-          icon: "success"
+          icon: "success",
         });
-        form.reset(); 
+        form.reset();
       } else {
         console.error("Error", result);
       }
@@ -42,35 +42,74 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact pt-6">
+    <section className="contact p-10">
       <form onSubmit={onSubmit} className="mx-6">
-        <h2 className="text-4xl pb-2 text-blue-500 font-bold drop-shadow-xl">Contact Form</h2>
+        <h2 className="pb-2 text-white font-bold drop-shadow-xl">
+          Contact Form
+        </h2>
         <div className="input-box">
-          <label htmlFor="name">Full Name</label>
+          <label htmlFor="name">Full Name *</label>
           <input
             type="text"
             name="name"
             className="field"
-            placeholder="Enter your name"
+            placeholder=""
             required
           />
         </div>
-        <div className="input-box">
-          <label htmlFor="email">Email Address</label>
-          <input
-            type="email"
-            name="email"
-            className="field"
-            placeholder="Enter your email"
-            required
-          />
+        <div className="input-box flex flex-cols-2 gap-4">
+          <div className="w-2/3 ">
+            <label className="flex" htmlFor="email">
+              Email Address *
+            </label>
+            <input
+              type="email"
+              name="email"
+              className="field flex"
+              placeholder=""
+              required
+            />
+          </div>
+          <div className="w-1/3">
+            <label htmlFor="phone">Phone</label>
+            <input
+              type="tel"
+              name=""
+              className="field "
+              placeholder=""
+              required
+            />
+          </div>
+        </div>
+        <div>
+          <h1 className="mt-6 font-f text-white">Contact preference</h1>
+        </div>
+        <div className="flex gap-10">
+          <div>
+            <input
+              className="custom-checkbox"
+              name="democheckbox"
+              type="checkbox"
+              value="email"
+            />
+            <span className="text-white font-f check-text"> Reply by email  </span>
+          </div>
+          <div>
+            <input
+              className="custom-checkbox"
+              name="democheckbox"
+              type="checkbox"
+              value="Phone"
+            />
+            <span className=" text-white font-f check-text"> Reply by phone </span>
+          </div>
         </div>
         <div className="input-box">
-          <label htmlFor="message">Your Message</label>
+          <label htmlFor="message">Your Message *</label>
           <textarea
             name="message"
             className="field message font-f"
-            placeholder="Enter your message"
+            placeholder=""
             required
           ></textarea>
         </div>
