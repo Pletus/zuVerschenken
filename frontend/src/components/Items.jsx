@@ -94,9 +94,6 @@ function Items() {
                     className="text-black flex items-center hover:underline"
                   >
                     {item.location.city}
-                    <div className="pl-1 transform transition-transform duration-700 hover:scale-150">
-                      <img src={pin} alt="location" className="h-5 w-5" />
-                    </div>
                   </a>
                 </div>
               </div>

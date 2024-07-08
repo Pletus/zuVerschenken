@@ -224,7 +224,7 @@ function Profile() {
               className="object-cover w-48 h-48 rounded-full border-2 border-blue-500 shadow-md"
             />
           )}
-          <form onSubmit={handleSubmit} className="flex flex-col">
+          <form onSubmit={handleSubmit} className="flex bg-blue-100 bg-opacity-20 flex-col">
             <input
               type="file"
               onClick={handleChangePictureClick}
@@ -253,7 +253,7 @@ function Profile() {
             {isChangePasswordVisible ? (
               <form
                 onSubmit={handleChangePassword}
-                className="flex flex-col gap-2 justify-center items-center"
+                className="flex flex-col gap-2 bg-blue-100 bg-opacity-20 justify-center items-center"
               >
                 <div className="flex flex-row gap-2">
                   <button
