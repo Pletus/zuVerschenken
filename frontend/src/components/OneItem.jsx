@@ -200,37 +200,28 @@ const OneItem = () => {
                 />
               </button>
             </div>
-            <h3 className="font-bold text-3xl">{item.title}</h3>
-            <span className=" position text-grey-700 lg:w-3/4">
+            <h3 className=" font-f font-semibold text-3xl">{item.title}</h3>
+            <div><span className="font-f italic text-sm">
+                {moment(item.createdAt).format("MMMM D, YYYY")}
+              </span> <span><Link to={`/users/${item.postedBy._id}`}>
+               |&nbsp; <span className="text-blue-500 font-semibold"
+               >{item.postedBy.username}</span>
+              </Link></span></div>
+            <span className=" position text-grey-700 font-f text-sm text-justify font-normal lg:w-3/4">
               {item.description}
             </span>
             <div>
               <a
-                className="text-lg font-semibold"
+                className="text-lg font-semibold text-sm f-font"
                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                   `${item.location.street} ${item.location.houseNumber}, ${item.location.city}`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                {item.location.city}, {item.location.street}{" "}
-                {item.location.houseNumber}
+              >Location: <span className="italic text-blue-500">{item.location.city}, {item.location.street}{" "}
+                {item.location.houseNumber}</span>
               </a>
-              <p className="mt-2">
-                <strong>Created At:</strong>{" "}
-                {moment(item.createdAt).format("MMMM Do YYYY")}
-              </p>
-              <div>
-                {userId === item.postedBy._id ? (
-                  <Link to={`/profile`} className="mt-2">
-                    <strong>Posted By:</strong> {item.postedBy.username}
-                  </Link>
-                ) : (
-                  <Link to={`/users/${item.postedBy._id}`} className="mt-2">
-                    <strong>Posted By:</strong> {item.postedBy.username}
-                  </Link>
-                )}
-              </div>
+              
             </div>
           </div>
         </div>

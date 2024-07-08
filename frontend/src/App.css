@@ -1,3 +1,7 @@
+.font-f {
+  font-family: "Roboto", cursive;
+}
+
 .logo {
   height: 180px;
   width: 180px;
@@ -34,7 +38,7 @@
 .itemDiv {
   height: 195px;
   width: 310px;
-  border-radius: 3%; 
+  border-radius: 3%;
 }
 
 .inputWidth {
@@ -66,18 +70,13 @@
 .heading {
   text-align: center;
   font-weight: 900;
-  font-size: clamp(45px, 4vw, 75px)
+  font-size: clamp(45px, 4vw, 75px);
 }
 .heading-1 {
   text-align: center;
   font-weight: 300;
-  font-size: clamp(25px, 4vw, 55px)
+  font-size: clamp(25px, 4vw, 55px);
 }
-
-
-
-
-
 
 /* CARDS FOR CAROUSEL */
 
@@ -108,23 +107,22 @@
 
 /* CARD CAROUSEL END */
 .gd-carousel-wrapper {
-  position:relative;
-
+  position: relative;
 }
 
 .gd-carousel {
-  position:unset;
+  position: unset;
 
   .react-multiple-carousel__arrow {
-      position:absolute;
+    position: absolute;
   }
 
   .react-multiple-carousel__arrow--left {
-      left: calc(-3% + 1px)
+    left: calc(-3% + 1px);
   }
 
   .react-multiple-carousel__arrow--right {
-      right: calc(-3% + 1px)
+    right: calc(-3% + 1px);
   }
 }
 
@@ -134,8 +132,12 @@
   bottom: 95px;
   width: 75%;
   height: 12rem;
-  background: rgb(1,130,244);
-background: linear-gradient(90deg, rgba(1,130,244,1) 74%, rgba(227,188,26,0.3701855742296919) 99%);
+  background: rgb(1, 130, 244);
+  background: linear-gradient(
+    90deg,
+    rgba(1, 130, 244, 1) 74%,
+    rgba(227, 188, 26, 0.3701855742296919) 99%
+  );
   margin: auto;
   border-radius: 50px;
 }
@@ -156,4 +158,3 @@ h1 {
   border-radius: 25px;
   justify-content: center;
 }
-

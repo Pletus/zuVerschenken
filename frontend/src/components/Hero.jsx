@@ -3,7 +3,7 @@ import Herro from "../assets/Herro.png";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Cards from "./Cards";
-import About from "./About";
+import "../components/CSS/Hero.css"
 
 const Hero = ({ reload }) => {
 

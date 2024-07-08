@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
+import { IoMenuOutline, IoCloseOutline, IoMailOpenOutline } from "react-icons/io5";
 import axios from "axios";
 import logout from "../assets/icon-logout.png";
 import login from "../assets/icon-user.png";
+import "../components/CSS/Navbar.css";
+import Logo from "../assets/logo-n.svg";
+
 
 const Navbar = ({ onSearch }) => {
   const [user, setUser] = useState(false);
@@ -78,10 +81,10 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="flex flex-col lg:flex-row justify-between md:justify-around w-full px-1 py-3 shadow-md bg-customGray relative">
+    <nav className="flex flex-col lg:flex-row justify-between md:justify-around w-full px-1 py-3  shadow-md bg-customBlue relative">
       <div className="flex justify-between">
         <div className="flex items-center gap-1 ml-2 sm:gap-4 lg:pl-1">
-          <div className="w-10 h-10 bg-gray-900 rounded-full md:mx-4 lg:mr-6 xl:mr-24"></div>
+          <div className= " rounded-full md:mx-4 lg:mr-6 xl:mr-24"><img src={Logo} alt="" className="w-32" /></div>
           <div className="flex items-center space-x-1 sm:space-x-4 lg:space-x-2">
             <input
               type="text"
@@ -116,10 +119,10 @@ const Navbar = ({ onSearch }) => {
         </button>
       </div>
       <ul
-        className={`flex flex-col md:flex-row lg:flex-row align-middle items-end lg:items-center transition-transform transform ${
+        className={`flex flex-col md:flex-row lg:flex-row text-white items-end lg:items-center transition-transform transform ${
           isMenuOpen
-            ? "max-h-full opacity-100 pt-1 pr-3 gap-2 md:gap-4 md:items-center mt-2 md:pl-40"
-            : "max-h-0 gap-6 2xl:gap-12 opacity-0"
+            ? "max-h-full opacity-100 pt-1 pr-3 gap-2 md:gap-4 md:items-center mt-2 md:pl-40 "
+            : "max-h-0 gap-6 2xl:gap-12 opacity-0 "
         } overflow-hidden lg:overflow-visible lg:opacity-100 lg:max-h-full w-full lg:w-auto`}
       >
         <li>
@@ -128,7 +131,7 @@ const Navbar = ({ onSearch }) => {
               to="/"
               className={({ isActive }) =>
                 `${
-                  isActive ? "text-blue-500" : "text-gray-700"
+                  isActive ? "text-blue-500" : "text-white"
                 } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
@@ -142,7 +145,7 @@ const Navbar = ({ onSearch }) => {
               to="/additem"
               className={({ isActive }) =>
                 `${
-                  isActive ? "text-blue-500" : "text-gray-700"
+                  isActive ? "text-blue-500" : "text-white"
                 } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
@@ -156,7 +159,7 @@ const Navbar = ({ onSearch }) => {
               to="/items"
               className={({ isActive }) =>
                 `${
-                  isActive ? "text-blue-500" : "text-gray-700"
+                  isActive ? "text-blue-500" : "text-t-white"
                 } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
@@ -170,7 +173,7 @@ const Navbar = ({ onSearch }) => {
               to="/wishlist"
               className={({ isActive }) =>
                 `${
-                  isActive ? "text-blue-500" : "text-gray-700"
+                  isActive ? "text-blue-500" : "text-white"
                 } transform transition-transform duration-200 flex md:hover:scale-125`
               }
             >
@@ -201,7 +204,7 @@ const Navbar = ({ onSearch }) => {
                 to="/login"
                 className={({ isActive }) =>
                   `${
-                    isActive ? "text-blue-500" : "text-gray-700"
+                    isActive ? "text-blue-500" : "text-white"
                   } transform transition-transform duration-200 flex hover:scale-125`
                 }
               >

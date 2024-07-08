@@ -3,6 +3,7 @@ import { useOutletContext, Link } from "react-router-dom";
 import { parseISO, differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
 import axios from "axios";
 import pin from "../assets/icon-location.png";
+import "../components/CSS/Items.css"
 
 function Items() {
   const [items, setItems] = useState([]);
@@ -48,14 +49,6 @@ function Items() {
       : true;
     return matchesItem && matchesPostCode && matchesCity;
   });
-
-  if (filteredItems.length === 0) {
-    return (
-      <div className="p-40 px-96">
-        <span className="text-center flex items-center my-3 p-12 justify-center border-2 border-blue-300 rounded-full text-4xl font-bold shadow-xl text-blue-500">Item not found...</span>
-      </div>
-   );
-  }
 
   return (
     <div className="grid justify-items-center grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 lg:px-32 2xl:px-72 gap-2 p-4 bg-blue-400 bg-opacity-60">
