@@ -44,7 +44,7 @@ const Contact = () => {
   return (
     <section className="contact p-10">
       <form onSubmit={onSubmit} className="mx-6">
-        <h2 className="pb-2 text-white font-bold drop-shadow-xl">
+        <h2 className="pb-2 text-blue-500 font-bold drop-shadow-xl">
           Contact Form
         </h2>
         <div className="input-box">
@@ -82,7 +82,7 @@ const Contact = () => {
           </div>
         </div>
         <div>
-          <h1 className="mt-6 font-f text-white">Contact preference</h1>
+          <h1 className="mt-6 font-f">Contact preference</h1>
         </div>
         <div className="flex gap-10">
           <div>
@@ -92,7 +92,7 @@ const Contact = () => {
               type="checkbox"
               value="email"
             />
-            <span className="text-white font-f check-text"> Reply by email  </span>
+            <span className="font-f check-text"> Reply by email  </span>
           </div>
           <div>
             <input
@@ -101,7 +101,7 @@ const Contact = () => {
               type="checkbox"
               value="Phone"
             />
-            <span className=" text-white font-f check-text"> Reply by phone </span>
+            <span className=" font-f check-text"> Reply by phone </span>
           </div>
         </div>
         <div className="input-box">

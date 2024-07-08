@@ -90,12 +90,12 @@ const Footer = () => {
               </li>
               <li className="border-r-2 px-4">
                 <Link to="/privacy-policy">
-                  <p></p>Privcy Policy{" "}
+                  <p></p>Privacy Policy{" "}
                 </Link>
               </li>
               <li className="px-4">
                 <Link to="/contact">
-                  <p>contact </p>
+                  <p>Contact </p>
                 </Link>
               </li>
             </ul>
