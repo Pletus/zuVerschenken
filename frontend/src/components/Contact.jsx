@@ -60,7 +60,7 @@ const Contact = () => {
               placeholder=""
               required
             />
-            <img src={user} alt="" className="w-9 h-9 pt-4" />
+            <img src={user} alt="" className="w-8 h-8 pt-4" />
           </div>
         </div>
         <div className="input-box flex flex-cols-2 gap-4">
@@ -76,7 +76,7 @@ const Contact = () => {
                 placeholder=""
                 required
               />
-              <img src={mail} alt="" className="w-9 h-9 pt-4" />
+              <img src={mail} alt="" className="w-8 h-8 pt-4" />
             </div>
           </div>
           <div className="w-1/3">
@@ -89,13 +89,11 @@ const Contact = () => {
                 placeholder=""
                 required
               />
-              <img src={phone} alt="" className="w-9 h-9 pt-4" />
+              <img src={phone} alt="" className="w-8 h-8 pt-4" />
             </div>
           </div>
         </div>
-        <div>
-          <h1 className="mt-6 font-f">Contact preference</h1>
-        </div>
+          <h1 className=" flex justify-start mt-6 font-f p-0 text-blue-700">Contact preference</h1>
         <div className="flex gap-10">
           <div>
             <input
@@ -125,7 +123,7 @@ const Contact = () => {
               placeholder=""
               required
             ></textarea>
-            <img src={paragraph} alt="" className="w-9 h-9 pt-4" />
+            <img src={paragraph} alt="" className="w-8 h-8 pt-4" />
           </div>
         </div>
         <button type="submit">Submit</button>
