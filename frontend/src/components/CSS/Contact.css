@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
- background-image: linear-gradient(
+  background-color: #ddf1f7;
+ /* background-image: linear-gradient(
   140deg,
   hsl(202deg 55% 53%) 0%,
   hsl(205deg 57% 51%) 4%,
@@ -24,25 +25,28 @@
   hsl(230deg 77% 10%) 83%,
   hsl(226deg 81% 6%) 91%,
   hsl(225deg 80% 2%) 100%
-);
+); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 form {
-  background-color: transparent;
-  border-width: thin;
-  border: 1px, solid;
-  border-radius: 0;
-  background-color: linear-gradient(to right, red, gold);
-  background-clip:border-box;
-  color: transparent;
+  background-color: white;
+  border-radius: 10px;
   min-width: 20px;
-  padding: 25px 25px 25px;
+  padding: 2rem 2rem 2rem;
   margin: auto;
   font-family: "Roboto", cursive;
-  color: #475569;
+  color:#1d4ed8;
+}
+
+form .custom-checkbox {
+  margin: 25px 0 25px;
+}
+
+.check-text {
+  font-size: clamp(12px, 2vw, 14px);
 }
 
 form .custom-checkbox {
@@ -62,11 +66,28 @@ form .input-box {
   margin-top: 20px;
 }
 
+.input-group {
+  display: flex;
+  border: 1px solid #7dd3fc;
+}
+
+.input-group input {
+  border: 0;
+  flex-grow: 1;
+}
+
+.input-group img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .input-box .field {
+  background-color: transparent;
+  border:0;
   width: 100%;
-  height: 45px;
-  background: white;
-  border-radius: 5px;
+  height: 40px;
   outline: none;
   font-size: 16px;
   padding: 15px;
@@ -80,8 +101,8 @@ form .input-box {
 }
 
 .input-box label {
-  font-weight: 200;
-  color: white;
+  font-weight: 300;
+  color: #1d4ed8;
 }
 
 form button {
@@ -106,9 +127,3 @@ form button:hover {
   background: #2563eb;
 }
 
-@media all and (max-width: 30em) {
-  a.button1 {
-    display: block;
-    margin: 0.4em auto;
-  }
-}

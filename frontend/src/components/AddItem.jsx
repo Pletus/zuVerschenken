@@ -90,17 +90,18 @@ const AddItem = () => {
 
   return (
     <div className="background-image w-screen flex items-center justify-center">
-      <div className="max-w-md mx-auto shadow-md opacity-80 bg-blue-100 rounded-lg  flex flex-col justify-center items-center my-10">
-        <h2 className="text-2xl font-bold text-center mb-4 pt-10 text-blue-700">
-          Add New Box
-        </h2>
-        {message && <p className="">{message}</p>}
+      <div className="max-w-md mx-auto shadow-md opacity-80 bg-blue-50 rounded-lg flex flex-col justify-center items-center my-10">
+        {message && <p className="text-red-500">{message}</p>}
         <form
           onSubmit={handleSubmit}
           method="post"
           encType="multipart/form-data"
-          className=""
-        >
+          className="w-full p-6"
+        ><div className="w-full  rounded-t-lg">
+          <h2 className="text-2xl font-bold text-center mb-4  text-blue-700">
+            Add New Box
+          </h2>
+        </div>
           <div className="mb-4">
             <label
               htmlFor="title"
@@ -178,6 +179,7 @@ const AddItem = () => {
                 value={houseNumber}
                 onChange={(e) => setHouseNumber(e.target.value)}
                 className="border border-blue-400 rounded w-full py-3 px-3 bg-inherit text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
               />
             </div>
           </div>
@@ -186,7 +188,7 @@ const AddItem = () => {
               htmlFor="images"
               className="text-blue-700 text-sm font-bold mb-2"
             >
-              Images
+              <span>Images </span> 
             </label>
             <input
               type="file"
@@ -194,7 +196,7 @@ const AddItem = () => {
               id="fileInput"
               multiple
               onChange={handleImageChange}
-              className="mt-1w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              className="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               required
             />
           </div>

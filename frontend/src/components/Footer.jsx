@@ -56,12 +56,12 @@ const Footer = () => {
             <ul className="flex flex-row justify-center gap-4 items-center">
               <li>
                 <a href="">
-                  <img src={fb} alt="logo" className="w-10 h-10" />
+                  <img src={fb} alt="logo" className="w-9 h-9" />
                 </a>
               </li>
               <li>
                 <a href="">
-                  <img src={tw} alt="logo" className="w-10 h-10" />
+                  <img src={tw} alt="logo" className="w-9 h-9" />
                 </a>
               </li>
               <li>
@@ -71,13 +71,13 @@ const Footer = () => {
               </li>
               <li>
                 <a href="">
-                  <img src={yt} alt="logo" className="w-12 h-12" />
+                  <img src={yt} alt="logo" className="w-10 h-10" />
                 </a>
               </li>
             </ul>
           </div>
           <div className="flex justify-evenly mt-5">
-            <ul className="flex text-md text-customGray">
+            <ul className="flex text-sm text-customGray">
               <li className="flex border-r-2 px-4">
                 <Link to="/">
                   <p> Home </p>
@@ -89,13 +89,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="border-r-2 px-4">
-                <Link to="/privacy-policy">
-                  <p></p>Privcy Policy{" "}
+                <Link to="/">
+                  <p></p>Privacy Policy{" "}
                 </Link>
               </li>
               <li className="px-4">
                 <Link to="/contact">
-                  <p>contact </p>
+                  <p>Contact </p>
                 </Link>
               </li>
             </ul>

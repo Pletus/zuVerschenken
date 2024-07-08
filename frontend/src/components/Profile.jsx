@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,7 +14,7 @@ function Profile() {
   const [userId, setUserId] = useState("");
   const [isChangePasswordVisible, setIsChangePasswordVisible] = useState(false);
   const [isChangePictureVisible, setIsChangePictureVisible] = useState(false);
-  const [fileName, setFileName] = useState("change your profile picture");
+  const [fileName, setFileName] = useState("Change Profile Picture");
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
   const [items, setItems] = useState([]);
@@ -215,7 +215,7 @@ function Profile() {
             <img
               src={imageUrl}
               alt="User"
-              className="object-cover w-48 h-48 rounded-full border-2 border-blue-500 shadow-md"
+              className="object-cover w-48 h-48 rounded-full shadow-md"
             />
           ) : (
             <img
@@ -224,7 +224,7 @@ function Profile() {
               className="object-cover w-48 h-48 rounded-full border-2 border-blue-500 shadow-md"
             />
           )}
-          <form onSubmit={handleSubmit} className="flex flex-col">
+          <form onSubmit={handleSubmit} className="flex bg-blue-100 bg-opacity-20 flex-col">
             <input
               type="file"
               onClick={handleChangePictureClick}
@@ -243,7 +243,7 @@ function Profile() {
             {isChangePictureVisible ? (
               <button
                 type="submit"
-                className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+                className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2 mx-20"
               >
                 Submit
               </button>
@@ -253,14 +253,14 @@ function Profile() {
             {isChangePasswordVisible ? (
               <form
                 onSubmit={handleChangePassword}
-                className="flex flex-col gap-2 justify-center items-center"
+                className="flex flex-col gap-2 bg-blue-100 bg-opacity-20 justify-center items-center"
               >
                 <div className="flex flex-row gap-2">
                   <button
-                    className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+                    className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2 w-40 text-center"
                     type="submit"
                   >
-                    change your password
+                    Change Password
                   </button>
                   <button
                     onClick={handleChangePasswordClick}
@@ -272,26 +272,26 @@ function Profile() {
                 <input
                   type="password"
                   value={currentPassword}
-                  placeholder="password"
+                  placeholder="Password"
                   onChange={(e) => setCurrentPassword(e.target.value)}
                   required
-                  className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 placeholder-gray-500 focus:outline-none focus:border-blue-600"
+                  className="pl-2 text-center text-white rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 placeholder-gray-500 focus:outline-none hover:border-blue-600 focus:border-blue-600"
                 />
                 <input
                   type="password"
                   value={newPassword}
-                  placeholder="new password"
+                  placeholder="New Password"
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
-                  className="pl-2 text-center rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600"
+                  className="pl-2 text-center rounded-full bg-blue-500 bg-opacity-0 border-2 border-blue-400 text-white placeholder-gray-500 focus:outline-none hover:border-blue-600 focus:border-blue-600"
                 />
               </form>
             ) : (
               <button
                 onClick={handleChangePasswordClick}
-                className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+                className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2 w-40 text-center"
               >
-                change your password
+                Change Password
               </button>
             )}
           </div>

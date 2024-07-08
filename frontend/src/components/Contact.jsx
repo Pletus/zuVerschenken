@@ -1,7 +1,10 @@
 import React from "react";
 import "../components/CSS/Contact.css";
 import Swal from "sweetalert2";
-
+import user from "../assets/user-solid.svg";
+import mail from "../assets/envelope.svg";
+import phone from "../assets/phone.svg";
+import paragraph from "../assets/paragraph.svg"
 const Contact = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -44,46 +47,53 @@ const Contact = () => {
   return (
     <section className="contact p-10">
       <form onSubmit={onSubmit} className="mx-6">
-        <h2 className="pb-2 text-white font-bold drop-shadow-xl">
+        <h2 className="pb-2 text-blue-500 font-bold drop-shadow-xl">
           Contact Form
         </h2>
         <div className="input-box">
           <label htmlFor="name">Full Name *</label>
-          <input
-            type="text"
-            name="name"
-            className="field"
-            placeholder=""
-            required
-          />
+          <div className="input-group">
+            <input
+              type="text"
+              name="name"
+              className="field"
+              placeholder=""
+              required
+            />
+            <img src={user} alt="" className="w-8 h-8 pt-4" />
+          </div>
         </div>
         <div className="input-box flex flex-cols-2 gap-4">
           <div className="w-2/3 ">
             <label className="flex" htmlFor="email">
               Email Address *
             </label>
-            <input
-              type="email"
-              name="email"
-              className="field flex"
-              placeholder=""
-              required
-            />
+            <div className="input-group">
+              <input
+                type="email"
+                name="email"
+                className="field flex"
+                placeholder=""
+                required
+              />
+              <img src={mail} alt="" className="w-8 h-8 pt-4" />
+            </div>
           </div>
           <div className="w-1/3">
             <label htmlFor="phone">Phone</label>
-            <input
-              type="tel"
-              name=""
-              className="field "
-              placeholder=""
-              required
-            />
+            <div className="input-group" >
+              <input
+                type="tel"
+                name=""
+                className="field "
+                placeholder=""
+                required
+              />
+              <img src={phone} alt="" className="w-8 h-8 pt-4" />
+            </div>
           </div>
         </div>
-        <div>
-          <h1 className="mt-6 font-f text-white">Contact preference</h1>
-        </div>
+          <h1 className=" flex justify-start mt-6 font-f p-0 text-blue-700">Contact preference</h1>
         <div className="flex gap-10">
           <div>
             <input
@@ -92,7 +102,7 @@ const Contact = () => {
               type="checkbox"
               value="email"
             />
-            <span className="text-white font-f check-text"> Reply by email  </span>
+            <span className="font-f check-text"> Reply by email </span>
           </div>
           <div>
             <input
@@ -101,17 +111,20 @@ const Contact = () => {
               type="checkbox"
               value="Phone"
             />
-            <span className=" text-white font-f check-text"> Reply by phone </span>
+            <span className=" font-f check-text"> Reply by phone </span>
           </div>
         </div>
         <div className="input-box">
           <label htmlFor="message">Your Message *</label>
-          <textarea
-            name="message"
-            className="field message font-f"
-            placeholder=""
-            required
-          ></textarea>
+          <div className="input-group">
+            <textarea
+              name="message"
+              className="field message font-f"
+              placeholder=""
+              required
+            ></textarea>
+            <img src={paragraph} alt="" className="w-8 h-8 pt-4" />
+          </div>
         </div>
         <button type="submit">Submit</button>
       </form>
