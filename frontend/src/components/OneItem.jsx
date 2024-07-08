@@ -205,14 +205,17 @@ const OneItem = () => {
               <span className="font-f italic text-sm">
                 {moment(item.createdAt).format("MMMM D, YYYY")}
               </span>{" "}
-              <span>
-                <Link to={`/users/${item.postedBy._id}`}>
-                  |&nbsp;{" "}
-                  <span className="text-blue-500 font-semibold">
-                    {item.postedBy.username}
-                  </span>
-                </Link>
-              </span>
+              <div>
+                {userId === item.postedBy._id ? (
+                  <Link to={`/profile`} className="mt-2">
+                    <strong>Posted By:</strong> {item.postedBy.username}
+                  </Link>
+                ) : (
+                  <Link to={`/users/${item.postedBy._id}`} className="mt-2">
+                    <strong>Posted By:</strong> {item.postedBy.username}
+                  </Link>
+                )}
+              </div>
             </div>
             <span className=" position text-grey-700 font-f text-sm text-justify font-normal lg:w-3/4">
               {item.description}
