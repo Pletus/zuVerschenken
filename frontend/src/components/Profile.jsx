@@ -215,7 +215,7 @@ function Profile() {
             <img
               src={imageUrl}
               alt="User"
-              className="object-cover w-48 h-48 rounded-full border-2 border-blue-500 shadow-md"
+              className="object-cover w-48 h-48 rounded-full shadow-md"
             />
           ) : (
             <img
