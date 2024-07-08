@@ -49,6 +49,14 @@ function Items() {
     return matchesItem && matchesPostCode && matchesCity;
   });
 
+  if (filteredItems.length === 0) {
+    return (
+      <div className="p-40 px-96">
+        <span className="text-center flex items-center my-3 p-12 justify-center border-2 border-blue-300 rounded-full text-4xl font-bold shadow-xl text-blue-500">Item not found...</span>
+      </div>
+   );
+  }
+
   return (
     <div className="grid justify-items-center grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 lg:px-32 2xl:px-72 gap-2 p-4 bg-blue-400 bg-opacity-60">
       {filteredItems.map((item) => {
@@ -96,9 +104,6 @@ function Items() {
                   className="text-black flex items-center hover:underline"
                 >
                   {item.location.city}
-                  <div className="pl-1 transform transition-transform duration-700 hover:scale-150">
-                    <img src={pin} alt="location" className="h-5 w-5" />
-                  </div>
                 </a>
               </div>
             </div>

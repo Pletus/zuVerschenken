@@ -67,6 +67,8 @@ const Navbar = ({ onSearch }) => {
   const handleSearch = () => {
     onSearch(searchItem, searchPostCode);
     navigate("/items");
+    setSearchItem('');
+    setSearchPostCode('');
   };
 
   const handleKeyDown = (e) => {
