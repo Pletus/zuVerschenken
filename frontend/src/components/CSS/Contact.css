@@ -125,19 +125,3 @@ form button:hover {
     margin: 0.4em auto;
   }
 }
-
-
-@media screen and (max-width: 768px) {
-  .contact {
-    width: 85%;
-    margin: 50px auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  form {
-    width: 100%;
-  }
-  
-  
-}
