@@ -14,6 +14,7 @@ import OneItem from "./components/OneItem";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import "react-toastify/dist/ReactToastify.css";
+import 'normalize.css';
 import "./App.css";
 import "./index.css";
 
