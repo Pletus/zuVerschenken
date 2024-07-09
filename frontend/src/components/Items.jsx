@@ -71,27 +71,29 @@ function Items() {
           return (
             <div
               key={item._id}
-              className="bg-white px-4 md:px-5 itemDiv shadow-2xl rounded-lg flex gap-2 items-center justify-between"
+              className="bg-white px-4 md:px-5 itemDiv shadow-2xl rounded-lg flex flex-col gap-2 items-center justify-between"
             >
               <Link to={`/items/${item._id}`}>
                 <img
                   src={item.images[0]?.url || "default-image-url"}
                   alt={item.title}
-                  className="w-40 h-40 object-cover shadow-md rounded-l-lg"
+                  className="w-40 h-40 object-cover shadow-md rounded-lg mt-4"
                 />
               </Link>
-              <div className="flex flex-col text-center mt-0 md:pt-4 lg:p-2 xl:p-4 pl-4 gap-1">
-                <span className="text-blue-700 font-bold">{item.title}</span>
-                <span className="text-blue-700">{timeAgo}</span>
-                <span className="text-black">by {item.postedBy.username}</span>
-                <div className="pl-2 font-bold">
+              <div className="flex flex-col text-center font-f mt-0 md:pt-4 lg:p-2 xl:p-4 pl-4 gap-1">
+                <span className=" font-bold">{item.title}</span>
+                <div>
+                  <span className="italic text-sm">{timeAgo} </span>
+                  <span className="text-black">by {item.postedBy.username}</span>
+                </div>
+                <div className="pl-2 font-bold items-center">
                   <a
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                       `${item.location.city} ${item.location.street} ${item.location.houseNumber}`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-black flex items-center hover:underline"
+                    className="text-blue-500 hover:underline"
                   >
                     {item.location.city}
                   </a>
