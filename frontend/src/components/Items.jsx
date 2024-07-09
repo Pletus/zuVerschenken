@@ -48,7 +48,7 @@ function Items() {
 
   return (
     filteredItems.length > 0 ? (
-      <div className="grid justify-items-center grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 lg:px-32 2xl:px-72 gap-2 p-4 bg-blue-400 bg-opacity-60">
+      <div className="grid justify-center items-center grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 lg:px-32 2xl:px-72 gap-2 p-4 bg-blue-400 bg-opacity-60">
         {filteredItems.map((item) => {
           const createdAt = item.createdAt ? parseISO(item.createdAt) : null;
           let timeAgo = "Date not available";
@@ -64,34 +64,36 @@ function Items() {
             } else if (hours > 0) {
               timeAgo = `${hours}h ago`;
             } else {
-              timeAgo = `${minutes}m ago`;
+              timeAgo = `${minutes}min ago`;
             }
           }
 
           return (
             <div
               key={item._id}
-              className="bg-white px-4 md:px-5 itemDiv shadow-2xl rounded-lg flex gap-2 items-center justify-between"
+              className="bg-white px-4 md:px-5 itemDiv shadow-2xl rounded-lg flex flex-col gap-2 items-center justify-between"
             >
               <Link to={`/items/${item._id}`}>
                 <img
                   src={item.images[0]?.url || "default-image-url"}
                   alt={item.title}
-                  className="w-40 h-40 object-cover shadow-md rounded-l-lg"
+                  className="w-40 h-40 object-cover shadow-md roundedlg mt-4"
                 />
               </Link>
-              <div className="flex flex-col text-center mt-0 md:pt-4 lg:p-2 xl:p-4 pl-4 gap-1">
-                <span className="text-blue-700 font-bold">{item.title}</span>
-                <span className="text-blue-700">{timeAgo}</span>
-                <span className="text-black">by {item.postedBy.username}</span>
-                <div className="pl-2 font-bold">
+              <div className="flex flex-col text-center font-f mt-0 md:pt-4 lg:p-2 xl:p-4 pl-4 gap-1">
+                <span className=" font-bold">{item.title}</span>
+                <div>
+                  <span className="italic">{timeAgo} </span>
+                  <span className="text-black">by {item.postedBy.username}</span>
+                </div>
+                <div className="font-bold">
                   <a
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                       `${item.location.city} ${item.location.street} ${item.location.houseNumber}`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-black flex items-center hover:underline"
+                    className="text-blue-500 hover:underline"
                   >
                     {item.location.city}
                   </a>
