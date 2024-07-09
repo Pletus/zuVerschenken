@@ -1,0 +1,33 @@
+.cardBackground {
+    background-color: #ddf1f7;
+  } 
+  
+  .heading-2 {
+    font-size: clamp(40px, 4vw, 60px);
+    font-weight: 500;
+  }
+  .card--pri {
+    background-color: white;
+    max-width: 280px;
+    margin: auto 1rem;
+    text-align: center;  
+    padding-bottom: 10px;
+  }
+  
+  .product--image {
+    height: 18em;
+  }
+
+ 
+  
+  .card--pri h2 {
+    font-size: 16px;
+    padding-top: 20px;
+    letter-spacing: 0.5px;
+  }
+  .card--pri p {
+    font-size: 16px;
+    padding-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  
