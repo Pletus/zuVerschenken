@@ -8,10 +8,13 @@ User-friendly platform:
 Allows users to register and log in for secure access.
 Provides a profile management section for updating user information.
 Implements a password change functionality for enhanced security.
+
 Item sharing and discovery:
 Enables users to add items with descriptions and potential images.
 Offers a space for users to leave comments and interact with items.
+
 Location awareness:
 Integrates a Google Map feature to potentially display item locations
+
 Data persistence:
 Utilizes a database to store user information, items, and comments.
