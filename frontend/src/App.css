@@ -125,36 +125,3 @@
     right: calc(-3% + 1px);
   }
 }
-
-.block {
-  position: relative;
-  display: flex;
-  bottom: 95px;
-  width: 75%;
-  height: 12rem;
-  background: rgb(1, 130, 244);
-  background: linear-gradient(
-    90deg,
-    rgba(1, 130, 244, 1) 74%,
-    rgba(227, 188, 26, 0.3701855742296919) 99%
-  );
-  margin: auto;
-  border-radius: 50px;
-}
-
-.block,
-h1 {
-  position: relative;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  padding: 30px;
-  color: White;
-  font-size: 40px;
-}
-
-.blockTitle {
-  border: 2px solid white;
-  border-radius: 25px;
-  justify-content: center;
-}

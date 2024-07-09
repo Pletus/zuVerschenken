@@ -120,7 +120,7 @@ const Wishlist = () => {
       ) : (
         <div className="list-view">
           {currentItems.map(item => (
-            <div key={item._id} className="relative block bg-white shadow-md rounded-lg mb-4 p-4">
+            <div key={item._id} className="relative  bg-white shadow-md rounded-lg mb-4 p-4">
               <Link to={`/items/${item._id}`}>
                 <h3 className="text-lg font-bold mb-2">{item.title}</h3>
                 <a
