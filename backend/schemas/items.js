@@ -76,6 +76,6 @@ const ItemSchema = new mongoose.Schema({
   }
 });
 
-ItemSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 7 });
+/* ItemSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 7 }); */
 
 export default mongoose.model('Item', ItemSchema);
