@@ -24,16 +24,15 @@ function Profile() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/users/${userId}`
-        );
-        setUser(response.data);
-      } catch (err) {
-        console.error("Error fetching user", err);
+      if (userId) {
+        try {
+          const response = await axios.get(`http://localhost:8080/users/${userId}`);
+          setUser(response.data);
+        } catch (err) {
+          console.error("Error fetching user", err);
+        }
       }
     };
-
     fetchUser();
   }, [userId]);
 
@@ -199,7 +198,7 @@ function Profile() {
 
       const decoded = decodeToken(token);
       const userId = decoded.id;
-      setUserId(userId);
+      setUserId(userId)
       if (userId) {
         fetchImageUrl(userId, token);
       }
@@ -207,9 +206,9 @@ function Profile() {
   }, []);
 
   return (
-    <section className="flex justify-center min-w-min min-h-screen p-6 md:p-12">
-      <div className="responsiveDiv flex flex-col md:flex-row md:justify-between md:gap-12 md:px-20 p-4 shadow-2xl bg-blue-400 bg-opacity-20 rounded-lg text-center">
-        <div className="flex flex-col gap-4 items-center justify-center p-6 mb-8 mt-6 md:mb-0 md:mt-0">
+    <section className="flex justify-center min-w-min min-h-screen bg-blue-400 bg-opacity-20">
+      <div className="responsiveDiv flex flex-col md:flex-col lg:flex-row md:justify-between md:gap-20 md:pb-64 md:pt-24 rounded-lg text-center">
+        <div className="flex flex-col gap-2 items-center justify-center p-2 mb-4 md:mb-0 md:mt-0">
           <h1 className="text-5xl font-bold text-blue-500">{user.username}</h1>
           {imageUrl ? (
             <img
@@ -224,7 +223,10 @@ function Profile() {
               className="object-cover w-48 h-48 rounded-full border-2 border-blue-500 shadow-md"
             />
           )}
-          <form onSubmit={handleSubmit} className="flex bg-blue-100 bg-opacity-20 flex-col">
+          <form
+            onSubmit={handleSubmit}
+            className="flex bg-blue-100 bg-opacity-20 flex-col"
+          >
             <input
               type="file"
               onClick={handleChangePictureClick}
@@ -255,16 +257,16 @@ function Profile() {
                 onSubmit={handleChangePassword}
                 className="flex flex-col gap-2 bg-blue-100 bg-opacity-20 justify-center items-center"
               >
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-row justifiy-center items-center gap-2">
                   <button
-                    className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2 w-40 text-center"
+                    className="flex justify-center items-center bg-blue-500 rounded-full text-white w-40 text-center"
                     type="submit"
                   >
                     Change Password
                   </button>
                   <button
                     onClick={handleChangePasswordClick}
-                    className="flex justify-center items-center bg-blue-500 rounded-full text-white p-2 mt-2"
+                    className="flex justify-center items-center bg-blue-500 rounded-full text-white"
                   >
                     X
                   </button>
@@ -324,7 +326,7 @@ function Profile() {
                 <NavLink to={`/items/${item._id}`}>
                   <div
                     key={item.id}
-                    className="flex flex-col rounded-lg justify-between bg-gray-300 bg-opacity-40 shadow-md bg-opacity-80 p-3 h-full w-64"
+                    className="flex flex-col rounded-lg justify-between bg-gray-300 bg-opacity-40 shadow-md p-3 h-full w-64"
                   >
                     <div>
                       <img
