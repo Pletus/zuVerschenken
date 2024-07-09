@@ -33,10 +33,9 @@
 
 form {
   background-color: white;
-  backdrop-filter: blur(20px);
   border-radius: 10px;
   min-width: 20px;
-  padding: 25px 25px 25px;
+  padding: 2rem 2rem 2rem;
   margin: auto;
   font-family: "Roboto", cursive;
   color:#1d4ed8;
@@ -59,12 +58,28 @@ form .input-box {
   margin-top: 20px;
 }
 
+.input-group {
+  display: flex;
+  border: 1px solid #7dd3fc;
+}
+
+.input-group input {
+  border: 0;
+  flex-grow: 1;
+}
+
+.input-group img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .input-box .field {
   background-color: transparent;
-  border:1px solid #60a5fa;
+  border:0;
   width: 100%;
-  height: 45px;
-  border-radius: 5px;
+  height: 40px;
   outline: none;
   font-size: 16px;
   padding: 15px;
@@ -104,9 +119,3 @@ form button:hover {
   background: #2563eb;
 }
 
-@media all and (max-width: 30em) {
-  a.button1 {
-    display: block;
-    margin: 0.4em auto;
-  }
-}

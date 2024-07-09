@@ -201,22 +201,12 @@ const OneItem = () => {
               </button>
             </div>
             <h3 className=" font-f font-semibold text-3xl">{item.title}</h3>
-            <div>
-              <span className="font-f italic text-sm">
+            <div><span className="font-f italic text-sm">
                 {moment(item.createdAt).format("MMMM D, YYYY")}
-              </span>{" "}
-              <div>
-                {userId === item.postedBy._id ? (
-                  <Link to={`/profile`} className="mt-2">
-                    <strong>Posted By:</strong> {item.postedBy.username}
-                  </Link>
-                ) : (
-                  <Link to={`/users/${item.postedBy._id}`} className="mt-2">
-                    <strong>Posted By:</strong> {item.postedBy.username}
-                  </Link>
-                )}
-              </div>
-            </div>
+              </span> <span><Link to={`/users/${item.postedBy._id}`}>
+               |&nbsp; <span className="text-blue-500 font-semibold"
+               >{item.postedBy.username}</span>
+              </Link></span></div>
             <span className=" position text-grey-700 font-f text-sm text-justify font-normal lg:w-3/4">
               {item.description}
             </span>
@@ -228,13 +218,10 @@ const OneItem = () => {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                Location:{" "}
-                <span className="italic text-blue-500">
-                  {item.location.city}, {item.location.street}{" "}
-                  {item.location.houseNumber}
-                </span>
+              >Location: <span className="italic text-blue-500">{item.location.city}, {item.location.street}{" "}
+                {item.location.houseNumber}</span>
               </a>
+              
             </div>
           </div>
         </div>

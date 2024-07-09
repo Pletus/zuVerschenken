@@ -26,9 +26,7 @@ function Profile() {
     const fetchUser = async () => {
       if (userId) {
         try {
-          const response = await axios.get(
-            `http://localhost:8080/users/${userId}`
-          );
+          const response = await axios.get(`http://localhost:8080/users/${userId}`);
           setUser(response.data);
         } catch (err) {
           console.error("Error fetching user", err);
@@ -200,8 +198,7 @@ function Profile() {
 
       const decoded = decodeToken(token);
       const userId = decoded.id;
-      setUserId(userId);
-      console.log(userId);
+      setUserId(userId)
       if (userId) {
         fetchImageUrl(userId, token);
       }
