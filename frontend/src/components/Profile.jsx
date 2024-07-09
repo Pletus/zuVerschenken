@@ -24,16 +24,15 @@ function Profile() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/users/${userId}`
-        );
-        setUser(response.data);
-      } catch (err) {
-        console.error("Error fetching user", err);
+      if (userId) {
+        try {
+          const response = await axios.get(`http://localhost:8080/users/${userId}`);
+          setUser(response.data);
+        } catch (err) {
+          console.error("Error fetching user", err);
+        }
       }
     };
-
     fetchUser();
   }, [userId]);
 
@@ -199,7 +198,7 @@ function Profile() {
 
       const decoded = decodeToken(token);
       const userId = decoded.id;
-      setUserId(userId);
+      setUserId(userId)
       if (userId) {
         fetchImageUrl(userId, token);
       }
