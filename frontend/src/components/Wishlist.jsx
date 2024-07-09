@@ -19,7 +19,7 @@ const Wishlist = () => {
 
         // Fetch the items using the wishlist IDs
         const itemPromises = wishlist.map(id =>
-          axios.get(`http://localhost:8080/api/items/${id}`)
+          axios.get(`https://zuverschenken.onrender.com/api/items/${id}`)
         );
 
         const itemResponses = await Promise.all(itemPromises);

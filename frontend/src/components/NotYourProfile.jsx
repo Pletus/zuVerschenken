@@ -41,7 +41,7 @@ function NotYourProfile() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/items/`);
+        const response = await fetch(`https://zuverschenken.onrender.com/api/items/`);
         const data = await response.json();
         setItems(data);
       } catch (error) {
@@ -55,7 +55,7 @@ function NotYourProfile() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/users/${id}`);
+        const response = await axios.get(`https://zuverschenken.onrender.com/users/${id}`);
         setUser(response.data);
       } catch (err) {
         console.error("Error fetching user", err);

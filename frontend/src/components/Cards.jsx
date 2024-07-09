@@ -11,7 +11,7 @@ const Cards = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/items/top");
+        const response = await axios.get("https://zuverschenken.onrender.com/api/items/top");
         const fetchedItems = response.data;
 
         const shuffledItems = fetchedItems.sort(() => 0.5 - Math.random());

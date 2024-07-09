@@ -42,7 +42,7 @@ const Navbar = ({ onSearch }) => {
   const fetchImageUrl = async (userId, token) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/users/${userId}/image`,
+        `https://zuverschenken.onrender.com/users/${userId}/image`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

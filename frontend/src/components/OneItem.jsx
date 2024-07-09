@@ -45,7 +45,7 @@ const OneItem = () => {
     const fetchItem = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/items/${id}`
+          `https://zuverschenken.onrender.com/api/items/${id}`
         );
         setItem(response.data);
       } catch (err) {

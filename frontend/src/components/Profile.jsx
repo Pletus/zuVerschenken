@@ -26,7 +26,7 @@ function Profile() {
     const fetchUser = async () => {
       if (userId) {
         try {
-          const response = await axios.get(`http://localhost:8080/users/${userId}`);
+          const response = await axios.get(`https://zuverschenken.onrender.com/users/${userId}`);
           setUser(response.data);
         } catch (err) {
           console.error("Error fetching user", err);
@@ -62,7 +62,7 @@ function Profile() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/items/`);
+        const response = await fetch(`https://zuverschenken.onrender.com/api/items/`);
         const data = await response.json();
         setItems(data);
       } catch (error) {
@@ -99,7 +99,7 @@ function Profile() {
 
     try {
       const response = await axios.put(
-        "http://localhost:8080/users/change-password",
+        "https://zuverschenken.onrender.com/users/change-password",
         {
           userId: `${userId}`,
           currentPassword,
@@ -148,7 +148,7 @@ function Profile() {
     formData.append("image", images[0]);
 
     try {
-      await axios.put(`http://localhost:8080/users/${userId}/image`, formData, {
+      await axios.put(`https://zuverschenken.onrender.com/users/${userId}/image`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -173,7 +173,7 @@ function Profile() {
   const fetchImageUrl = async (userId, token) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/users/${userId}/image`,
+        `https://zuverschenken.onrender.com/users/${userId}/image`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
