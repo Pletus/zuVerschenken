@@ -1,6 +1,7 @@
 import React from "react";
 import dan from "../assets/dan.jpg";
-import hamed from "../assets/hamedm.jpg"
+import hamed from "../assets/hamedm.jpg";
+import yago from "../assets/yago.png";
 
 const About = () => {
   return (
@@ -49,17 +50,15 @@ const About = () => {
       </div>
 
       {/* Third Frame */}
-      <div className="bg-red-200 p-4 rounded-lg w-full md:w-80">
+      <div className="p-4 rounded-lg w-full md:w-80">
         <img
-          src="https://via.placeholder.com/400x300"
+          src={yago}
           alt="Placeholder"
           className="w-full h-80 object-cover rounded-t-lg"
         />
         <div className="mt-4">
           <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur.
-          </p>
+          Seasoned professional with over eight years of experience in the catering industry, including leadership roles. Currently transitioning from a career as a chef to a role in software development. Utilizing robust problem-solving skills, creativity, and meticulous attention to detail developed in the culinary arts to excel in programming. Passionate about technology and committed to continuous learning to participate in innovative projects and improve user experiences. Fluent in Spanish (native), German and English (C1), bringing a multilingual advantage to diverse teams and international projects.          </p>
         </div>
       </div>
     </div>
